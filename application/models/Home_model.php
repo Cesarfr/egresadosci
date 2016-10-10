@@ -1,0 +1,65 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+class Home_model extends CI_Model{
+	function __construct() {
+		parent::__construct();
+	}
+	public function save_form(){
+		$data = array(
+			"id" => null,
+			"egresado" => $this->input->post("egresado"),
+			"obser" => $this->input->post("obser"),
+			"carrera" => $this->input->post("carrera"),
+			"matricula" => $this->input->post("matric"),
+			"fecha" => $this->input->post("fecha"),
+			"apat" => $this->input->post("apat"),
+			"amat" => $this->input->post("amat"),
+			"nombre" => $this->input->post("nombre"),
+			"sexo" => $this->input->post("sexo"),
+			"curp" => $this->input->post("curp"),
+			"ecivil" => $this->input->post("ecivil"),
+			"status" => $this->input->post("status"),
+			"calle" => $this->input->post("calle"),
+			"colonia" => $this->input->post("colonia"),
+			"municipio" => $this->input->post("municipio"),
+			"estado" => $this->input->post("estado"),
+			"cp" => $this->input->post("cp"),
+			"tcasa" => $this->input->post("tcasa"),
+			"trecados" => $this->input->post("trecados"),
+			"fechanac" => $this->input->post("fechanac"),
+			"mailperso" => $this->input->post("mailperso"),
+			"maillaboral" => $this->input->post("maillaboral"),
+			"facebook" => $this->input->post("facebook"),
+			"twitter" => $this->input->post("twitter"),
+			"etitTSU" => $this->input->post("etitTSU"),
+			"etitING" => $this->input->post("etitING"),
+			"npersonal" => $this->input->post("npersonal"),
+			"tpersonal" => $this->input->post("tpersonal"),
+			"cpersonal" => $this->input->post("cpersonal"),
+			"nescolar" => $this->input->post("nescolar"),
+			"tescolar" => $this->input->post("tescolar"),
+			"cescolar" => $this->input->post("cescolar"),
+			"nlaboral" => $this->input->post("nlaboral"),
+			"tlaboral" => $this->input->post("tlaboral"),
+			"claboral" => $this->input->post("claboral"),
+			"empresa" => $this->input->post("empresa"),
+			"dirempresa" => $this->input->post("dirempresa"),
+			"puesto" => $this->input->post("puesto"),
+			"nomjefe" => $this->input->post("nomjefe"),
+			"telempresa" => $this->input->post("telempresa"),
+			"tlaborando" => $this->input->post("tlaborando"),
+			"explaboral" => $this->input->post("explaboral"),
+			"sueldo" => $this->input->post("sueldo"),
+			"nivocupacion" => $this->input->post("nivocupacion"),
+			"otronc" => $this->input->post("otronc"),
+			"tiempoempleo" => $this->input->post("tiempoempleo"),
+			"loctrabajo" => $this->input->post("loctrabajo"),
+			"torganizacion" => $this->input->post("torganizacion"),
+			"tipoorga" => $this->input->post("tipoorga"),
+			"trel" => $this->input->post("trel"),
+			"fcol" => $this->input->post("fcol"),
+			"cest" => $this->input->post("cest"),
+			"cestque" => $this->input->post("cestque")
+		);
+		return $this->db->insert('EGRESADO', $data);
+	}
+}

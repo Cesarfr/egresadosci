@@ -5,6 +5,9 @@
            <p>&middot; &copy; Realizado por Cesar Hernandez Antonio para la <a href="http://uttecamac.edu.mx" target="_blank">Universidad Tecnológica de Tecámac</a> &middot; <a href="<?php echo site_url('home/aviso'); ?>">Aviso de privacidad</a></p>
         </footer>
     </div>
+    <script type="text/javascript">
+		var baseurl = "<?php print base_url(); ?>";
+	</script>
     <script src="<?php echo base_url('assets/js/jquery-1.12.0.min.js');?>" type="text/javascript"></script>
     <script src="<?php echo base_url('assets/js/bootstrap.min.js');?>" type="text/javascript"></script>
     <!-- Date pollyfill -->

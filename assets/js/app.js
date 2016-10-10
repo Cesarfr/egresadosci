@@ -1,4 +1,4 @@
-$(document).ready(function(){	
+$(document).ready(function(){
     $("#nivocupacion").click(function(){
         if($("#nivocupacion").val() == "Otro"){
 			$("#espotrono").removeClass("hidden");
@@ -46,26 +46,8 @@ $(document).ready(function(){
 		form : '#frmEgre',
 		lang: 'es',
 		modules : 'sanitize',
-		onSuccess: function(){
-			var datos = $("#frmEgre").serialize();
-			$.ajax({
-				method: "POST",
-				url: "index.php?T=saveForm",
-				data: datos,
-				success: function(dat){
-					console.log(typeof(dat));
-					console.log("Guardado con éxito " + dat);
-					if(dat != '0') {
-						$("#frmEgre")[0].reset();
-						$("#mensaje").html("<div class='alert alert-success alert-dismissible' role='alert'> <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button> ¡Información guardada con éxito!</div>");
-						$("#mensaje").focus();
-						setTimeout("redir('index.php?T=satisfaccion')", 1500);
-					}else {
-						$("#mensaje").html("<div class='alert alert-danger alert-dismissible' role='alert'> <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button> ¡Ocurrió un error al guardar la información!</div>");
-						$("#mensaje").focus();
-					}
-                }
-			});
+		onSuccess: function(evt){
+			evt.preventDefault();
 			return false;
 		}
 	});

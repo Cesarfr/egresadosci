@@ -1,7 +1,9 @@
 <div class="row">
 	<div class="col-md-12 text-center"><h4>CÉDULA DE EGRESO</h4></div>
 </div>
-<form action="#" id="frmEgre" method="POST">
+<?php echo validation_errors(); ?>
+
+<?php echo form_open('home/save_egresado', array('id' => 'frmEgre')); ?>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
@@ -27,7 +29,6 @@
 						<div class="col-sm-6 col-md-6">
 							<div class="form-group">
 								<label for="carrera">Carrera:</label>
-<!--								<input type="text" class="form-control" id="carrera" name="carrera" placeholder="Carrera"  data-validation="required" data-sanitize="trim escape">-->
 								<select name="carrera" id="carrera" class="form-control" data-validation="required" data-sanitize="trim escape" min="0">
 								</select>
 							</div>
@@ -474,4 +475,4 @@
 		</div>
 	</div>
 
-</form><br>
+<?php echo form_close(); ?><br>
