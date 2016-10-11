@@ -466,7 +466,6 @@
 
 					<div class="row">
 						<div class="col-md-12 text-center">
-							<div id="mensaje"></div>
 							<input type="submit" class="btn btn-success" value="Guardar">
 						</div>
 					</div>

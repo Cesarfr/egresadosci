@@ -2,6 +2,10 @@
 	<div class="col-md-12 text-center"><h4>SATISFACCIÓN DE EGRESADOS</h4></div>
 </div>
 <div class="row">
+	<div class="col-md-12"><?php echo $res;?></div>
+</div>
+<?php echo $id;?>
+<div class="row">
 	<div class="col-md-12 text-justify">
 		<div class="panel panel-default">
 			<div class="panel-body">
@@ -17,7 +21,9 @@
 		</div>
 	</div>
 </div>
-<form action="#" id="frmSatis" method="POST">
+<?php echo validation_errors(); ?>
+
+<?php echo form_open('home/save_satis', array('id' => 'frmSatis')); ?>
 	<div class="panel panel-default">
 		<div class="panel-body">
 			<div class="row">
@@ -267,9 +273,7 @@
 					</ul>
 				</div>
 				<div class="col-md-12 text-center">
-					<div id="mensajesat"></div>
 					<input type="submit" id="subSat" value="Guardar" class="btn btn-success">
-					<a href="index.php?T=comp" class="btn btn-primary hidden" id="comp">Imprimir comprobante</a>
 				</div>
 			</div>
 		</div>

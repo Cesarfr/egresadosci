@@ -47,8 +47,7 @@ $(document).ready(function(){
 		lang: 'es',
 		modules : 'sanitize',
 		onSuccess: function(evt){
-			evt.preventDefault();
-			return false;
+			return true;
 		}
 	});
 	
@@ -56,31 +55,9 @@ $(document).ready(function(){
 		form : '#frmSatis',
 		lang: 'es',
 		modules : 'sanitize',
-		onSuccess: function(){
-			var datos = $("#frmSatis").serialize();
-			$.ajax({
-				method: "POST",
-				url: "index.php?T=saveSatis",
-				data: datos,
-				success: function(dat){
-					if(dat == 1) {
-						$("#frmSatis")[0].reset();
-						$("#mensajesat").html("<div class='alert alert-success alert-dismissible' role='alert'> <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button> ¡Información guardada con éxito!</div>");
-						$("#mensajesat").focus();
-						$("#subSat").attr("disabled","disabled");
-						$("#comp").removeClass("hidden");
-//						setTimeout("redir('index.php')", 2500);
-					}else {
-						$("#mensajesat").html("<div class='alert alert-danger alert-dismissible' role='alert'> <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button> ¡Ocurrió un error al guardar la información!</div>");
-						$("#mensajesat").focus();
-					}
-                }
-			});
-			return false;
+		onSuccess: function(evt){
+			return true;
 		}
 	});
 	
 });
-function redir(dir) {
-	location.href = dir;
-}

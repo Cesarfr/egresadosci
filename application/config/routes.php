@@ -54,4 +54,5 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['home'] = 'aviso';
-//$route['home'] = 'save_egresado';
+$route['home'] = 'satisfaccion';
+$route['home'] = 'comprobante';
