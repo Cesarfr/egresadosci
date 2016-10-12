@@ -56,3 +56,6 @@ $route['translate_uri_dashes'] = FALSE;
 $route['home'] = 'aviso';
 $route['home'] = 'satisfaccion';
 $route['home'] = 'comprobante';
+
+$route['admin'] = 'login';
+$route['admin'] = 'panel';

@@ -34,8 +34,22 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="<?php echo site_url(''); ?>">Inicio</a></li>
                     <li><a href="#consultar">Consultar</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
+                    <?php if(!isset($_SESSION["id_u"])){ ?>
+                    <li><a href="<?php echo site_url('admin/login'); ?>">Login</a></li>
+                    <?php } ?>
                 </ul>
+                <?php if(isset($_SESSION["id_u"])){ ?>
+                <ul class="nav navbar-nav navbar-right">
+					<li><p class="navbar-text">Hola, <?php echo $this->session->userdata("nombre")." ".$this->session->userdata("apat")." ".$this->session->userdata("amat");?></p></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Opciones <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li role="separator" class="divider"></li>
+							<li><a href="<?php echo site_url('admin/logout'); ?>">Cerrar sesión</a></li>
+						</ul>
+					</li>
+				</ul>
+           		<?php }?>
             </div>
           </div>
         </nav>

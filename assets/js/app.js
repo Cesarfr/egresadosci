@@ -60,4 +60,13 @@ $(document).ready(function(){
 		}
 	});
 	
+	$.validate({
+		form : '#frmLogin',
+		lang: 'es',
+		modules : 'sanitize',
+		onSuccess: function(evt){
+			return true;
+		}
+	});
+	
 });
