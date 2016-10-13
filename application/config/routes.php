@@ -59,3 +59,5 @@ $route['home'] = 'comprobante';
 
 $route['admin'] = 'login';
 $route['admin'] = 'panel';
+$route['admin'] = 'graficas';
+$route['admin'] = 'consres';

@@ -10,15 +10,14 @@ class Admin_model extends CI_Model{
 			"passwd" => $this->input->post("passwd")
 		);
 		$query = $this->db->query("SELECT * FROM LOGIN WHERE usuario='".$this->db->escape_str($data["usuario"])."' AND passwd='".$this->db->escape_str($data["passwd"])."'");
-//		if ($query->num_rows() == 1) {
-//			return true;
-//		} else {
-//			return false;
-//		}
 		return $query->row_array();
 	}
 	public function get_data_user($id){
 		$query = $this->db->query("SELECT * FROM USUARIO WHERE id_u=".$this->db->escape($id));
+		return $query->row_array();
+	}
+	public function count_polls(){
+		$query = $this->db->query("SELECT COUNT(id_s) AS polls FROM SATISFACCION");
 		return $query->row_array();
 	}
 }

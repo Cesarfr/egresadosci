@@ -40,10 +40,26 @@ class Admin extends CI_Controller{
 		}
 	}
 	public function panel(){
-		$data['title'] = "Panel";
-		$this->load->view('templates/header', $data);
-		$this->load->view('pages/panel');
-		$this->load->view('templates/footer');
+		if(!isset($_SESSION["id_u"])){
+			redirect("/admin/login/");
+		}else{
+			$data['title'] = "Panel";
+			$res = $this->admin_model->count_polls();
+			$data['npolls'] = $res["polls"];
+			$this->load->view('templates/header', $data);
+			$this->load->view('pages/panel');
+			$this->load->view('templates/footer');
+		}
+	}
+	public function consres(){
+		if(!isset($_SESSION["id_u"])){
+			redirect("/admin/login/");
+		}else{
+			$data['title'] = "Consultar resultados";
+			$this->load->view('templates/header', $data);
+			$this->load->view('pages/consres');
+			$this->load->view('templates/footer');
+		}
 	}
 	public function logout(){
 		$array_items = array('id_u', 'nombre', 'apat', 'amat');

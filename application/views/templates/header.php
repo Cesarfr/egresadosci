@@ -36,6 +36,8 @@
                     <li><a href="#consultar">Consultar</a></li>
                     <?php if(!isset($_SESSION["id_u"])){ ?>
                     <li><a href="<?php echo site_url('admin/login'); ?>">Login</a></li>
+                    <?php }else{ ?>
+                    <li><a href="<?php echo site_url('admin/panel'); ?>">Panel</a></li>
                     <?php } ?>
                 </ul>
                 <?php if(isset($_SESSION["id_u"])){ ?>
