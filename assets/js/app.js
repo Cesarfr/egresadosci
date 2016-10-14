@@ -33,12 +33,20 @@ $(document).ready(function(){
 			$("input[name='etitTSU']").removeAttr("disabled");
 			$("input[name='etitING']").removeAttr("checked");
 			$("input[name='etitING']").attr('disabled', 'disabled');
-			$("#carrera").html("<option value='Administración, Área Administración y Evaluación de Proyectos'>Administración, Área Administración y Evaluación de Proyectos</option><option value='Administración, Área Recursos Humanos'>Administración, Área Recursos Humanos</option><option value='Desarrollo de Negocios, Área Mercadotecnia'>Desarrollo de Negocios, Área Mercadotecnia</option><option value='Mantenimiento, Área Industrial'>Mantenimiento, Área Industrial</option><option value='Mecatrónica, Área Automatización'>Mecatrónica, Área Automatización</option><option value='Nanotecnología, Área Materiales'>Nanotecnología, Área Materiales</option><option value='Procesos Industriales, Área Manufactura'>Procesos Industriales, Área Manufactura</option><option value='Química, Área Biotecnología'>Química, Área Biotecnología</option><option value='Tecnologías de la Información y Comunicación, Área Sistemas Informáticos'>Tecnologías de la Información y Comunicación, Área Sistemas Informáticos</option><option value='Energías Renovables, Área Calidad y Ahorro de Energía'>Energías Renovables, Área Calidad y Ahorro de Energía</option>");
+			$("#carrera").html("<option value='AEP'>Administración, Área Administración y Evaluación de Proyectos</option><option value='ARH'>Administración, Área Recursos Humanos</option><option value='DNM'>Desarrollo de Negocios, Área Mercadotecnia</option><option value='MIN'>Mantenimiento, Área Industrial</option><option value='MAT'>Mecatrónica, Área Automatización</option><option value='NAT'>Nanotecnología, Área Materiales</option><option value='PIM'>Procesos Industriales, Área Manufactura</option><option value='QBT'>Química, Área Biotecnología</option><option value='TIC'>Tecnologías de la Información y Comunicación, Área Sistemas Informáticos</option><option value='ERC'>Energías Renovables, Área Calidad y Ahorro de Energía</option>");
 		}else {
 			$("input[name='etitING']").removeAttr("disabled");
 			$("input[name='etitTSU']").removeAttr("checked");
 			$("input[name='etitTSU']").attr('disabled', 'disabled');
-			$("#carrera").html("<option value='Biotecnología'>Biotecnología</option><option value='Gestión de Proyectos'>Gestión de Proyectos</option><option value='Mantenimiento Industrial'>Mantenimiento Industrial</option><option value='Mecatrónica'>Mecatrónica</option><option value='Nanotecnología'>Nanotecnología</option><option value='Negocios y Gestión Empresarial'>Negocios y Gestión Empresarial</option><option value='Procesos y Operaciones Industriales'>Procesos y Operaciones Industriales</option><option value='Tecnologías de la Información y Comunicación'>Tecnologías de la Información y Comunicación</option>");
+			$("#carrera").html("<option value='IBT'>Biotecnología</option><option value='IER'>Energías Renovables</option><option value='IGP'>Gestión de Proyectos</option><option value='IMI'>Mantenimiento Industrial</option><option value='IMT'>Mecatrónica</option><option value='INT'>Nanotecnología</option><option value='IGE'>Negocios y Gestión Empresarial</option><option value='IPO'>Procesos y Operaciones Industriales</option><option value='ITI'>Tecnologías de la Información y Comunicación</option>");
+		}
+    });
+	
+	$("input[name='tipo']").click(function(){
+        if($(this).val() == "TSU"){
+			$("#carrera").html("<option value='AEP'>Administración, Área Administración y Evaluación de Proyectos</option><option value='ARH'>Administración, Área Recursos Humanos</option><option value='DNM'>Desarrollo de Negocios, Área Mercadotecnia</option><option value='MIN'>Mantenimiento, Área Industrial</option><option value='MAT'>Mecatrónica, Área Automatización</option><option value='NAT'>Nanotecnología, Área Materiales</option><option value='PIM'>Procesos Industriales, Área Manufactura</option><option value='QBT'>Química, Área Biotecnología</option><option value='TIC'>Tecnologías de la Información y Comunicación, Área Sistemas Informáticos</option><option value='ERC'>Energías Renovables, Área Calidad y Ahorro de Energía</option>");
+		}else {
+			$("#carrera").html("<option value='IBT'>Biotecnología</option><option value='IER'>Energías Renovables</option><option value='IGP'>Gestión de Proyectos</option><option value='IMI'>Mantenimiento Industrial</option><option value='IMT'>Mecatrónica</option><option value='INT'>Nanotecnología</option><option value='IGE'>Negocios y Gestión Empresarial</option><option value='IPO'>Procesos y Operaciones Industriales</option><option value='ITI'>Tecnologías de la Información y Comunicación</option>");
 		}
     });
 	
@@ -68,5 +76,40 @@ $(document).ready(function(){
 			return true;
 		}
 	});
+	
+	$("#btnTabla").click(function(){
+		var datos = $("#frmTabla").serialize();
+		console.log(datos);
+		$.ajax({
+			method: "POST",
+			url: baseurl+"index.php/admin/get_table",
+			data: datos,
+			success: function(dat){
+				console.log(dat);
+			}
+		});
+	});
+	
+//	$('#table').DataTable({ 
+// 
+//        "processing": true, //Feature control the processing indicator.
+//        "serverSide": true, //Feature control DataTables' server-side processing mode.
+//        "order": [], //Initial no order.
+// 
+//        // Load data for the table's content from an Ajax source
+//        "ajax": {
+//            "url": baseurl+"index.php/admin/get_egre",
+//            "type": "POST"
+//        },
+// 
+//        //Set column definition initialisation properties.
+//        "columnDefs": [
+//        { 
+//            "targets": [ -1 ], //last column
+//            "orderable": false, //set not orderable
+//        },
+//        ],
+// 
+//    });
 	
 });

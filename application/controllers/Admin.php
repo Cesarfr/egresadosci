@@ -56,6 +56,10 @@ class Admin extends CI_Controller{
 			redirect("/admin/login/");
 		}else{
 			$data['title'] = "Consultar resultados";
+			$restsu = $this->admin_model->count_polls_tsu();
+			$resing = $this->admin_model->count_polls_ing();
+			$data['polls_tsu'] = $restsu["polls_tsu"];
+			$data['polls_ing'] = $resing["polls_ing"];
 			$this->load->view('templates/header', $data);
 			$this->load->view('pages/consres');
 			$this->load->view('templates/footer');
@@ -66,4 +70,56 @@ class Admin extends CI_Controller{
 		$this->session->unset_userdata($array_items);
 		redirect("/admin/login/");
 	}
+	public function get_table(){
+		if(!isset($_SESSION["id_u"])){
+			redirect("/");
+		}else{
+			$res = $this->admin_model->get_poll();
+			echo json_encode($res);
+		}
+	}
+	public function consultar(){
+		if(!isset($_SESSION["id_u"])){
+			redirect("/");
+		}else{
+			$data['title'] = "Consultar egresados";
+			$this->load->view('templates/header', $data);
+			$this->load->view('pages/consultar');
+			$this->load->view('templates/footer');
+		}
+	}
+//	public function get_egre(){
+//		if(!isset($_SESSION["id_u"])){
+//			redirect("/");
+//		}else{
+//			$res = $this->admin_model->get_egresados();
+//			$data = array();
+//			$no = $_POST['start'];
+//			foreach ($res as $person) {
+//				$no++;
+//				$row = array();
+//				$row[] = $person->id;
+//				$row[] = $person->egresado;
+//				$row[] = $person->matricula;
+//				$row[] = $person->nombre;
+//				$row[] = $person->apat;
+//				$row[] = $person->amat;
+//
+//				//add html for action
+//	//            $row[] = '<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_person('."'".$person->id."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+//	//                  <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_person('."'".$person->id."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+//
+//				$data[] = $row;
+//			}
+//
+//			$output = array(
+//							"draw" => $_POST['draw'],
+//							"recordsTotal" => $this->admin_model->count_all(),
+//							"recordsFiltered" => $this->admin_model->count_filtered(),
+//							"data" => $data
+//					);
+//			//output to json format
+//			echo json_encode($output);
+//		}
+//	}
 }

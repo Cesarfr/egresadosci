@@ -7,8 +7,10 @@
 	<title><?php echo $title; ?></title>
 	<link rel="shortcut icon" href="<?php echo base_url('assets/img/ut.ico');?>">
 	<link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css');?>">
+	<?php if(isset($_SESSION["id_u"])){ ?>
+	<link rel="stylesheet" href="<?php echo base_url('assets/css/dataTables.bootstrap.min.css');?>">
+	<?php } ?>
 	<link rel="stylesheet" href="<?php echo base_url('assets/css/app.css');?>">
-
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -33,10 +35,11 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="<?php echo site_url(''); ?>">Inicio</a></li>
-                    <li><a href="#consultar">Consultar</a></li>
+                    <li><a href="#get_comp">Comprobante</a></li>
                     <?php if(!isset($_SESSION["id_u"])){ ?>
                     <li><a href="<?php echo site_url('admin/login'); ?>">Login</a></li>
                     <?php }else{ ?>
+                    <li><a href="<?php echo site_url('admin/consultar'); ?>">Consultar</a></li>
                     <li><a href="<?php echo site_url('admin/panel'); ?>">Panel</a></li>
                     <?php } ?>
                 </ul>
@@ -44,10 +47,10 @@
                 <ul class="nav navbar-nav navbar-right">
 					<li><p class="navbar-text">Hola, <?php echo $this->session->userdata("nombre")." ".$this->session->userdata("apat")." ".$this->session->userdata("amat");?></p></li>
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Opciones <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Opciones <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li role="separator" class="divider"></li>
-							<li><a href="<?php echo site_url('admin/logout'); ?>">Cerrar sesión</a></li>
+							<li><a href="<?php echo site_url('admin/logout'); ?>"><span class="glyphicon glyphicon-share" aria-hidden="true"></span> Cerrar sesión</a></li>
 						</ul>
 					</li>
 				</ul>
