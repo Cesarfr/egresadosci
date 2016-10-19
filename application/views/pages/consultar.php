@@ -7,16 +7,17 @@ if(!isset($_SESSION["id_u"])){
 		<div class="panel panel-default">
 		<div class="panel-heading text-center"><h4>Consultar egresados</h4></div>
 			<div class="panel-body">
-				<table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+				<table id="table" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
 					<thead>
 						<tr>
-							<th>ID</th>
+							<th>Folio</th>
 							<th>Egresado</th>
 							<th>Carrera</th>
+							<th>Matricula</th>
 							<th>Nombre</th>
 							<th>Apellido Paterno</th>
 							<th>Apellido Materno</th>
-<!--							<th style="width:125px;">Action</th>-->
+							<th>Acción</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -24,13 +25,14 @@ if(!isset($_SESSION["id_u"])){
 
 					<tfoot>
 					<tr>
-						<th>ID</th>
+						<th>Folio</th>
 						<th>Egresado</th>
 						<th>Carrera</th>
+						<th>Matricula</th>
 						<th>Nombre</th>
 						<th>Apellido Paterno</th>
 						<th>Apellido Materno</th>
-<!--						<th>Action</th>-->
+						<th>Acción</th>
 					</tr>
 					</tfoot>
 				</table>

@@ -88,38 +88,34 @@ class Admin extends CI_Controller{
 			$this->load->view('templates/footer');
 		}
 	}
-//	public function get_egre(){
-//		if(!isset($_SESSION["id_u"])){
-//			redirect("/");
-//		}else{
-//			$res = $this->admin_model->get_egresados();
-//			$data = array();
-//			$no = $_POST['start'];
-//			foreach ($res as $person) {
-//				$no++;
-//				$row = array();
-//				$row[] = $person->id;
-//				$row[] = $person->egresado;
-//				$row[] = $person->matricula;
-//				$row[] = $person->nombre;
-//				$row[] = $person->apat;
-//				$row[] = $person->amat;
-//
-//				//add html for action
-//	//            $row[] = '<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_person('."'".$person->id."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
-//	//                  <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_person('."'".$person->id."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
-//
-//				$data[] = $row;
-//			}
-//
-//			$output = array(
-//							"draw" => $_POST['draw'],
-//							"recordsTotal" => $this->admin_model->count_all(),
-//							"recordsFiltered" => $this->admin_model->count_filtered(),
-//							"data" => $data
-//					);
-//			//output to json format
-//			echo json_encode($output);
-//		}
-//	}
+	public function get_egre(){
+		if(!isset($_SESSION["id_u"])){
+			redirect("/");
+		}else{
+			$list = $this->admin_model->get_datatables();
+			$data = array();
+			$no = $_POST['start'];
+			foreach ($list as $egresado) {
+				$no++;
+				$row = array();
+				$row[] = $egresado->id;
+				$row[] = $egresado->egresado;
+				$row[] = $egresado->carrera;
+				$row[] = $egresado->matricula;
+				$row[] = $egresado->nombre;
+				$row[] = $egresado->apat;
+				$row[] = $egresado->amat;
+				$row[] = "<div class='text-center'><a class='btn btn-sm btn-warning' title='Modificar' href='".site_url('admin/edit_egre')."/".$egresado->id."'><i class='glyphicon glyphicon-pencil'></i> Modificar</a>&nbsp;<button class='btn btn-sm btn-danger' title='Borrar' onclick='delete_egre(\"".$egresado->id."\")'><i class='glyphicon glyphicon-trash'></i> Borrar</button>";
+				$data[] = $row;
+			}
+
+			$output = array(
+				"draw" => $_POST['draw'],
+				"recordsTotal" => $this->admin_model->count_all(),
+				"recordsFiltered" => $this->admin_model->count_filtered(),
+				"data" => $data,
+			);
+			echo json_encode($output);
+		}
+	}
 }

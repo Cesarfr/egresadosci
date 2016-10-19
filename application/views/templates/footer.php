@@ -17,6 +17,9 @@
    <?php if(isset($_SESSION["id_u"])){ ?>
 	<script src="<?php echo base_url('assets/js/jquery.dataTables.min.js');?>" type="text/javascript"></script>
 	<script src="<?php echo base_url('assets/js/dataTables.bootstrap.min.js');?>" type="text/javascript"></script>
+	<script src="<?php echo base_url('assets/js/dataTables.responsive.min.js');?>" type="text/javascript"></script>
+	<script src="<?php echo base_url('assets/js/dataTables.responsive.min.js');?>" type="text/javascript"></script>
+	<script src="<?php echo base_url('assets/js/responsive.bootstrap.min.js');?>" type="text/javascript"></script>
 	<?php } ?>
     <script src="<?php echo base_url('assets/js/app.js');?>" type="text/javascript"></script>
 </body>

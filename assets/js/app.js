@@ -1,3 +1,4 @@
+var table;
 $(document).ready(function(){
     $("#nivocupacion").click(function(){
         if($("#nivocupacion").val() == "Otro"){
@@ -90,26 +91,66 @@ $(document).ready(function(){
 		});
 	});
 	
-//	$('#table').DataTable({ 
-// 
-//        "processing": true, //Feature control the processing indicator.
-//        "serverSide": true, //Feature control DataTables' server-side processing mode.
-//        "order": [], //Initial no order.
-// 
-//        // Load data for the table's content from an Ajax source
-//        "ajax": {
-//            "url": baseurl+"index.php/admin/get_egre",
-//            "type": "POST"
-//        },
-// 
-//        //Set column definition initialisation properties.
-//        "columnDefs": [
-//        { 
-//            "targets": [ -1 ], //last column
-//            "orderable": false, //set not orderable
-//        },
-//        ],
-// 
-//    });
-	
+	if($("#table").length){
+		table = $('#table').DataTable({
+			responsive: true,
+			"processing": true,
+			"serverSide": true,
+			language: {
+				"sProcessing":     "Procesando...",
+				"sLengthMenu":     "Mostrar _MENU_ registros",
+				"sZeroRecords":    "No se encontraron resultados",
+				"sEmptyTable":     "Ningún dato disponible en esta tabla",
+				"sInfo":           "Mostrando del _START_ al _END_ de _TOTAL_ registros",
+				"sInfoEmpty":      "0 registros encontrados",
+				"sInfoFiltered":   "(filtrado de _MAX_ registros)",
+				"sInfoPostFix":    "",
+				"sSearch":         "Buscar:",
+				"sUrl":            "",
+				"sInfoThousands":  ",",
+				"sLoadingRecords": "Cargando...",
+				"oPaginate": {
+					"sFirst":    "Primero",
+					"sLast":     "Último",
+					"sNext":     "Siguiente",
+					"sPrevious": "Anterior"
+				},
+				"oAria": {
+					"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+					"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+				}
+			},
+			"ajax": {
+				"url": baseurl+"index.php/admin/get_egre",
+				"type": "POST"
+			},
+			"columnDefs": [{ 
+				"targets": [ -1 ],
+				"orderable": false,
+			},
+			],
+
+		});
+	}	
 });
+
+function delete_egre(id){
+	if(confirm('¿Esta seguro de borrar este egresado?')) {
+		$.ajax({
+			url : baseurl+"index.php/admin/delete_egre/'"+id,
+			type: "POST",
+			dataType: "JSON",
+			success: function(data){
+				reload_datatable();
+			},
+			error: function (jqXHR, textStatus, errorThrown){
+				alert('Error deleting data');
+			}
+		});
+
+	}
+}
+
+function reload_datatable(){
+	table.ajax.reload(null,false);
+}

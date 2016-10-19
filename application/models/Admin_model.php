@@ -28,60 +28,63 @@ class Admin_model extends CI_Model{
 		$query = $this->db->query("SELECT COUNT(id_s) AS polls_ing FROM SATISFACCION INNER JOIN EGRESADO ON EGRESADO.id=SATISFACCION.id_e WHERE egresado='ING'");
 		return $query->row_array();
 	}
+	
+	var $table = 'EGRESADO';
+    var $column_order = array(null, 'egresado','carrera','matricula','nombre','apat','amat');
+    var $column_search = array('egresado','carrera','matricula','nombre','apat','amat');
+    var $order = array('id' => 'asc');
+	
 	private function _get_datatables_query(){
-         
-        $this->db->query("SELECT id, egresado, carrera, matricula, nombre, apat, amat FROM EGRESADO");
- 
+		$this->db->select('id, egresado, carrera, matricula, nombre, apat, amat')->from($this->table);
         $i = 0;
      
-        foreach ($this->column_search as $item) // loop column 
-        {
-            if($_POST['search']['value']) // if datatable send POST for search
-            {
+        foreach ($this->column_search as $item) {
+            if($_POST['search']['value']) {
                  
-                if($i===0) // first loop
-                {
-                    $this->db->group_start(); // open bracket. query Where with OR clause better with bracket. because maybe can combine with other WHERE with AND.
+                if($i===0){
+                    $this->db->group_start();
                     $this->db->like($item, $_POST['search']['value']);
                 }
-                else
-                {
+                else{
                     $this->db->or_like($item, $_POST['search']['value']);
                 }
  
-                if(count($this->column_search) - 1 == $i) //last loop
-                    $this->db->group_end(); //close bracket
+                if(count($this->column_search) - 1 == $i){
+                    $this->db->group_end();
+				} //last loop
             }
             $i++;
         }
          
-        if(isset($_POST['order'])) // here order processing
-        {
+        if(isset($_POST['order'])) {
             $this->db->order_by($this->column_order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
         } 
-        else if(isset($this->order))
-        {
+        else if(isset($this->order)){
             $order = $this->order;
             $this->db->order_by(key($order), $order[key($order)]);
         }
     }
-	public function get_egresados(){
-		$this->_get_datatables_query();
-        if($_POST['length'] != -1)
-        $this->db->limit($_POST['length'], $_POST['start']);
-        $query = $this->db->get();
+ 
+    function get_datatables() {
+        $this->_get_datatables_query();
+        if($_POST['length'] != -1){
+			$this->db->limit($_POST['length'], $_POST['start']);
+			$query = $this->db->get();
+		}
         return $query->result();
-	}
-	function count_filtered(){
+    }
+ 
+    function count_filtered() {
         $this->_get_datatables_query();
         $query = $this->db->get();
         return $query->num_rows();
     }
  
-    public function count_all(){
-        $this->db->from($this->table);
+    public function count_all() {
+        $this->db->query("SELECT id FROM EGRESADO");
         return $this->db->count_all_results();
-    }
+	}
+	
 	public function get_poll(){
 		$data = array(
 			"carrera" => $this->input->post("carrera")

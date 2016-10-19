@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css');?>">
 	<?php if(isset($_SESSION["id_u"])){ ?>
 	<link rel="stylesheet" href="<?php echo base_url('assets/css/dataTables.bootstrap.min.css');?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/css/responsive.bootstrap.min.css');?>">
 	<?php } ?>
 	<link rel="stylesheet" href="<?php echo base_url('assets/css/app.css');?>">
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
