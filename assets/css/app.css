@@ -55,3 +55,7 @@ body {
 .pd{
 	padding: 40px;
 }
+
+input[type="text"], select, option{
+	text-transform: uppercase;
+}

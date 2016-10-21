@@ -92,4 +92,9 @@ class Admin_model extends CI_Model{
 		$query = $this->db->query("SELECT SATISFACCION.* FROM SATISFACCION INNER JOIN EGRESADO ON EGRESADO.id=SATISFACCION.id_e WHERE carrera='".$this->db->escape_str($data["carrera"])."'");
 		return $query->result();
 	}
+	
+	public function get_egre_id($id){
+		$query = $this->db->query("SELECT * FROM EGRESADO WHERE id=".$this->db->escape($id));
+		return $query->row_array();
+	}
 }

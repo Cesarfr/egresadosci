@@ -1,27 +1,41 @@
-<div class="row">
-	<div class="col-md-12 text-center"><h4>CÉDULA DE EGRESO</h4></div>
-</div>
-<?php echo validation_errors(); ?>
+<?php
+if(!isset($_SESSION["id_u"])){
+	redirect("/admin/login/");
+}else{?>
+<?php var_dump($datos); echo validation_errors(); ?>
 
-<?php echo form_open('home/save_egresado', array('id' => 'frmEgre')); ?>
+<?php echo form_open('admin/edit_frm_egre', array('id' => 'frmEditEgre')); ?>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<div class="row">
+						<div class="col-sm-1 col-md-1">
+							<div class="form-group">
+								<span class="negrita">Folio: </span><br>
+								<input type="input" name="id" id="id" value="<?php echo $datos["id"];?>" class="form-control" disabled data-sanitize="trim escape">
+							</div>
+						</div>
 						<div class="col-sm-4 col-md-4">
 							<div class="form-group">
 								<span class="negrita">Egresado: </span><br>
-								<input type="radio" name="egresado" id="egresadoTSU" value="TSU" data-validation="required" data-sanitize="trim escape">
+								<?php if($datos["egresado"] == "ING"){?>
+								<input type="radio" name="egresado" id="egresadoTSU" value="TSU" data-validation="required" data-sanitize="trim escape" disabled>
 								<label for="egresadoTSU">TSU</label>
-								<input type="radio" name="egresado" id="egresadoING" value="ING">
+								<input type="radio" name="egresado" id="egresadoING" value="ING" checked="checked" disabled>
 								<label for="egresadoING">ING</label>
+								<?php }else{?>
+								<input type="radio" name="egresado" id="egresadoTSU" value="TSU" data-validation="required" data-sanitize="trim escape" checked="checked" disabled>
+								<label for="egresadoTSU">TSU</label>
+								<input type="radio" name="egresado" id="egresadoING" value="ING" disabled>
+								<label for="egresadoING">ING</label>
+								<?php }?>
 							</div>
 						</div>
-						<div class="col-sm-8 col-md-8">
+						<div class="col-sm-6 col-md-6">
 							<div class="form-group">
 								<label for="obser">Observaciones:</label>
-								<input type="text" name="obser" id="obser" placeholder="Observaciones" class="form-control" data-sanitize="trim escape">
+								<input type="text" name="obser" id="obser" placeholder="Observaciones" class="form-control" data-sanitize="trim escape" value="<?php echo $datos["obser"];?>">
 							</div>
 						</div>
 					</div>
@@ -29,20 +43,21 @@
 						<div class="col-sm-6 col-md-6">
 							<div class="form-group">
 								<label for="carrera">Carrera:</label>
-								<select name="carrera" id="carrera" class="form-control" data-validation="required" data-sanitize="trim escape">
+								<select name="carrera" id="carrera" class="form-control" data-validation="required" data-sanitize="trim escape" disabled>
+								<?php echo "<option value='".$datos["carrera"]."'>".$datos["descarr"]."</option>"; ?>
 								</select>
 							</div>
 						</div>
 						<div class="col-sm-3 col-md-3">
 							<div class="form-group">
 								<label for="matric">Matrícula:</label>
-								<input type="number" class="form-control" id="matric" name="matric" data-validation="number" data-validation-error-msg="El valor proporcionado no es una matrícula válida" min="0">
+								<input type="number" class="form-control" id="matric" name="matric" data-validation="number" data-validation-error-msg="El valor proporcionado no es una matrícula válida" min="0" value="<?php echo $datos["matricula"];?>" disabled>
 							</div>
 						</div>
 						<div class="col-sm-3 col-md-3">
 							<div class="form-group">
 								<label for="fecha">Fecha:</label>
-								<input type="date" class="form-control" id="fecha" name="fecha" data-validation="date" data-sanitize="trim escape">
+								<input type="date" class="form-control" id="fecha" name="fecha" data-validation="date" data-sanitize="trim escape" value="<?php echo $datos["fecha"];?>" disabled>
 							</div>
 						</div>
 					</div>
@@ -60,28 +75,36 @@
 						<div class="col-sm-3 col-md-3">
 							<div class="form-group">
 								<label for="apat">Apellido Paterno:</label>
-								<input type="text" id="apat" name="apat" placeholder="Apellido Paterno" class="form-control" data-validation="required" data-sanitize="trim escape">
+								<input type="text" id="apat" name="apat" placeholder="Apellido Paterno" class="form-control" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["apat"];?>" disabled>
 							</div>
 						</div>
 						<div class="col-sm-3 col-md-3">
 							<div class="form-group">
 								<label for="amat">Apellido Materno:</label>
-								<input type="text" id="amat" name="amat" placeholder="Apellido Materno" class="form-control" data-validation="required" data-sanitize="trim escape">
+								<input type="text" id="amat" name="amat" placeholder="Apellido Materno" class="form-control" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["amat"];?>" disabled>
 							</div>
 						</div>
 						<div class="col-sm-3 col-md-3">
 							<div class="form-group">
 								<label for="nombre">Nombre:</label>
-								<input type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control" data-validation="required" data-sanitize="trim escape">
+								<input type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["nombre"];?>" disabled>
 							</div>
 						</div>
 						<div class="col-sm-3 col-md-3">
 							<div class="form-group">
+								<?php if($datos["sexo"]=="H"){?>
 								<span class="negrita">Sexo: </span><br>
-								<input type="radio" name="sexo" id="H" value="H" data-validation="required">
+								<input type="radio" name="sexo" id="H" value="H" data-validation="required" checked="checked" disabled>
 								<label for="H">Hombre</label>
-								<input type="radio" name="sexo" id="M" value="M">
+								<input type="radio" name="sexo" id="M" value="M" disabled>
 								<label for="M">Mujer</label>
+								<?php }else{ ?>
+								<span class="negrita">Sexo: </span><br>
+								<input type="radio" name="sexo" id="H" value="H" data-validation="required" disabled>
+								<label for="H">Hombre</label>
+								<input type="radio" name="sexo" id="M" value="M" checked="checked" disabled>
+								<label for="M">Mujer</label>
+								<?php }?>
 							</div>
 						</div>
 					</div>
@@ -90,7 +113,7 @@
 						<div class="col-sm-4 col-md-4">
 							<div class="form-group">
 								<label for="curp">CURP:</label>
-								<input type="text" id="curp" name="curp" placeholder="CURP" class="form-control" data-validation="alphanumeric" maxlength="18">
+								<input type="text" id="curp" name="curp" placeholder="CURP" class="form-control" data-validation="alphanumeric" maxlength="18" value="<?php echo $datos["curp"];?>" disabled>
 							</div>
 						</div>
 						<div class="col-xs-6 col-sm-4 col-md-4">
@@ -123,13 +146,13 @@
 						<div class="col-sm-6 col-md-6">
 							<div class="form-group">
 								<label for="calle">Calle y Número:</label>
-								<input type="text" class="form-control" id="calle" name="calle" placeholder="Calle y Número" data-validation="required" data-sanitize="trim escape">
+								<input type="text" class="form-control" id="calle" name="calle" placeholder="Calle y Número" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["calle"];?>">
 							</div>
 						</div>
 						<div class="col-sm-6 col-md-6">
 							<div class="form-group">
 								<label for="colonia">Colonia:</label>
-								<input type="text" class="form-control" id="colonia" name="colonia" placeholder="Colonia" data-validation="required" data-sanitize="trim escape">
+								<input type="text" class="form-control" id="colonia" name="colonia" placeholder="Colonia" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["colonia"];?>">
 							</div>
 						</div>
 					</div>
@@ -138,19 +161,19 @@
 						<div class="col-sm-4 col-md-4">
 							<div class="form-group">
 								<label for="municipio">Municipio:</label>
-								<input type="text" class="form-control" id="municipio" name="municipio" placeholder="Municipio" data-validation="required" data-sanitize="trim escape">
+								<input type="text" class="form-control" id="municipio" name="municipio" placeholder="Municipio" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["municipio"];?>">
 							</div>
 						</div>
 						<div class="col-sm-4 col-md-4">
 							<div class="form-group">
 								<label for="estado">Estado</label>
-								<input type="text" class="form-control" id="estado" name="estado" placeholder="Estado" data-validation="required" data-sanitize="trim escape">
+								<input type="text" class="form-control" id="estado" name="estado" placeholder="Estado" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["estado"];?>">
 							</div>
 						</div>
 						<div class="col-sm-4 col-md-4">
 							<div class="form-group">
 								<label for="cp">C.P.</label>
-								<input type="number" class="form-control" id="cp" name="cp" data-validation="number">
+								<input type="number" class="form-control" id="cp" name="cp" data-validation="number" value="<?php echo $datos["cp"];?>" min=0>
 							</div>
 						</div>
 					</div>
@@ -159,19 +182,19 @@
 						<div class="col-sm-4 col-md-4">
 							<div class="form-group">
 								<label for="tcasa">Teléfono de casa:</label>
-								<input type="text" class="form-control" id="tcasa" name="tcasa" placeholder="Teléfono de casa" data-validation="required" data-sanitize="trim escape">
+								<input type="text" class="form-control" id="tcasa" name="tcasa" placeholder="Teléfono de casa" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["tcasa"];?>">
 							</div>
 						</div>
 						<div class="col-sm-4 col-md-4">
 							<div class="form-group">
 								<label for="trecados">Teléfono para recados y Nombre de la persona:</label>
-								<input type="text" class="form-control" id="trecados" name="trecados" placeholder="Teléfono para recados y Nombre de la persona" data-validation="required" data-sanitize="trim escape">
+								<input type="text" class="form-control" id="trecados" name="trecados" placeholder="Teléfono para recados y Nombre de la persona" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["trecados"];?>">
 							</div>
 						</div>
 						<div class="col-sm-4 col-md-4">
 							<div class="form-group">
 								<label for="fechanac">Fecha de nacimiento:</label>
-								<input type="date" class="form-control" id="fechanac" name="fechanac" data-validation="date" data-sanitize="trim escape">
+								<input type="date" class="form-control" id="fechanac" name="fechanac" data-validation="date" data-sanitize="trim escape" value="<?php echo $datos["fechanac"];?>">
 							</div>
 						</div>
 					</div>
@@ -180,25 +203,25 @@
 						<div class="col-sm-6 col-md-3">
 							<div class="form-group">
 								<label for="mailperso">Correo electrónico personal:</label>
-								<input type="text" class="form-control" id="mailperso" name="mailperso"  data-validation="email" placeholder="Correo electrónico personal">
+								<input type="text" class="form-control" id="mailperso" name="mailperso"  data-validation="email" placeholder="Correo electrónico personal" value="<?php echo $datos["mailperso"];?>">
 							</div>
 						</div>
 						<div class="col-sm-6 col-md-3">
 							<div class="form-group">
 								<label for="maillaboral">Correo electrónico laboral:</label>
-								<input type="text" class="form-control" id="maillaboral" name="maillaboral"  data-validation="email" placeholder="Correo electrónico laboral">
+								<input type="text" class="form-control" id="maillaboral" name="maillaboral"  data-validation="email" placeholder="Correo electrónico laboral" value="<?php echo $datos["maillaboral"];?>">
 							</div>
 						</div>
 						<div class="col-xs-6 col-md-3">
 							<div class="form-group">
 								<label for="facebook">Facebook:</label>
-								<input type="text" class="form-control" id="facebook" name="facebook" placeholder="Facebook" data-sanitize="trim escape">
+								<input type="text" class="form-control" id="facebook" name="facebook" placeholder="Facebook" data-sanitize="trim escape" value="<?php echo $datos["facebook"];?>">
 							</div>
 						</div>
 						<div class="col-xs-6 col-md-3">
 							<div class="form-group">
 								<label for="twitter">Twitter:</label>
-								<input type="text" class="form-control" id="twitter" name="twitter" placeholder="Twitter" data-sanitize="trim escape">
+								<input type="text" class="form-control" id="twitter" name="twitter" placeholder="Twitter" data-sanitize="trim escape" value="<?php echo $datos["twitter"];?>">
 							</div>
 						</div>
 					</div>
@@ -275,21 +298,21 @@
 							</div>
 							<div class="row">
 								<div class="col-sm-3 col-md-3"><span class="negrita">Personal:</span></div>
-								<div class="col-sm-3 col-md-3"><input type="text" class="form-control" id="npersonal" name="npersonal" placeholder="Nombre" data-sanitize="trim escape"></div>
-								<div class="col-sm-3 col-md-3"><input type="text" class="form-control" id="tpersonal" name="tpersonal" placeholder="Teléfono" data-sanitize="trim escape"></div>
-								<div class="col-sm-3 col-md-3"><input type="text" class="form-control" id="cpersonal" name="cpersonal" placeholder="Correo" data-validation-optional="true" data-validation="email"></div>
+								<div class="col-sm-3 col-md-3"><input type="text" class="form-control" id="npersonal" name="npersonal" placeholder="Nombre" data-sanitize="trim escape" value="<?php echo $datos["npersonal"];?>"></div>
+								<div class="col-sm-3 col-md-3"><input type="text" class="form-control" id="tpersonal" name="tpersonal" placeholder="Teléfono" data-sanitize="trim escape" value="<?php echo $datos["tpersonal"];?>"></div>
+								<div class="col-sm-3 col-md-3"><input type="text" class="form-control" id="cpersonal" name="cpersonal" placeholder="Correo" data-validation-optional="true" data-validation="email" value="<?php echo $datos["cpersonal"];?>"></div>
 							</div>
 							<div class="row">
 								<div class="col-sm-3 col-md-3"><span class="negrita">Escolar:</span></div>
-								<div class="col-sm-3 col-md-3"><input type="text" class="form-control" id="nescolar" name="nescolar" placeholder="Nombre" data-sanitize="trim escape"></div>
-								<div class="col-sm-3 col-md-3"><input type="text" class="form-control" id="tescolar" name="tescolar" placeholder="Teléfono" data-sanitize="trim escape"></div>
-								<div class="col-sm-3 col-md-3"><input type="text" class="form-control" id="cescolar" name="cescolar" placeholder="Correo" data-validation-optional="true" data-validation="email"></div>
+								<div class="col-sm-3 col-md-3"><input type="text" class="form-control" id="nescolar" name="nescolar" placeholder="Nombre" data-sanitize="trim escape" value="<?php echo $datos["nescolar"];?>"></div>
+								<div class="col-sm-3 col-md-3"><input type="text" class="form-control" id="tescolar" name="tescolar" placeholder="Teléfono" data-sanitize="trim escape" value="<?php echo $datos["tescolar"];?>"></div>
+								<div class="col-sm-3 col-md-3"><input type="text" class="form-control" id="cescolar" name="cescolar" placeholder="Correo" data-validation-optional="true" data-validation="email" value="<?php echo $datos["cescolar"];?>"></div>
 							</div>
 							<div class="row">
 								<div class="col-sm-3 col-md-3"><span class="negrita">Laboral:</span></div>
-								<div class="col-sm-3 col-md-3"><input type="text" class="form-control" id="nlaboral" name="nlaboral" placeholder="Nombre" data-sanitize="trim escape"></div>
-								<div class="col-sm-3 col-md-3"><input type="text" class="form-control" id="tlaboral" name="tlaboral" placeholder="Teléfono" data-sanitize="trim escape"></div>
-								<div class="col-sm-3 col-md-3"><input type="text" class="form-control" id="claboral" name="claboral" placeholder="Correo" data-validation-optional="true" data-validation="email"></div>
+								<div class="col-sm-3 col-md-3"><input type="text" class="form-control" id="nlaboral" name="nlaboral" placeholder="Nombre" data-sanitize="trim escape" value="<?php echo $datos["nlaboral"];?>"></div>
+								<div class="col-sm-3 col-md-3"><input type="text" class="form-control" id="tlaboral" name="tlaboral" placeholder="Teléfono" data-sanitize="trim escape" value="<?php echo $datos["tlaboral"];?>"></div>
+								<div class="col-sm-3 col-md-3"><input type="text" class="form-control" id="claboral" name="claboral" placeholder="Correo" data-validation-optional="true" data-validation="email" value="<?php echo $datos["claboral"];?>"></div>
 							</div>
 						</div>
 					</div>
@@ -307,13 +330,13 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="empresa">Empresa:</label>
-								<input type="text" class="form-control" id="empresa" name="empresa" placeholder="Nombre de la empresa" data-validation="required" data-sanitize="trim escape">
+								<input type="text" class="form-control" id="empresa" name="empresa" placeholder="Nombre de la empresa" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["empresa"];?>">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="dirempresa">Domicilio: (completo)</label>
-								<input type="text" class="form-control" id="dirempresa" name="dirempresa" placeholder="Domicilio de la empresa" data-validation="required" data-sanitize="trim escape">
+								<input type="text" class="form-control" id="dirempresa" name="dirempresa" placeholder="Domicilio de la empresa" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["dirempresa"];?>">
 							</div>
 						</div>
 					</div>
@@ -322,19 +345,19 @@
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="puesto">Puesto:</label>
-								<input type="text" class="form-control" id="puesto" name="puesto" placeholder="Puesto" data-validation="required" data-sanitize="trim escape">
+								<input type="text" class="form-control" id="puesto" name="puesto" placeholder="Puesto" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["puesto"];?>">
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="nomjefe">Nombre de tu jefe:</label>
-								<input type="text" class="form-control" id="nomjefe" name="nomjefe" placeholder="Nombre de tu jefe" data-validation="required" data-sanitize="trim escape">
+								<input type="text" class="form-control" id="nomjefe" name="nomjefe" placeholder="Nombre de tu jefe" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["nomjefe"];?>">
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="telempresa">Teléfono:</label>
-								<input type="text" class="form-control" placeholder="Teléfono" id="telempresa" name="telempresa" data-validation="required" data-sanitize="trim escape">
+								<input type="text" class="form-control" placeholder="Teléfono" id="telempresa" name="telempresa" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["telempresa"];?>">
 							</div>
 						</div>
 					</div>
@@ -343,13 +366,13 @@
 						<div class="col-sm-4 col-md-4">
 							<div class="form-group">
 								<label for="tlaborando">Tiempo laborando:</label>
-								<input type="text" class="form-control" id="tlaborando" name="tlaborando" placeholder="Tiempo laborando" data-validation="required" data-sanitize="trim escape">
+								<input type="text" class="form-control" id="tlaborando" name="tlaborando" placeholder="Tiempo laborando" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["tlaborando"];?>">
 							</div>
 						</div>
 						<div class="col-sm-4 col-md-4">
 							<div class="form-group">
 								<label for="explaboral">Experiencia laboral: (área de desarrollo y tiempo)</label>
-								<input type="text" class="form-control" id="explaboral" name="explaboral" placeholder="Experiencia laboral" data-validation="required" data-sanitize="trim escape">
+								<input type="text" class="form-control" id="explaboral" name="explaboral" placeholder="Experiencia laboral" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["explaboral"];?>">
 							</div>
 						</div>
 						<div class="col-sm-4 col-md-4">
@@ -357,7 +380,7 @@
 								<label for="sueldo">Sueldo mensual:</label>
 								<div class="input-group">
 									<span class="input-group-addon">$</span>
-									<input type="number" class="form-control" id="sueldo" name="sueldo" data-validation="required" data-validation="number" min="0">
+									<input type="number" class="form-control" id="sueldo" name="sueldo" data-validation="required" data-validation="number" min="0" value="<?php echo $datos["sueldo"];?>">
 								</div>
 							</div>
 						</div>
@@ -381,7 +404,7 @@
 							</div>
 							<div class="form-group hidden" id="espotrono">
 								<label for="otronc">Especifique</label>
-								<input type="text" class="form-control" id="otronc" name="otronc" placeholder="Especifique" data-sanitize="trim escape">
+								<input type="text" class="form-control" id="otronc" name="otronc" placeholder="Especifique" data-sanitize="trim escape" value="<?php echo $datos["otronc"];?>">
 							</div>
 						</div>
 						<div class="col-sm-6 col-md-2">
@@ -434,39 +457,67 @@
 						<div class="col-sm-4 col-ms-4">
 							<div class="form-group">
 								<span class="negritas">¿Trabajas en algo relacionado a tu carrera?</span><br>
-								<input type="radio" value="Sí" name="trel" id="trSI" data-validation="required">
+								<?php if($datos["trel"] == "Sí"){ ?>
+								<input type="radio" value="Sí" name="trel" id="trSI" data-validation="required" checked="checked">
 								<label for="trSI">Sí</label>
 								<input type="radio" value="No" name="trel" id="trNO">
 								<label for="trNO">No</label>
+								<?php }else{ ?>
+								<input type="radio" value="Sí" name="trel" id="trSI" data-validation="required">
+								<label for="trSI">Sí</label>
+								<input type="radio" value="No" name="trel" id="trNO" checked="checked">
+								<label for="trNO">No</label>
+								<?php } ?>
 							</div>
 						</div>
 						<div class="col-sm-4 col-ms-4">
 							<div class="form-group">
 								<span class="negritas">¿Fuiste colocado por la UT?</span><br>
-								<input type="radio" value="Sí" name="fcol" id="fcSI" data-validation="required">
+								<?php if($datos["tcol"] == "Sí"){ ?>
+								<input type="radio" value="Sí" name="fcol" id="fcSI" data-validation="required" checked="checked">
 								<label for="fcSI">Sí</label>
 								<input type="radio" value="No" name="fcol" id="fcNO">
 								<label for="fcNO">No</label>
+								<?php }else{ ?>
+								<input type="radio" value="Sí" name="fcol" id="fcSI" data-validation="required">
+								<label for="fcSI">Sí</label>
+								<input type="radio" value="No" name="fcol" id="fcNO" checked="checked">
+								<label for="fcNO">No</label>
+								<?php } ?>
 							</div>
 						</div>
 						<div class="col-sm-4 col-ms-4">
+							<?php if($datos["cest"] == "Sí"){ ?>
 							<div class="form-group">
 								<span class="negritas">¿Continuarás estudiando?</span><br>
-								<input type="radio" value="Sí" name="cest" id="cestSI" data-validation="required">
+								<input type="radio" value="Sí" name="cest" id="cestSI" data-validation="required" checked="checked">
 								<label for="cestSI">Sí</label>
 								<input type="radio" value="No" name="cest" id="cestNO">
 								<label for="cestNO">No</label>
 							</div>
+							<div class="form-group" id="contest">
+								<label for="cestque">¿Qué?</label>
+								<input type="text" class="form-control" id="cestque" name="cestque" placeholder="Especifique" data-sanitize="trim escape" value="<?php echo $datos["cestque"];?>">
+							</div>
+							<?php }else{ ?>
+							<div class="form-group">
+								<span class="negritas">¿Continuarás estudiando?</span><br>
+								<input type="radio" value="Sí" name="cest" id="cestSI" data-validation="required">
+								<label for="cestSI">Sí</label>
+								<input type="radio" value="No" name="cest" id="cestNO" checked="checked">
+								<label for="cestNO">No</label>
+							</div>
 							<div class="form-group hidden" id="contest">
 								<label for="cestque">¿Qué?</label>
-								<input type="text" class="form-control" id="cestque" name="cestque" placeholder="Especifique" data-sanitize="trim escape">
+								<input type="text" class="form-control" id="cestque" name="cestque" placeholder="Especifique" data-sanitize="trim escape" value="<?php echo $datos["cestque"];?>">
 							</div>
+							<?php } ?>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-md-12 text-center">
-							<input type="submit" class="btn btn-success" value="Guardar">
+							<input type="submit" class="btn btn-warning" value="Modificar egresado">
 						</div>
 					</div>
 				</div>
@@ -475,3 +526,4 @@
 	</div>
 
 <?php echo form_close(); ?><br>
+<?php } ?>

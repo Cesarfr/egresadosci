@@ -62,3 +62,4 @@ $route['admin'] = 'panel';
 $route['admin'] = 'consultar';
 $route['admin'] = 'graficas';
 $route['admin'] = 'consres';
+$route['admin/([0-9]+)'] = 'edit_egre/$1';
