@@ -2,7 +2,7 @@
 if(!isset($_SESSION["id_u"])){
 	redirect("/admin/login/");
 }else{?>
-<?php var_dump($datos); echo validation_errors(); ?>
+<?php echo validation_errors(); ?>
 
 <?php echo form_open('admin/edit_frm_egre', array('id' => 'frmEditEgre')); ?>
 	<div class="row">
@@ -13,7 +13,8 @@ if(!isset($_SESSION["id_u"])){
 						<div class="col-sm-1 col-md-1">
 							<div class="form-group">
 								<span class="negrita">Folio: </span><br>
-								<input type="input" name="id" id="id" value="<?php echo $datos["id"];?>" class="form-control" disabled data-sanitize="trim escape">
+								<input type="input" value="<?php echo $datos["id"];?>" class="form-control" disabled>
+								<input type="hidden" name="id" id="id" value="<?php echo $datos["id"];?>" data-sanitize="trim escape">
 							</div>
 						</div>
 						<div class="col-sm-4 col-md-4">
@@ -24,11 +25,13 @@ if(!isset($_SESSION["id_u"])){
 								<label for="egresadoTSU">TSU</label>
 								<input type="radio" name="egresado" id="egresadoING" value="ING" checked="checked" disabled>
 								<label for="egresadoING">ING</label>
+								<input type="hidden" name="egresado" id="egresado" value="<?php echo $datos["egresado"];?>" data-sanitize="trim escape">
 								<?php }else{?>
 								<input type="radio" name="egresado" id="egresadoTSU" value="TSU" data-validation="required" data-sanitize="trim escape" checked="checked" disabled>
 								<label for="egresadoTSU">TSU</label>
 								<input type="radio" name="egresado" id="egresadoING" value="ING" disabled>
 								<label for="egresadoING">ING</label>
+								<input type="hidden" name="egresado" id="egresado" value="<?php echo $datos["egresado"];?>" data-sanitize="trim escape">
 								<?php }?>
 							</div>
 						</div>
@@ -46,18 +49,19 @@ if(!isset($_SESSION["id_u"])){
 								<select name="carrera" id="carrera" class="form-control" data-validation="required" data-sanitize="trim escape" disabled>
 								<?php echo "<option value='".$datos["carrera"]."'>".$datos["descarr"]."</option>"; ?>
 								</select>
+								<input type="hidden" name="carrera" id="carrera" value="<?php echo $datos["carrera"];?>" data-sanitize="trim escape">
 							</div>
 						</div>
 						<div class="col-sm-3 col-md-3">
 							<div class="form-group">
 								<label for="matric">Matrícula:</label>
-								<input type="number" class="form-control" id="matric" name="matric" data-validation="number" data-validation-error-msg="El valor proporcionado no es una matrícula válida" min="0" value="<?php echo $datos["matricula"];?>" disabled>
+								<input type="number" class="form-control" id="matric" name="matric" data-validation="number" data-validation-error-msg="El valor proporcionado no es una matrícula válida" min="0" value="<?php echo $datos["matricula"];?>" readonly>
 							</div>
 						</div>
 						<div class="col-sm-3 col-md-3">
 							<div class="form-group">
 								<label for="fecha">Fecha:</label>
-								<input type="date" class="form-control" id="fecha" name="fecha" data-validation="date" data-sanitize="trim escape" value="<?php echo $datos["fecha"];?>" disabled>
+								<input type="date" class="form-control" id="fecha" name="fecha" data-validation="date" data-sanitize="trim escape" value="<?php echo $datos["fecha"];?>" readonly>
 							</div>
 						</div>
 					</div>
@@ -75,34 +79,34 @@ if(!isset($_SESSION["id_u"])){
 						<div class="col-sm-3 col-md-3">
 							<div class="form-group">
 								<label for="apat">Apellido Paterno:</label>
-								<input type="text" id="apat" name="apat" placeholder="Apellido Paterno" class="form-control" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["apat"];?>" disabled>
+								<input type="text" id="apat" name="apat" placeholder="Apellido Paterno" class="form-control" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["apat"];?>" readonly>
 							</div>
 						</div>
 						<div class="col-sm-3 col-md-3">
 							<div class="form-group">
 								<label for="amat">Apellido Materno:</label>
-								<input type="text" id="amat" name="amat" placeholder="Apellido Materno" class="form-control" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["amat"];?>" disabled>
+								<input type="text" id="amat" name="amat" placeholder="Apellido Materno" class="form-control" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["amat"];?>" readonly>
 							</div>
 						</div>
 						<div class="col-sm-3 col-md-3">
 							<div class="form-group">
 								<label for="nombre">Nombre:</label>
-								<input type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["nombre"];?>" disabled>
+								<input type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["nombre"];?>" readonly>
 							</div>
 						</div>
 						<div class="col-sm-3 col-md-3">
 							<div class="form-group">
 								<?php if($datos["sexo"]=="H"){?>
 								<span class="negrita">Sexo: </span><br>
-								<input type="radio" name="sexo" id="H" value="H" data-validation="required" checked="checked" disabled>
+								<input type="radio" name="sexo" id="H" value="H" data-validation="required" checked="checked" readonly>
 								<label for="H">Hombre</label>
-								<input type="radio" name="sexo" id="M" value="M" disabled>
+								<input type="radio" name="sexo" id="M" value="M" readonly>
 								<label for="M">Mujer</label>
 								<?php }else{ ?>
 								<span class="negrita">Sexo: </span><br>
-								<input type="radio" name="sexo" id="H" value="H" data-validation="required" disabled>
+								<input type="radio" name="sexo" id="H" value="H" data-validation="required" readonly>
 								<label for="H">Hombre</label>
-								<input type="radio" name="sexo" id="M" value="M" checked="checked" disabled>
+								<input type="radio" name="sexo" id="M" value="M" checked="checked" readonly>
 								<label for="M">Mujer</label>
 								<?php }?>
 							</div>
@@ -113,18 +117,40 @@ if(!isset($_SESSION["id_u"])){
 						<div class="col-sm-4 col-md-4">
 							<div class="form-group">
 								<label for="curp">CURP:</label>
-								<input type="text" id="curp" name="curp" placeholder="CURP" class="form-control" data-validation="alphanumeric" maxlength="18" value="<?php echo $datos["curp"];?>" disabled>
+								<input type="text" id="curp" name="curp" placeholder="CURP" class="form-control" data-validation="alphanumeric" maxlength="18" value="<?php echo $datos["curp"];?>" readonly>
 							</div>
 						</div>
 						<div class="col-xs-6 col-sm-4 col-md-4">
 							<div class="form-group">
 								<label for="ecivil">Estado Civil:</label>
 								<select name="ecivil" id="ecivil" class="form-control" data-validation="required" data-sanitize="trim escape">
-									<option value="Soltero">Soltero</option>
-									<option value="Casado">Casado</option>
-									<option value="Divorciado">Divorciado</option>
-									<option value="Unión Libre">Unión Libre</option>
-									<option value="Otro">Otro</option>
+									<?php switch($datos["ecivil"]){
+									 		case "SOLTERO": echo "<option value='SOLTERO' selected>Soltero</option>
+									<option value='CASADO'>Casado</option>
+									<option value='DIVORCIADO'>Divorciado</option>
+									<option value='UNIÓN LIBRE'>Unión Libre</option>
+									<option value='OTRO'>Otro</option>"; break;
+											case "CASADO": echo "<option value='SOLTERO'>SOLTERO</option>
+									<option value='CASADO' selected>CASADO</option>
+									<option value='DIVORCIADO'>DIVORCIADO</option>
+									<option value='UNIÓN LIBRE'>UNIÓN LIBRE</option>
+									<option value='OTRO'>OTRO</option>"; break;
+											case "DIVORCIADO": echo "<option value='SOLTERO'>SOLTERO</option>
+									<option value='CASADO'>CASADO</option>
+									<option value='DIVORCIADO' selected>DIVORCIADO</option>
+									<option value='UNIÓN LIBRE'>UNIÓN LIBRE</option>
+									<option value='OTRO'>Otro</option>"; break;
+											case "UNIÓN LIBRE": echo "<option value='SOLTERO'>SOLTERO</option>
+									<option value='CASADO'>CASADO</option>
+									<option value='DIVORCIADO'>DIVORCIADO</option>
+									<option value='UNIÓN LIBRE' selected>UNIÓN LIBRE</option>
+									<option value='OTRO'>OTRO</option>"; break;
+											case "OTRO": echo "<option value='SOLTERO'>SOLTERO</option>
+									<option value='CASADO'>CASADO</option>
+									<option value='DIVORCIADO'>DIVORCIADO</option>
+									<option value='UNIÓN LIBRE'>UNIÓN LIBRE</option>
+									<option value='OTRO' selected>OTRO</option>"; break;
+									}?>
 								</select>
 							</div>
 						</div>
@@ -132,11 +158,33 @@ if(!isset($_SESSION["id_u"])){
 							<div class="form-group">
 								<label for="status">Status:</label>
 								<select name="status" id="status" class="form-control" data-validation="required" data-sanitize="trim escape">
-									<option value="Estudias">Estudias</option>
-									<option value="Trabajas">Trabajas</option>
-									<option value="Trabajas y Estudias">Trabajas y Estudias</option>
-									<option value="No Trabajas">No Trabajas</option>
-									<option value="Hogar">Hogar</option>
+									<?php switch($datos["status_e"]){ 
+										case "ESTUDIAS": echo "<option value='ESTUDIAS' selected>ESTUDIAS</option>
+									<option value='TRABAJAS'>TRABAJAS</option>
+									<option value='TRABAJAS Y ESTUDIAS'>TRABAJAS Y ESTUDIAS</option>
+									<option value='NO TRABAJAS'>NO TRABAJAS</option>
+									<option value='HOGAR'>HOGAR</option>"; break;
+										case "TRABAJAS": echo "<option value='ESTUDIAS'>ESTUDIAS</option>
+									<option value='TRABAJAS' selected>TRABAJAS</option>
+									<option value='TRABAJAS Y ESTUDIAS'>TRABAJAS Y ESTUDIAS</option>
+									<option value='NO TRABAJAS'>NO TRABAJAS</option>
+									<option value='HOGAR'>HOGAR</option>"; break;
+										case "TRABAJAS Y ESTUDIAS": echo "<option value='ESTUDIAS'>ESTUDIAS</option>
+									<option value='TRABAJAS'>TRABAJAS</option>
+									<option value='TRABAJAS Y ESTUDIAS' selected>TRABAJAS Y ESTUDIAS</option>
+									<option value='NO TRABAJAS'>NO TRABAJAS</option>
+									<option value='HOGAR'>HOGAR</option>"; break;
+										case "NO TRABAJAS": echo "<option value='ESTUDIAS'>ESTUDIAS</option>
+									<option value='TRABAJAS'>TRABAJAS</option>
+									<option value='TRABAJAS Y ESTUDIAS'>TRABAJAS Y ESTUDIAS</option>
+									<option value='NO TRABAJAS' selected>NO TRABAJAS</option>
+									<option value='HOGAR'>HOGAR</option>"; break;
+										case "HOGAR": echo "<option value='ESTUDIAS'>ESTUDIAS</option>
+									<option value='TRABAJAS'>TRABAJAS</option>
+									<option value='TRABAJAS Y ESTUDIAS'>TRABAJAS Y ESTUDIAS</option>
+									<option value='NO TRABAJAS'>NO TRABAJAS</option>
+									<option value='HOGAR' selected>HOGAR</option>"; break;
+									}?>
 								</select>
 							</div>
 						</div>
@@ -194,7 +242,7 @@ if(!isset($_SESSION["id_u"])){
 						<div class="col-sm-4 col-md-4">
 							<div class="form-group">
 								<label for="fechanac">Fecha de nacimiento:</label>
-								<input type="date" class="form-control" id="fechanac" name="fechanac" data-validation="date" data-sanitize="trim escape" value="<?php echo $datos["fechanac"];?>">
+								<input type="date" class="form-control" id="fechanac" name="fechanac" data-validation="date" data-sanitize="trim escape" value="<?php echo $datos["fechanac"];?>" min="1950-01-01" max="1999-12-31">
 							</div>
 						</div>
 					</div>
@@ -243,14 +291,39 @@ if(!isset($_SESSION["id_u"])){
 								<div class="col-xs-6 col-md-8">
 									Cuentas ya con tu título y cédula profesional.
 								</div>
+								<?php 
+	  								$t1="";
+	  								$t2="";
+	  								$t3="";
+	  								$i1="";
+	  								$i2="";
+	  								$i3="";
+	  								if($datos["etitTSU"] != NULL){ 
+										$tsureq = "";
+										$ingreq = "disabled";
+										switch($datos["etitTSU"]){
+											case "REALIZADO": $t1="checked"; $t2=""; $t3=""; break;
+											case "ESPERA": $t1=""; $t2="checked"; $t3=""; break;
+											case "NO": $t1=""; $t2=""; $t3="checked"; break;
+										}
+									} else {
+										$tsureq = "disabled";
+										$ingreq = "";
+										switch($datos["etitING"]){
+											case "REALIZADO": $i1="checked"; $i2=""; $i3=""; break;
+											case "ESPERA": $i1=""; $i2="checked"; $i3=""; break;
+											case "NO": $i1=""; $i2=""; $i3="checked"; break;
+										}
+									}
+								?>
 								<div class="col-xs-3 col-md-2">
 									<div class="form-group">
-										<input type="radio" name="etitTSU" id="realizadoTSU" value="realizado" data-validation="required">
+										<input type="radio" name="etitTSU" id="realizadoTSU" value="REALIZADO" data-validation="required" <?php echo $tsureq." ".$t1;?> >
 									</div>
 								</div>
 								<div class="col-xs-3 col-md-2">
 									<div class="form-group">
-										<input type="radio" name="etitING" id="realizadoING" value="realizado" data-validation="required">
+										<input type="radio" name="etitING" id="realizadoING" value="REALIZADO" data-validation="required" <?php echo $ingreq." ".$i1;?> >
 									</div>
 								</div>
 							</div>
@@ -260,12 +333,12 @@ if(!isset($_SESSION["id_u"])){
 								</div>
 								<div class="col-xs-3 col-md-2">
 									<div class="form-group">
-										<input type="radio" name="etitTSU" id="esperaTSU" value="espera">
+										<input type="radio" name="etitTSU" id="esperaTSU" value="ESPERA" <?php echo $tsureq." ".$t2;?> >
 									</div>
 								</div>
 								<div class="col-xs-3 col-md-2">
 									<div class="form-group">
-										<input type="radio" name="etitING" id="esperaING" value="espera">
+										<input type="radio" name="etitING" id="esperaING" value="ESPERA" <?php echo $ingreq." ".$i2;?> >
 									</div>
 								</div>
 							</div>
@@ -275,12 +348,12 @@ if(!isset($_SESSION["id_u"])){
 								</div>
 								<div class="col-xs-3 col-md-2">
 									<div class="form-group">
-										<input type="radio" name="etitTSU" id="noTSU" value="no">
+										<input type="radio" name="etitTSU" id="noTSU" value="NO" <?php echo $tsureq." ".$t3;?> >
 									</div>
 								</div>
 								<div class="col-xs-3 col-md-2">
 									<div class="form-group">
-										<input type="radio" name="etitING" id="noING" value="no">
+										<input type="radio" name="etitING" id="noING" value="NO" <?php echo $ingreq." ".$i3;?> >
 									</div>
 								</div>
 							</div>
@@ -330,7 +403,7 @@ if(!isset($_SESSION["id_u"])){
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="empresa">Empresa:</label>
-								<input type="text" class="form-control" id="empresa" name="empresa" placeholder="Nombre de la empresa" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["empresa"];?>">
+								<input type="text" class="form-control" id="empresa" name="empresa" placeholder="Nombre de la empresa" data-validation="required" data-sanitize="trim upper escape" value="<?php echo $datos["empresa"];?>">
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -390,19 +463,42 @@ if(!isset($_SESSION["id_u"])){
 						<div class="col-xs-12 col-md-4">
 							<div class="form-group">
 								<label for="nivocupacion">Nivel de ocupación:</label>
+								<?php
+									$noc1="";
+									$noc2="";
+									$noc3="";
+									$noc4="";
+									$noc5="";
+									$noc6="";
+									$noc7="";
+									$noc8="";
+									$noc9="";
+									$hid="";
+									switch($datos["nivocupacion"]){
+										case "OPERARIO": $noc1="selected"; $noc2=""; $noc3=""; $noc4=""; $noc5=""; $noc6=""; $noc7=""; $noc8=""; $noc9=""; $hid="hidden"; break;
+										case "TÉCNICO GENERAL": $noc1=""; $noc2="selected"; $noc3=""; $noc4="";	$noc5=""; $noc6=""; $noc7=""; $noc8=""; $noc9=""; $hid="hidden"; break;
+										case "TÉCNICO ESPECIALIZADO": $noc1=""; $noc2=""; $noc3="selected"; $noc4=""; $noc5=""; $noc6=""; $noc7=""; $noc8=""; $noc9=""; $hid="hidden"; break;
+										case "ADMINISTRATIVO": $noc1=""; $noc2=""; $noc3=""; $noc4="selected";	$noc5=""; $noc6=""; $noc7=""; $noc8=""; $noc9=""; $hid="hidden"; break;
+										case "SUPERVISOR": $noc1=""; $noc2=""; $noc3=""; $noc4=""; $noc5="selected"; $noc6=""; $noc7=""; $noc8=""; $noc9=""; $hid="hidden"; break;
+										case "GERENnoc": $noc1=""; $noc2=""; $noc3=""; $noc4=""; $noc5=""; $noc6="selected"; $noc7=""; $noc8=""; $noc9=""; $hid="hidden"; break;
+										case "DIRECTOR": $noc1=""; $noc2=""; $noc3=""; $noc4=""; $noc5=""; $noc6=""; $noc7="selected"; $noc8=""; $noc9=""; $hid="hidden"; break;
+										case "AUTO EMPLEO": $noc1=""; $noc2=""; $noc3=""; $noc4="";	$noc5=""; $noc6=""; $noc7=""; $noc8="selected"; $noc9=""; $hid="hidden"; break;
+										case "OTRO": $noc1=""; $noc2=""; $noc3=""; $noc4=""; $noc5=""; $noc6=""; $noc7=""; $noc8=""; $noc9="selected"; $hid=""; break;
+									}
+								?>
 								<select name="nivocupacion" id="nivocupacion" class="form-control" data-validation="required" data-sanitize="trim escape">
-									<option value="Operario">Operario</option>
-									<option value="Técnico General">Técnico General</option>
-									<option value="Técnico Especializado">Técnico Especializado</option>
-									<option value="Administrativo">Administrativo</option>
-									<option value="Supervisor">Supervisor</option>
-									<option value="Gerente">Gerente</option>
-									<option value="Director">Director</option>
-									<option value="Auto empleo">Auto empleo</option>
-									<option value="Otro">Otro</option>
+									<option value="OPERARIO" <?php echo $noc1;?> >OPERARIO</option>
+									<option value="TÉCNICO GENERAL" <?php echo $noc2;?> >TÉCNICO GENERAL</option>
+									<option value="TÉCNICO ESPECIALIZADO" <?php echo $noc3;?> >TÉCNICO ESPECIALIZADO</option>
+									<option value="ADMINISTRATIVO" <?php echo $noc4;?> >ADMINISTRATIVO</option>
+									<option value="SUPERVISOR" <?php echo $noc5;?> >SUPERVISOR</option>
+									<option value="GERENTE" <?php echo $noc6;?> >GERENTE</option>
+									<option value="DIRECTOR" <?php echo $noc7;?> >DIRECTOR</option>
+									<option value="AUTO EMPLEO" <?php echo $noc8;?> >AUTO EMPLEO</option>
+									<option value="OTRO" <?php echo $noc9;?> >OTRO</option>
 								</select>
 							</div>
-							<div class="form-group hidden" id="espotrono">
+							<div class="form-group  <?php echo $hid;?> " id="espotrono">
 								<label for="otronc">Especifique</label>
 								<input type="text" class="form-control" id="otronc" name="otronc" placeholder="Especifique" data-sanitize="trim escape" value="<?php echo $datos["otronc"];?>">
 							</div>
@@ -410,44 +506,92 @@ if(!isset($_SESSION["id_u"])){
 						<div class="col-sm-6 col-md-2">
 							<div class="form-group">
 								<label for="tiempoempleo">Tiempo en conseguir tu primer empleo</label>
+								<?php
+	  								$te1="";
+	  								$te2="";
+	  								$te3="";
+	  								$te4="";
+	  								$te5="";
+	  								switch($datos["tiempoempleo"]){
+										case "POR ESTADÍA": $te1="selected"; $te2=""; $te3=""; $te4="";	$te5=""; break;
+										case "3 MESES": $te1=""; $te2="selected"; $te3=""; $te4="";	$te5=""; break;
+										case "6 MESES": $te1=""; $te2=""; $te3="selected"; $te4="";	$te5=""; break;
+										case "1 AÑO": $te1=""; $te2=""; $te3=""; $te4="selected"; $te5=""; break;
+										case "MÁS DE 1 AÑO": $te1=""; $te2=""; $te3=""; $te4=""; $te5="selected"; break;
+									}
+								?>
 								<select name="tiempoempleo" id="tiempoempleo" class="form-control" data-validation="required" data-sanitize="trim escape">
-									<option value="Por Estadía">Por Estadía</option>
-									<option value="3 meses">3 meses</option>
-									<option value="6 meses">6 meses</option>
-									<option value="1 año">1 año</option>
-									<option value="Más de 1 año">Más de 1 año</option>
+									<option value="POR ESTADÍA" <?php echo $te1; ?> >POR ESTADÍA</option>
+									<option value="3 MESES" <?php echo $te2; ?> >3 MESES</option>
+									<option value="6 MESES" <?php echo $te3; ?> >6 MESES</option>
+									<option value="1 AÑO" <?php echo $te4; ?> >1 AÑO</option>
+									<option value="MÁS DE 1 AÑO" <?php echo $te5; ?> >MÁS DE 1 AÑO</option>
 								</select>
 							</div>
 						</div>
 						<div class="col-sm-6 col-md-2">
 							<div class="form-group">
 								<label for="loctrabajo">Localidad de Trabajo</label>
+								<?php
+	  								$lt1="";
+	  								$lt2="";
+	  								$lt3="";
+	  								$lt4="";
+	  								switch($datos["loctrabajo"]){
+										case "ZONA INFLUENCIA UT": $lt1="selected"; $lt2=""; $lt3=""; $lt4=""; break;
+										case "INTERIOR DEL ESTADO": $lt1=""; $lt2="selected"; $lt3=""; $lt4="";	break;
+										case "FUERA DEL ESTADO": $lt1=""; $lt2=""; $lt3="selected"; $lt4="";	break;
+										case "EN EL EXTRANJERO": $lt1=""; $lt2=""; $lt3=""; $lt4="selected"; break;
+									}
+								?>
 								<select name="loctrabajo" id="loctrabajo" class="form-control" data-validation="required" data-sanitize="trim escape">
-									<option value="Zona Influencia UT">Zona Influencia UT</option>
-									<option value="Interior del Estado">Interior del Estado</option>
-									<option value="Fuera del Estado">Fuera del Estado</option>
-									<option value="En el Extranjero">En el Extranjero</option>
+									<option value="ZONA INFLUENCIA UT" <?php echo $lt1; ?> >ZONA INFLUENCIA UT</option>
+									<option value="INTERIOR DEL ESTADO" <?php echo $lt2; ?> >INTERIOR DEL ESTADO</option>
+									<option value="FUERA DEL ESTADO" <?php echo $lt3; ?> >FUERA DEL ESTADO</option>
+									<option value="EN EL EXTRANJERO" <?php echo $lt4; ?> >EN EL EXTRANJERO</option>
 								</select>
 							</div>
 						</div>
 						<div class="col-sm-6 col-md-2">
 							<div class="form-group">
 								<label for="torganizacion">Tamaño de la Organización</label>
+								<?php
+	  								$to1="";
+	  								$to2="";
+	  								$to3="";
+	  								$to4="";
+	  								switch($datos["torganizacion"]){
+										case "MICRO": $to1="selected"; $to2=""; $to3=""; $to4=""; break;
+										case "PEQUEÑA": $to1=""; $to2="selected"; $to3=""; $to4="";	break;
+										case "MEDIANA": $to1=""; $to2=""; $to3="selected"; $to4="";	break;
+										case "MACRO": $to1=""; $to2=""; $to3=""; $to4="selected"; break;
+									}
+								?>
 								<select name="torganizacion" id="torganizacion" class="form-control" data-validation="required" data-sanitize="trim escape">
-									<option value="Micro">Micro</option>
-									<option value="Paqueña">Paqueña</option>
-									<option value="Mediana">Mediana</option>
-									<option value="Macro">Macro</option>
+									<option value="MICRO" <?php echo $to1; ?> >MICRO</option>
+									<option value="PEQUEÑA" <?php echo $to2; ?> >PEQUEÑA</option>
+									<option value="MEDIANA" <?php echo $to3; ?> >MEDIANA</option>
+									<option value="MACRO" <?php echo $to4; ?> >MACRO</option>
 								</select>
 							</div>
 						</div>
 						<div class="col-sm-6 col-md-2">
 							<div class="form-group">
 								<label for="tipoorga">Tipo de Organización</label>
+								<?php
+	  								$tor1="";
+	  								$tor2="";
+	  								$tor3="";
+	  								switch($datos["tipoorga"]){
+										case "PÚBLICA": $tor1="selected"; $tor2=""; $tor3=""; break;
+										case "PRIVADA": $tor1=""; $tor2="selected"; $tor3=""; break;
+										case "PROPIA": $tor1=""; $tor2=""; $tor3="selected"; break;
+									}
+								?>
 								<select name="tipoorga" id="tipoorga" class="form-control" data-validation="required" data-sanitize="trim escape">
-									<option value="Pública">Pública</option>
-									<option value="Privada">Privada</option>
-									<option value="Propia">Propia</option>
+									<option value="PÚBLICA" <?php echo $tor1; ?> >PÚBLICA</option>
+									<option value="PRIVADA" <?php echo $tor2; ?> >PRIVADA</option>
+									<option value="PROPIA" <?php echo $tor3; ?> >PROPIA</option>
 								</select>
 							</div>
 						</div>
@@ -457,15 +601,15 @@ if(!isset($_SESSION["id_u"])){
 						<div class="col-sm-4 col-ms-4">
 							<div class="form-group">
 								<span class="negritas">¿Trabajas en algo relacionado a tu carrera?</span><br>
-								<?php if($datos["trel"] == "Sí"){ ?>
-								<input type="radio" value="Sí" name="trel" id="trSI" data-validation="required" checked="checked">
+								<?php if($datos["trel"] == "SI"){ ?>
+								<input type="radio" value="SI" name="trel" id="trSI" data-validation="required" checked="checked">
 								<label for="trSI">Sí</label>
-								<input type="radio" value="No" name="trel" id="trNO">
+								<input type="radio" value="NO" name="trel" id="trNO">
 								<label for="trNO">No</label>
 								<?php }else{ ?>
-								<input type="radio" value="Sí" name="trel" id="trSI" data-validation="required">
+								<input type="radio" value="SI" name="trel" id="trSI" data-validation="required">
 								<label for="trSI">Sí</label>
-								<input type="radio" value="No" name="trel" id="trNO" checked="checked">
+								<input type="radio" value="NO" name="trel" id="trNO" checked="checked">
 								<label for="trNO">No</label>
 								<?php } ?>
 							</div>
@@ -473,26 +617,26 @@ if(!isset($_SESSION["id_u"])){
 						<div class="col-sm-4 col-ms-4">
 							<div class="form-group">
 								<span class="negritas">¿Fuiste colocado por la UT?</span><br>
-								<?php if($datos["tcol"] == "Sí"){ ?>
-								<input type="radio" value="Sí" name="fcol" id="fcSI" data-validation="required" checked="checked">
+								<?php if($datos["tcol"] == "SI"){ ?>
+								<input type="radio" value="SI" name="fcol" id="fcSI" data-validation="required" checked="checked">
 								<label for="fcSI">Sí</label>
-								<input type="radio" value="No" name="fcol" id="fcNO">
+								<input type="radio" value="NO" name="fcol" id="fcNO">
 								<label for="fcNO">No</label>
 								<?php }else{ ?>
-								<input type="radio" value="Sí" name="fcol" id="fcSI" data-validation="required">
+								<input type="radio" value="SI" name="fcol" id="fcSI" data-validation="required">
 								<label for="fcSI">Sí</label>
-								<input type="radio" value="No" name="fcol" id="fcNO" checked="checked">
+								<input type="radio" value="NO" name="fcol" id="fcNO" checked="checked">
 								<label for="fcNO">No</label>
 								<?php } ?>
 							</div>
 						</div>
 						<div class="col-sm-4 col-ms-4">
-							<?php if($datos["cest"] == "Sí"){ ?>
+							<?php if($datos["cest"] == "SI"){ ?>
 							<div class="form-group">
 								<span class="negritas">¿Continuarás estudiando?</span><br>
-								<input type="radio" value="Sí" name="cest" id="cestSI" data-validation="required" checked="checked">
+								<input type="radio" value="SI" name="cest" id="cestSI" data-validation="required" checked="checked">
 								<label for="cestSI">Sí</label>
-								<input type="radio" value="No" name="cest" id="cestNO">
+								<input type="radio" value="NO" name="cest" id="cestNO">
 								<label for="cestNO">No</label>
 							</div>
 							<div class="form-group" id="contest">
@@ -502,9 +646,9 @@ if(!isset($_SESSION["id_u"])){
 							<?php }else{ ?>
 							<div class="form-group">
 								<span class="negritas">¿Continuarás estudiando?</span><br>
-								<input type="radio" value="Sí" name="cest" id="cestSI" data-validation="required">
+								<input type="radio" value="SI" name="cest" id="cestSI" data-validation="required">
 								<label for="cestSI">Sí</label>
-								<input type="radio" value="No" name="cest" id="cestNO" checked="checked">
+								<input type="radio" value="NO" name="cest" id="cestNO" checked="checked">
 								<label for="cestNO">No</label>
 							</div>
 							<div class="form-group hidden" id="contest">

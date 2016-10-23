@@ -2,7 +2,13 @@
 if(!isset($_SESSION["id_u"])){
 	redirect("/admin/login/");
 }else{?>
-<br><div class="row">
+<br>
+<div class="row">
+	<div class="col-md-12">
+		<div id="msg"><?php if(isset($_SESSION["mens"])){echo $_SESSION["mens"];} ?></div>
+	</div>
+</div>
+<div class="row">
 	<div class="col-md-12">
 		<div class="panel panel-default">
 		<div class="panel-heading text-center"><h4>Consultar egresados</h4></div>

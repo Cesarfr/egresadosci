@@ -97,11 +97,11 @@
 							<div class="form-group">
 								<label for="ecivil">Estado Civil:</label>
 								<select name="ecivil" id="ecivil" class="form-control" data-validation="required" data-sanitize="trim escape">
-									<option value="Soltero">Soltero</option>
-									<option value="Casado">Casado</option>
-									<option value="Divorciado">Divorciado</option>
-									<option value="Unión Libre">Unión Libre</option>
-									<option value="Otro">Otro</option>
+									<option value="SOLTERO">SOLTERO</option>
+									<option value="CASADO">CASADO</option>
+									<option value="DIVORCIADO">DIVORCIADO</option>
+									<option value="UNIÓN LIBRE">UNIÓN LIBRE</option>
+									<option value="OTRO">OTRO</option>
 								</select>
 							</div>
 						</div>
@@ -109,11 +109,11 @@
 							<div class="form-group">
 								<label for="status">Status:</label>
 								<select name="status" id="status" class="form-control" data-validation="required" data-sanitize="trim escape">
-									<option value="Estudias">Estudias</option>
-									<option value="Trabajas">Trabajas</option>
-									<option value="Trabajas y Estudias">Trabajas y Estudias</option>
-									<option value="No Trabajas">No Trabajas</option>
-									<option value="Hogar">Hogar</option>
+									<option value="ESTUDIAS">ESTUDIAS</option>
+									<option value="TRABAJAS">TRABAJAS</option>
+									<option value="TRABAJAS Y ESTUDIAS">TRABAJAS Y ESTUDIAS</option>
+									<option value="NO TRABAJAS">NO TRABAJAS</option>
+									<option value="HOGAR">HOGAR</option>
 								</select>
 							</div>
 						</div>
@@ -150,7 +150,7 @@
 						<div class="col-sm-4 col-md-4">
 							<div class="form-group">
 								<label for="cp">C.P.</label>
-								<input type="number" class="form-control" id="cp" name="cp" data-validation="number">
+								<input type="number" class="form-control" id="cp" name="cp" data-validation="number" min="0">
 							</div>
 						</div>
 					</div>
@@ -171,7 +171,7 @@
 						<div class="col-sm-4 col-md-4">
 							<div class="form-group">
 								<label for="fechanac">Fecha de nacimiento:</label>
-								<input type="date" class="form-control" id="fechanac" name="fechanac" data-validation="date" data-sanitize="trim escape">
+								<input type="date" class="form-control" id="fechanac" name="fechanac" data-validation="date" data-sanitize="trim escape"  min="1950-01-01" max="1999-12-31">
 							</div>
 						</div>
 					</div>
@@ -222,12 +222,12 @@
 								</div>
 								<div class="col-xs-3 col-md-2">
 									<div class="form-group">
-										<input type="radio" name="etitTSU" id="realizadoTSU" value="realizado" data-validation="required">
+										<input type="radio" name="etitTSU" id="realizadoTSU" value="REALIZADO" data-validation="required">
 									</div>
 								</div>
 								<div class="col-xs-3 col-md-2">
 									<div class="form-group">
-										<input type="radio" name="etitING" id="realizadoING" value="realizado" data-validation="required">
+										<input type="radio" name="etitING" id="realizadoING" value="REALIZADO" data-validation="required">
 									</div>
 								</div>
 							</div>
@@ -237,12 +237,12 @@
 								</div>
 								<div class="col-xs-3 col-md-2">
 									<div class="form-group">
-										<input type="radio" name="etitTSU" id="esperaTSU" value="espera">
+										<input type="radio" name="etitTSU" id="esperaTSU" value="ESPERA">
 									</div>
 								</div>
 								<div class="col-xs-3 col-md-2">
 									<div class="form-group">
-										<input type="radio" name="etitING" id="esperaING" value="espera">
+										<input type="radio" name="etitING" id="esperaING" value="ESPERA">
 									</div>
 								</div>
 							</div>
@@ -252,12 +252,12 @@
 								</div>
 								<div class="col-xs-3 col-md-2">
 									<div class="form-group">
-										<input type="radio" name="etitTSU" id="noTSU" value="no">
+										<input type="radio" name="etitTSU" id="noTSU" value="NO">
 									</div>
 								</div>
 								<div class="col-xs-3 col-md-2">
 									<div class="form-group">
-										<input type="radio" name="etitING" id="noING" value="no">
+										<input type="radio" name="etitING" id="noING" value="NO">
 									</div>
 								</div>
 							</div>
@@ -368,15 +368,15 @@
 							<div class="form-group">
 								<label for="nivocupacion">Nivel de ocupación:</label>
 								<select name="nivocupacion" id="nivocupacion" class="form-control" data-validation="required" data-sanitize="trim escape">
-									<option value="Operario">Operario</option>
-									<option value="Técnico General">Técnico General</option>
-									<option value="Técnico Especializado">Técnico Especializado</option>
-									<option value="Administrativo">Administrativo</option>
-									<option value="Supervisor">Supervisor</option>
-									<option value="Gerente">Gerente</option>
-									<option value="Director">Director</option>
-									<option value="Auto empleo">Auto empleo</option>
-									<option value="Otro">Otro</option>
+									<option value="OPERARIO">OPERARIO</option>
+									<option value="TÉCNICO GENERAL">TÉCNICO GENERAL</option>
+									<option value="TÉCNICO ESPECIALIZADO">TÉCNICO ESPECIALIZADO</option>
+									<option value="ADMINISTRATIVO">ADMINISTRATIVO</option>
+									<option value="SUPERVISOR">SUPERVISOR</option>
+									<option value="GERENTE">GERENTE</option>
+									<option value="DIRECTOR">DIRECTOR</option>
+									<option value="AUTO EMPLEO">AUTO EMPLEO</option>
+									<option value="OTRO">OTRO</option>
 								</select>
 							</div>
 							<div class="form-group hidden" id="espotrono">
@@ -388,11 +388,11 @@
 							<div class="form-group">
 								<label for="tiempoempleo">Tiempo en conseguir tu primer empleo</label>
 								<select name="tiempoempleo" id="tiempoempleo" class="form-control" data-validation="required" data-sanitize="trim escape">
-									<option value="Por Estadía">Por Estadía</option>
-									<option value="3 meses">3 meses</option>
-									<option value="6 meses">6 meses</option>
-									<option value="1 año">1 año</option>
-									<option value="Más de 1 año">Más de 1 año</option>
+									<option value="POR ESTADÍA">POR ESTADÍA</option>
+									<option value="3 MESES">3 MESES</option>
+									<option value="6 MESES">6 MESES</option>
+									<option value="1 AÑO">1 AÑO</option>
+									<option value="MÁS DE 1 AÑO">MÁS DE 1 AÑO</option>
 								</select>
 							</div>
 						</div>
@@ -400,10 +400,10 @@
 							<div class="form-group">
 								<label for="loctrabajo">Localidad de Trabajo</label>
 								<select name="loctrabajo" id="loctrabajo" class="form-control" data-validation="required" data-sanitize="trim escape">
-									<option value="Zona Influencia UT">Zona Influencia UT</option>
-									<option value="Interior del Estado">Interior del Estado</option>
-									<option value="Fuera del Estado">Fuera del Estado</option>
-									<option value="En el Extranjero">En el Extranjero</option>
+									<option value="ZONA INFLUENCIA UT">ZONA INFLUENCIA UT</option>
+									<option value="INTERIOR DEL ESTADO">INTERIOR DEL ESTADO</option>
+									<option value="FUERA DEL ESTADO">FUERA DEL ESTADO</option>
+									<option value="EN EL EXTRANJERO">EN EL EXTRANJERO</option>
 								</select>
 							</div>
 						</div>
@@ -411,10 +411,10 @@
 							<div class="form-group">
 								<label for="torganizacion">Tamaño de la Organización</label>
 								<select name="torganizacion" id="torganizacion" class="form-control" data-validation="required" data-sanitize="trim escape">
-									<option value="Micro">Micro</option>
-									<option value="Paqueña">Paqueña</option>
-									<option value="Mediana">Mediana</option>
-									<option value="Macro">Macro</option>
+									<option value="MICRO">MICRO</option>
+									<option value="PEQUEÑA">PEQUEÑA</option>
+									<option value="MEDIANA">MEDIANA</option>
+									<option value="MACRO">MACRO</option>
 								</select>
 							</div>
 						</div>
@@ -422,9 +422,9 @@
 							<div class="form-group">
 								<label for="tipoorga">Tipo de Organización</label>
 								<select name="tipoorga" id="tipoorga" class="form-control" data-validation="required" data-sanitize="trim escape">
-									<option value="Pública">Pública</option>
-									<option value="Privada">Privada</option>
-									<option value="Propia">Propia</option>
+									<option value="PÚBLICA">PÚBLICA</option>
+									<option value="PRIVADA">PRIVADA</option>
+									<option value="PROPIA">PROPIA</option>
 								</select>
 							</div>
 						</div>
@@ -434,27 +434,27 @@
 						<div class="col-sm-4 col-ms-4">
 							<div class="form-group">
 								<span class="negritas">¿Trabajas en algo relacionado a tu carrera?</span><br>
-								<input type="radio" value="Sí" name="trel" id="trSI" data-validation="required">
+								<input type="radio" value="SI" name="trel" id="trSI" data-validation="required">
 								<label for="trSI">Sí</label>
-								<input type="radio" value="No" name="trel" id="trNO">
+								<input type="radio" value="NO" name="trel" id="trNO">
 								<label for="trNO">No</label>
 							</div>
 						</div>
 						<div class="col-sm-4 col-ms-4">
 							<div class="form-group">
 								<span class="negritas">¿Fuiste colocado por la UT?</span><br>
-								<input type="radio" value="Sí" name="fcol" id="fcSI" data-validation="required">
+								<input type="radio" value="SI" name="fcol" id="fcSI" data-validation="required">
 								<label for="fcSI">Sí</label>
-								<input type="radio" value="No" name="fcol" id="fcNO">
+								<input type="radio" value="NO" name="fcol" id="fcNO">
 								<label for="fcNO">No</label>
 							</div>
 						</div>
 						<div class="col-sm-4 col-ms-4">
 							<div class="form-group">
 								<span class="negritas">¿Continuarás estudiando?</span><br>
-								<input type="radio" value="Sí" name="cest" id="cestSI" data-validation="required">
+								<input type="radio" value="SI" name="cest" id="cestSI" data-validation="required">
 								<label for="cestSI">Sí</label>
-								<input type="radio" value="No" name="cest" id="cestNO">
+								<input type="radio" value="NO" name="cest" id="cestNO">
 								<label for="cestNO">No</label>
 							</div>
 							<div class="form-group hidden" id="contest">

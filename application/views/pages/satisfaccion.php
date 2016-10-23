@@ -227,9 +227,9 @@
 						<div class="row">
 							<div class="col-xs-6 col-md-6">¿Tienes algún tipo de discapacidad o padeces alguna enfermedad crónica?</div>
 							<div class="col-xs-6 col-md-6">
-								<input type="radio" value="Sí" name="discapacidad" id="dSI" data-validation="required">
+								<input type="radio" value="SI" name="discapacidad" id="dSI" data-validation="required">
 								<label for="dSI">Sí</label>
-								<input type="radio" value="No" name="discapacidad" id="dNO">
+								<input type="radio" value="NO" name="discapacidad" id="dNO">
 								<label for="dNO">No</label>
 							</div>
 						</div>
@@ -256,9 +256,9 @@
 								<p>La UTTEC a través de la Secretaría de Vinculación te ofrece diversos servicios con los que puedes continuar tu crecimiento profesional tales como cursos, talleres, diplomados, asesoría para la creación de tu propia empresa y otros.</p>
 							</div>
 							<div class="col-xs-6 col-md-6">
-								<input type="radio" value="Sí" name="servinc" id="svSI" data-validation="required">
+								<input type="radio" value="SI" name="servinc" id="svSI" data-validation="required">
 								<label for="svSI">Sí</label>
-								<input type="radio" value="No" name="servinc" id="svNO">
+								<input type="radio" value="NO" name="servinc" id="svNO">
 								<label for="svNO">No</label>
 							</div>
 						</div>
