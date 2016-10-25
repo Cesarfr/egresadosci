@@ -9,7 +9,7 @@
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<div class="row">
-						<div class="col-sm-4 col-md-4">
+						<div class="col-sm-2 col-md-2">
 							<div class="form-group">
 								<span class="negrita">Egresado: </span><br>
 								<input type="radio" name="egresado" id="egresadoTSU" value="TSU" data-validation="required" data-sanitize="trim escape">
@@ -18,7 +18,17 @@
 								<label for="egresadoING">ING</label>
 							</div>
 						</div>
-						<div class="col-sm-8 col-md-8">
+						<div class="col-sm-4 col-md-4">
+							<div class="form-group">
+								<label for="periodo">Periodo:</label>
+								<select name="periodo" id="periodo" class="form-control" data-validation="required" data-sanitize="trim escape">
+									<option value="ENERO-ABRIL">ENERO-ABRIL</option>
+									<option value="MAYO-AGOSTO">MAYO-AGOSTO</option>
+									<option value="SEPTIEMBRE-DICIEMBRE">SEPTIEMBRE-DICIEMBRE</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-6 col-md-6">
 							<div class="form-group">
 								<label for="obser">Observaciones:</label>
 								<input type="text" name="obser" id="obser" placeholder="Observaciones" class="form-control" data-sanitize="trim escape">
@@ -348,8 +358,8 @@
 						</div>
 						<div class="col-sm-4 col-md-4">
 							<div class="form-group">
-								<label for="explaboral">Experiencia laboral: (área de desarrollo y tiempo)</label>
-								<input type="text" class="form-control" id="explaboral" name="explaboral" placeholder="Experiencia laboral" data-validation="required" data-sanitize="trim escape">
+								<label for="explaboral">Experiencia laboral total:</label>
+								<input type="text" class="form-control" id="explaboral" name="explaboral" placeholder="Experiencia laboral total" data-toggle="tooltip" data-placement="top" title="Área de desarrollo y tiempo" data-validation="required" data-sanitize="trim escape">
 							</div>
 						</div>
 						<div class="col-sm-4 col-md-4">
@@ -357,7 +367,7 @@
 								<label for="sueldo">Sueldo mensual:</label>
 								<div class="input-group">
 									<span class="input-group-addon">$</span>
-									<input type="number" class="form-control" id="sueldo" name="sueldo" data-validation="required" data-validation="number" min="0">
+									<input type="number" class="form-control" id="sueldo" name="sueldo" data-validation="required" data-validation="number" min="0" step="any">
 								</div>
 							</div>
 						</div>

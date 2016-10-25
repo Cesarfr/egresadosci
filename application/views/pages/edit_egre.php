@@ -17,7 +17,7 @@ if(!isset($_SESSION["id_u"])){
 								<input type="hidden" name="id" id="id" value="<?php echo $datos["id"];?>" data-sanitize="trim escape">
 							</div>
 						</div>
-						<div class="col-sm-4 col-md-4">
+						<div class="col-sm-2 col-md-2">
 							<div class="form-group">
 								<span class="negrita">Egresado: </span><br>
 								<?php if($datos["egresado"] == "ING"){?>
@@ -35,7 +35,27 @@ if(!isset($_SESSION["id_u"])){
 								<?php }?>
 							</div>
 						</div>
-						<div class="col-sm-6 col-md-6">
+						<div class="col-sm-4 col-md-4">
+							<div class="form-group">
+								<?php
+	  								$per1="";
+	  								$per2="";
+	  								$per3="";
+	  								switch($datos["periodo"]){
+										case "ENERO-ABRIL"; $per1="selected"; break;
+										case "MAYO-AGOSTO"; $per2="selected"; break;
+										case "SEPTIEMBRE-DICIEMBRE"; $per3="selected"; break;
+									}
+								?>
+								<label for="periodo">Periodo:</label>
+								<select name="periodo" id="periodo" class="form-control" data-validation="required" data-sanitize="trim escape">
+									<option value="ENERO-ABRIL" <?php echo $per1;?> >ENERO-ABRIL</option>
+									<option value="MAYO-AGOSTO" <?php echo $per2;?> >MAYO-AGOSTO</option>
+									<option value="SEPTIEMBRE-DICIEMBRE" <?php echo $per3;?> >SEPTIEMBRE-DICIEMBRE</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-5 col-md-5">
 							<div class="form-group">
 								<label for="obser">Observaciones:</label>
 								<input type="text" name="obser" id="obser" placeholder="Observaciones" class="form-control" data-sanitize="trim escape" value="<?php echo $datos["obser"];?>">
@@ -52,16 +72,22 @@ if(!isset($_SESSION["id_u"])){
 								<input type="hidden" name="carrera" id="carrera" value="<?php echo $datos["carrera"];?>" data-sanitize="trim escape">
 							</div>
 						</div>
-						<div class="col-sm-3 col-md-3">
+						<div class="col-sm-2 col-md-2">
 							<div class="form-group">
 								<label for="matric">Matrícula:</label>
 								<input type="number" class="form-control" id="matric" name="matric" data-validation="number" data-validation-error-msg="El valor proporcionado no es una matrícula válida" min="0" value="<?php echo $datos["matricula"];?>" readonly>
 							</div>
 						</div>
-						<div class="col-sm-3 col-md-3">
+						<div class="col-sm-2 col-md-2">
 							<div class="form-group">
-								<label for="fecha">Fecha:</label>
+								<label for="fecha">Fecha de captura:</label>
 								<input type="date" class="form-control" id="fecha" name="fecha" data-validation="date" data-sanitize="trim escape" value="<?php echo $datos["fecha"];?>" readonly>
+							</div>
+						</div>
+						<div class="col-sm-2 col-md-2">
+							<div class="form-group">
+								<label for="fechaupdate">Fecha de actualización:</label>
+								<input type="date" class="form-control" id="fechaupdate" name="fechaupdate" data-validation="date" data-sanitize="trim escape" value="<?php echo $datos["fechaupdate"];?>">
 							</div>
 						</div>
 					</div>
@@ -453,7 +479,7 @@ if(!isset($_SESSION["id_u"])){
 								<label for="sueldo">Sueldo mensual:</label>
 								<div class="input-group">
 									<span class="input-group-addon">$</span>
-									<input type="number" class="form-control" id="sueldo" name="sueldo" data-validation="required" data-validation="number" min="0" value="<?php echo $datos["sueldo"];?>">
+									<input type="number" class="form-control" id="sueldo" name="sueldo" data-validation="required" data-validation="number" min="0" value="<?php echo $datos["sueldo"];?>" step="any">
 								</div>
 							</div>
 						</div>

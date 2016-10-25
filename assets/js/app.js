@@ -1,5 +1,8 @@
 var table;
 $(document).ready(function(){
+	
+	$('[data-toggle="tooltip"]').tooltip();
+	
     $("#nivocupacion").click(function(){
         if($("#nivocupacion").val() == "OTRO"){
 			$("#espotrono").removeClass("hidden");

@@ -105,6 +105,7 @@ class Admin_model extends CI_Model{
 			"carrera" => strtoupper($this->input->post("carrera")),
 			"matricula" => $this->input->post("matric"),
 			"fecha" => $this->input->post("fecha"),
+			"fechaupdate" => $this->input->post("fechaupdate"),
 			"apat" => strtoupper($this->input->post("apat")),
 			"amat" => strtoupper($this->input->post("amat")),
 			"nombre" => strtoupper($this->input->post("nombre")),

@@ -11,8 +11,9 @@ if(!isset($_SESSION["id_u"])){
 <div class="row">
 	<div class="col-md-12">
 		<div class="panel panel-default">
-		<div class="panel-heading text-center"><h4>Consultar egresados</h4></div>
+		<div class="panel-heading text-center"><div class="pull-left"><a href="<?php echo site_url('admin/panel'); ?>" class="btn btn-primary">Regresar al panel</a></div><h4>Consultar egresados</h4></div>
 			<div class="panel-body">
+				
 				<table id="table" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
 					<thead>
 						<tr>

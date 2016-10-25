@@ -6,7 +6,7 @@
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<h4>Haz clic en el siguiente botón para obtener tu comprobante</h4>
-				<p>Recuerda que este documento se te pedirá para corroborar la realización de esta actividad.</p>
+				<p>Recuerda que este documento es importante para los trámites de titulación.</p>
 				<div class="text-center">
 					<a href="<?php echo site_url('home/get_comp');?>" class="btn btn-primary" id="comp" target="_blank">Imprimir comprobante</a>
 				</div>
