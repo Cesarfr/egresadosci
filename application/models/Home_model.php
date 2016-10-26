@@ -103,4 +103,8 @@ class Home_model extends CI_Model{
         $query = $this->db->query("SELECT id, egresado, carrera, matricula, fecha, apat, amat, nombre FROM EGRESADO WHERE id=".$this->db->escape($id));
 		return $query->row_array();
 	}
+	public function get_egre_mat(){
+        $query = $this->db->query("SELECT id FROM EGRESADO WHERE matricula='".$this->db->escape_str($this->input->post("matricula"))."'");
+		return $query->row_array();
+	}
 }

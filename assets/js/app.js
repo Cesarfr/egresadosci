@@ -90,9 +90,32 @@ $(document).ready(function(){
 		lang: 'es',
 		modules : 'sanitize',
 		onSuccess: function(evt){
-//			var datos = $("#frmEditEgre").serialize();
-//			console.log(datos);
 			return true;
+		}
+	});
+	
+	$.validate({
+		form : '#frmComp',
+		lang: 'es',
+		modules : 'sanitize',
+		onSuccess: function(evt){
+			var datos = $("#frmComp").serialize();
+			$.ajax({
+				method: "POST",
+				url: baseurl+"index.php/home/frm_comp",
+				data: datos,
+				dataType: "JSON",
+				success: function(dat){
+					if(dat == null){
+						$("#comp").html("");
+						$("#msg_comp").html("<div class='alert alert-danger alert-dismissible' role='alert'> <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button> ¡ No hay ningún registro con la matrícula proporcionada !</div>");
+					}else{
+						$("#msg_comp").html("");
+						$("#comp").html("<a href='"+baseurl+"index.php/home/get_rep_comp/"+dat.id+"' class='btn btn-primary' id='comp' target='_blank'>Obtener comprobante</a>");
+					}
+				}
+			});
+			return false;
 		}
 	});
 	
@@ -163,11 +186,11 @@ function delete_egre(id){
 					$("#msg").html("<div class='alert alert-success alert-dismissible' role='alert'> <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button> Los datos han sido eliminados correctamente</div>");
 					reload_datatable();
 				}else{
-					
+					$("#msg").html("<div class='alert alert-danger alert-dismissible' role='alert'> <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button> Ha ocurrido un error al eliminar el egresado.</div>");
 				}
 			},
 			error: function (jqXHR, textStatus, errorThrown){
-				alert('Error deleting data');
+				$("#msg").html("<div class='alert alert-danger alert-dismissible' role='alert'> <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button> Ha ocurrido un error al eliminar el egresado.</div>");
 			}
 		});
 

@@ -124,32 +124,36 @@ class Admin extends CI_Controller{
 		}else{
 			if(is_numeric($id)){
 				$datos_egre = $this->admin_model->get_egre_id($id);
-				$data['title'] = "Modificar datos egresado";
-				switch($datos_egre["carrera"]){
-					case 'AEP': $datos_egre["descarr"]="ADMINISTRACIÓN, ÁREA ADMINISTRACIÓN Y EVALUACIÓN DE PROYECTOS"; break;
-					case 'ARH': $datos_egre["descarr"]="ADMINISTRACIÓN, ÁREA RECURSOS HUMANOS"; break;
-					case 'DNM': $datos_egre["descarr"]="DESARROLLO DE NEGOCIOS, ÁREA MERCADOTECNIA"; break;
-					case 'MIN': $datos_egre["descarr"]="MANTENIMIENTO, ÁREA INDUSTRIAL"; break;
-					case 'MAT': $datos_egre["descarr"]="MECATRÓNICA, ÁREA AUTOMATIZACIÓN"; break;
-					case 'NAT': $datos_egre["descarr"]="NANOTECNOLOGÍA, ÁREA MATERIALES"; break;
-					case 'PIM': $datos_egre["descarr"]="PROCESOS INDUSTRIALES, ÁREA MANUFACTURA"; break;
-					case 'QBT': $datos_egre["descarr"]="QUÍMICA, ÁREA BIOTECNOLOGÍA"; break;
-					case 'TIC': $datos_egre["descarr"]="TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIÓN, ÁREA SISTEMAS INFORMÁTICOS"; break;
-					case 'ERC': $datos_egre["descarr"]="ENERGÍAS RENOVABLES, ÁREA CALIDAD Y AHORRO DE ENERGÍA"; break;
-					case 'IBT': $datos_egre["descarr"]="BIOTECNOLOGÍA"; break;
-					case 'IER': $datos_egre["descarr"]="ENERGÍAS RENOVABLES"; break;
-					case 'IGP': $datos_egre["descarr"]="GESTIÓN DE PROYECTOS"; break;
-					case 'IMI': $datos_egre["descarr"]="MANTENIMIENTO INDUSTRIAL"; break;
-					case 'IMT': $datos_egre["descarr"]="MECATRÓNICA"; break;
-					case 'INT': $datos_egre["descarr"]="NANOTECNOLOGÍA"; break;
-					case 'IGE': $datos_egre["descarr"]="NEGOCIOS Y GESTIÓN EMPRESARIAL"; break;
-					case 'IPO': $datos_egre["descarr"]="PROCESOS Y OPERACIONES INDUSTRIALES"; break;
-					case 'ITI': $datos_egre["descarr"]="TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIÓN"; break;
+				if(isset($datos_egre['id'])){
+					$data['title'] = "Modificar datos egresado";
+					switch($datos_egre["carrera"]){
+						case 'AEP': $datos_egre["descarr"]="ADMINISTRACIÓN, ÁREA ADMINISTRACIÓN Y EVALUACIÓN DE PROYECTOS"; break;
+						case 'ARH': $datos_egre["descarr"]="ADMINISTRACIÓN, ÁREA RECURSOS HUMANOS"; break;
+						case 'DNM': $datos_egre["descarr"]="DESARROLLO DE NEGOCIOS, ÁREA MERCADOTECNIA"; break;
+						case 'MIN': $datos_egre["descarr"]="MANTENIMIENTO, ÁREA INDUSTRIAL"; break;
+						case 'MAT': $datos_egre["descarr"]="MECATRÓNICA, ÁREA AUTOMATIZACIÓN"; break;
+						case 'NAT': $datos_egre["descarr"]="NANOTECNOLOGÍA, ÁREA MATERIALES"; break;
+						case 'PIM': $datos_egre["descarr"]="PROCESOS INDUSTRIALES, ÁREA MANUFACTURA"; break;
+						case 'QBT': $datos_egre["descarr"]="QUÍMICA, ÁREA BIOTECNOLOGÍA"; break;
+						case 'TIC': $datos_egre["descarr"]="TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIÓN, ÁREA SISTEMAS INFORMÁTICOS"; break;
+						case 'ERC': $datos_egre["descarr"]="ENERGÍAS RENOVABLES, ÁREA CALIDAD Y AHORRO DE ENERGÍA"; break;
+						case 'IBT': $datos_egre["descarr"]="BIOTECNOLOGÍA"; break;
+						case 'IER': $datos_egre["descarr"]="ENERGÍAS RENOVABLES"; break;
+						case 'IGP': $datos_egre["descarr"]="GESTIÓN DE PROYECTOS"; break;
+						case 'IMI': $datos_egre["descarr"]="MANTENIMIENTO INDUSTRIAL"; break;
+						case 'IMT': $datos_egre["descarr"]="MECATRÓNICA"; break;
+						case 'INT': $datos_egre["descarr"]="NANOTECNOLOGÍA"; break;
+						case 'IGE': $datos_egre["descarr"]="NEGOCIOS Y GESTIÓN EMPRESARIAL"; break;
+						case 'IPO': $datos_egre["descarr"]="PROCESOS Y OPERACIONES INDUSTRIALES"; break;
+						case 'ITI': $datos_egre["descarr"]="TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIÓN"; break;
+					}
+					$data['datos'] = $datos_egre;
+					$this->load->view('templates/header', $data);
+					$this->load->view('pages/edit_egre');
+					$this->load->view('templates/footer');
+				}else{
+					show_404();
 				}
-				$data['datos'] = $datos_egre;
-				$this->load->view('templates/header', $data);
-				$this->load->view('pages/edit_egre');
-				$this->load->view('templates/footer');
 			}else {
 				show_404();
 			}
