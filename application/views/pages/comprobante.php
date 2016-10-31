@@ -8,7 +8,8 @@
 				<h4>Haz clic en el siguiente botón para obtener tu comprobante</h4>
 				<p>Recuerda que este documento es importante para los trámites de titulación.</p>
 				<div class="text-center">
-					<a href="<?php echo site_url('home/get_comp');?>" class="btn btn-primary" id="comp" target="_blank">Imprimir comprobante</a>
+					<a href="<?php echo site_url('home/get_comp');?>" class="btn btn-success" id="comp" target="_blank">Imprimir comprobante</a>&nbsp;&nbsp;
+					<a href="<?php echo site_url('/');?>" class="btn btn-primary">Regresar al inicio</a>
 				</div>
 			</div>
 		</div>

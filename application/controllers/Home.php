@@ -6,9 +6,15 @@ class Home extends CI_Controller{
 		$this->load->model("home_model");
 	}
 	public function index(){
-		$data['title'] = "Egresados";
+		$data['title'] = "Departamento de Seguimiento a Egresados";
 		$this->load->view('templates/header', $data);
-        $this->load->view('pages/home', $data);
+        $this->load->view('pages/inicio', $data);
+        $this->load->view('templates/footer', $data);
+	}
+	public function frmegr(){
+		$data['title'] = "Cédula de Egreso";
+		$this->load->view('templates/header', $data);
+        $this->load->view('pages/frmegr', $data);
         $this->load->view('templates/footer', $data);
 	}
 	public function aviso(){
@@ -83,7 +89,7 @@ class Home extends CI_Controller{
 		if ($this->form_validation->run() === FALSE){
 			$data['title'] = "Egresados";
 			$this->load->view('templates/header', $data);
-			$this->load->view('pages/home', $data);
+			$this->load->view('pages/frmegr', $data);
 			$this->load->view('templates/footer', $data);
 		}else{
 			$res = $this->home_model->save_form();

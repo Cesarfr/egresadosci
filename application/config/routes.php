@@ -54,6 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['home'] = 'aviso';
+$route['home'] = 'frmegr';
 $route['home'] = 'satisfaccion';
 $route['home'] = 'comprobante';
 $route['home'] = 'rep_comp';
