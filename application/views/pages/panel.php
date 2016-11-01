@@ -21,7 +21,7 @@ if(!isset($_SESSION["id_u"])){
 						<div class="panel panel-info">
 						<div class="panel-heading text-center"><h5>Gráfica de satisfacción</h5></div>
 							<div class="panel-body">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, commodi suscipit, repudiandae consequuntur, expedita ad aspernatur, vero at nesciunt unde numquam ratione delectus voluptas. Debitis qui fuga aut voluptatum aperiam.
+								<div id="graph" style="width:100%;"></div>
 							</div>
 						</div>
 					</div>

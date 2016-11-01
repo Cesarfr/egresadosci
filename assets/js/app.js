@@ -172,7 +172,36 @@ $(document).ready(function(){
 			],
 
 		});
-	}	
+	}
+	// ,"IBT","IER","IGP","IMI","IMT","INT","IGE","IPO","ITI"
+	// Graficos
+	if($("#graph").length){
+		$.ajax({
+			url : baseurl+"index.php/admin/count_graph",
+			type: "GET",
+			dataType: "JSON",
+			success: function(data){
+				console.log(data);
+				Morris.Donut({
+					element: 'graph',
+					data: data
+				});
+			},
+			error: function (jqXHR, textStatus, errorThrown){
+				console.log(errorThrown);
+			}
+		});
+	}
+	/*Morris.Donut({
+	  element: 'graph',
+	  data: [
+		{value: 70, label: 'foo'},
+		{value: 15, label: 'bar'},
+		{value: 10, label: 'baz'},
+		{value: 5, label: 'A really really long label'}
+	  ],
+	  formatter: function (x) { return x + "%"}
+	});*/
 });
 
 function delete_egre(id){

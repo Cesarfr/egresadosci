@@ -270,4 +270,12 @@ class Admin extends CI_Controller{
 			}
 		}
 	}
+	public function count_graph(){
+		if(!isset($_SESSION["id_u"])){
+			redirect("/");
+		}else{
+			$res = $this->admin_model->count_graph();
+			echo json_encode($res);	
+		}
+	}
 }
