@@ -162,8 +162,8 @@ class Admin_model extends CI_Model{
 		$this->db->where("id", $id);
 		return $this->db->delete('EGRESADO');
 	}
-	public function count_graph(){
-		$query = $this->db->query("SELECT count(id_s) AS value, carrera AS label FROM SATISFACCION INNER JOIN EGRESADO ON EGRESADO.id=SATISFACCION.id_e WHERE egresado='TSU' GROUP BY carrera");
+	public function count_graph($carr){
+		$query = $this->db->query("SELECT count(id_s) AS value, carrera AS label FROM SATISFACCION INNER JOIN EGRESADO ON EGRESADO.id=SATISFACCION.id_e WHERE egresado='".$carr."' GROUP BY carrera");
 		return $query->result();
 	}
 }

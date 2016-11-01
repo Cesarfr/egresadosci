@@ -173,18 +173,19 @@ $(document).ready(function(){
 
 		});
 	}
-	// ,"IBT","IER","IGP","IMI","IMT","INT","IGE","IPO","ITI"
+	
 	// Graficos
-	if($("#graph").length){
+	if($("#graphTSU").length){
 		$.ajax({
-			url : baseurl+"index.php/admin/count_graph",
+			url : baseurl+"index.php/admin/count_graph_TSU",
 			type: "GET",
 			dataType: "JSON",
 			success: function(data){
-				console.log(data);
 				Morris.Donut({
-					element: 'graph',
-					data: data
+					element: 'graphTSU',
+					data: data,
+					colors: ["#FF8000", "#FE9A2E", "#FAAC58", "#F7BE81", "#F7BE81", "#F5D0A9", "#F6E3CE"],
+					resize: true
 				});
 			},
 			error: function (jqXHR, textStatus, errorThrown){
@@ -192,16 +193,24 @@ $(document).ready(function(){
 			}
 		});
 	}
-	/*Morris.Donut({
-	  element: 'graph',
-	  data: [
-		{value: 70, label: 'foo'},
-		{value: 15, label: 'bar'},
-		{value: 10, label: 'baz'},
-		{value: 5, label: 'A really really long label'}
-	  ],
-	  formatter: function (x) { return x + "%"}
-	});*/
+	if($("#graphING").length){
+		$.ajax({
+			url : baseurl+"index.php/admin/count_graph_ING",
+			type: "GET",
+			dataType: "JSON",
+			success: function(data){
+				Morris.Donut({
+					element: 'graphING',
+					data: data,
+					colors: ["#33FF00", "#33FF33", "#33FF66", "#33FF99", "#33FFCC", "#33FFFF", "#33CCFF"],
+					resize: true
+				});
+			},
+			error: function (jqXHR, textStatus, errorThrown){
+				console.log(errorThrown);
+			}
+		});
+	}
 });
 
 function delete_egre(id){

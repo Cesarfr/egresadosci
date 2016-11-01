@@ -270,11 +270,19 @@ class Admin extends CI_Controller{
 			}
 		}
 	}
-	public function count_graph(){
+	public function count_graph_TSU(){
 		if(!isset($_SESSION["id_u"])){
 			redirect("/");
 		}else{
-			$res = $this->admin_model->count_graph();
+			$res = $this->admin_model->count_graph("TSU");
+			echo json_encode($res);	
+		}
+	}
+	public function count_graph_ING(){
+		if(!isset($_SESSION["id_u"])){
+			redirect("/");
+		}else{
+			$res = $this->admin_model->count_graph("ING");
 			echo json_encode($res);	
 		}
 	}

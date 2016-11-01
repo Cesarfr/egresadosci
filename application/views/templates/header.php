@@ -34,15 +34,29 @@
                 </button>
                 <a class="navbar-brand" href="<?php echo site_url(''); ?>">Egresados</a>
             </div>
+			  <?php
+			  $ln1 = "";
+			  $ln2 = "";
+			  $ln3 = "";
+			  $ln4 = "";
+			  $lnd = "";
+			  switch($this->uri->segment(2)){
+				  case "rep_comp": $ln1 = "class='active'"; break;
+				  case "login": $ln2 = "class='active'"; break;
+				  case "consultar": $ln3 = "class='active'"; break;
+				  case "panel": $ln4 = "class='active'"; break;
+				  default: $lnd = "class='active'"; break;
+			  }
+			  ?>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="<?php echo site_url(''); ?>">Inicio</a></li>
-                    <li><a href="<?php echo site_url('home/rep_comp');?>">Comprobante</a></li>
+                    <li <?php echo $lnd; ?>><a href="<?php echo site_url(''); ?>">Inicio</a></li>
+                    <li <?php echo $ln1; ?>><a href="<?php echo site_url('home/rep_comp');?>">Comprobante</a></li>
                     <?php if(!isset($_SESSION["id_u"])){ ?>
-                    <li><a href="<?php echo site_url('admin/login'); ?>">Login</a></li>
+                    <li <?php echo $ln2; ?>><a href="<?php echo site_url('admin/login'); ?>">Login</a></li>
                     <?php }else{ ?>
-                    <li><a href="<?php echo site_url('admin/consultar'); ?>">Consultar</a></li>
-                    <li><a href="<?php echo site_url('admin/panel'); ?>">Panel</a></li>
+                    <li <?php echo $ln3; ?>><a href="<?php echo site_url('admin/consultar'); ?>">Consultar</a></li>
+                    <li <?php echo $ln4; ?>><a href="<?php echo site_url('admin/panel'); ?>">Panel</a></li>
                     <?php } ?>
                 </ul>
                 <?php if(isset($_SESSION["id_u"])){ ?>
