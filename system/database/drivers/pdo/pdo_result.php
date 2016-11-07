@@ -88,6 +88,22 @@ class CI_DB_pdo_result extends CI_DB_result {
 	{
 		return $this->result_id->columnCount();
 	}
+	
+	/**
+ 	* All results of multiple queries
+ 	* @return array
+ 	*/ 
+	public function nrs()
+	{
+		$datos = array();
+		do {
+			$rowset = $this->result_id->fetchAll(PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE);
+			if ($rowset) {
+				array_push($datos, $rowset);
+			}
+		} while ($this->result_id->nextRowset());
+		return $datos;
+	}
 
 	// --------------------------------------------------------------------
 

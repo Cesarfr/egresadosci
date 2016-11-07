@@ -85,11 +85,19 @@ class Admin_model extends CI_Model{
         return $this->db->count_all_results();
 	}
 	
+	public function get_poll_gen(){
+		$data = array(
+			"egresado" => $this->input->post("tg")
+		);
+		$query = $this->db->query("CALL get_polls_gen('".$this->db->escape_str($data["egresado"])."')");
+		return $query->nrs();
+	}
 	public function get_poll(){
 		$data = array(
+			"egresado" => $this->input->post("tipo"),
 			"carrera" => $this->input->post("carrera")
 		);
-		$query = $this->db->query("SELECT SATISFACCION.* FROM SATISFACCION INNER JOIN EGRESADO ON EGRESADO.id=SATISFACCION.id_e WHERE carrera='".$this->db->escape_str($data["carrera"])."'");
+		$query = $this->db->query("SELECT count(id_s) AS conteo1, infraestructura FROM SATISFACCION INNER JOIN EGRESADO ON EGRESADO.id=SATISFACCION.id_e WHERE carrera='".$this->db->escape_str($data["carrera"])."' GROUP BY infraestructura");
 		return $query->result();
 	}
 	

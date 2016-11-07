@@ -59,3 +59,8 @@ body {
 input[type="text"], select, option{
 	text-transform: uppercase;
 }
+
+.vcenter {
+    display: table-cell;
+    vertical-align: middle;
+}

@@ -70,6 +70,34 @@ class Admin extends CI_Controller{
 		$this->session->unset_userdata($array_items);
 		redirect("/admin/login/");
 	}
+	public function get_table_gen(){
+		if(!isset($_SESSION["id_u"])){
+			redirect("/");
+		}else{
+			$res = $this->admin_model->get_poll_gen();
+//			$data["res"] = $res;
+//			$this->load->view('pages/tabla', $data);
+			for($i = 0; $i < count($res); $i++){
+				if(array_key_exists('N/A', $res[$i]) == FALSE){
+					$res[$i]["N/A"] = "0";
+				}
+				if(array_key_exists('R', $res[$i]) == FALSE){
+					$res[$i]["R"] = "0";
+				}
+				if(array_key_exists('P', $res[$i]) == FALSE){
+					$res[$i]["P"] = "0";
+				}
+				if(array_key_exists('B', $res[$i]) == FALSE){
+					$res[$i]["B"] = "0";
+				}
+				if(array_key_exists('MB', $res[$i]) == FALSE){
+					$res[$i]["MB"] = "0";
+				}
+			}
+//			var_dump($res);
+			echo json_encode($res);
+		}
+	}
 	public function get_table(){
 		if(!isset($_SESSION["id_u"])){
 			redirect("/");
