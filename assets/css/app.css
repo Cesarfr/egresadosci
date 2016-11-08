@@ -64,3 +64,13 @@ input[type="text"], select, option{
     display: table-cell;
     vertical-align: middle;
 }
+
+hr{
+    background-color: #000;
+    border-color: #000;
+    margin: 0px;
+}
+
+.borinf{
+    border-bottom: 2px solid #000;
+}

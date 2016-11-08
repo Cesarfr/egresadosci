@@ -73,165 +73,324 @@ if(!isset($_SESSION["id_u"])){
 											<div class="col-xs-4 col-md-4">
 												<div class="row">
 													<div class="col-xs-8 col-md-8">
-														Total de respuestas de los alumnos muy satisfechos<hr>tt
+														Total de respuestas de los alumnos muy satisfechos<hr>Total de las respuestas de las preguntas de las preguntas aplicadas
 													</div>
 													<div class="col-xs-4 col-md-4">
-														<p>*100=MB</p>
+														<p>* 100 = MB</p>
 													</div>
 												</div>
 											</div>
 											<div class="col-xs-4 col-md-4">
 												<div class="row">
-													<div class="col-xs-8 col-md-8">
-														Total de respuestas de los alumnos muy satisfechos<hr>tt
+													<div class="col-xs-6 col-md-6">
+														o sea, 
 													</div>
-													<div class="col-xs-4 col-md-4">
-														<p>*100=MB</p>
+													<div class="col-xs-6 col-md-6">
+														2,090<hr>9878
 													</div>
 												</div>
 											</div>
 											<div class="col-xs-4 col-md-4">
 												<div class="row">
-													<div class="col-xs-8 col-md-8">
-														Total de respuestas de los alumnos muy satisfechos<hr>tt
+													<div class="col-xs-6 col-md-6">
+														<p>* 100 =</p>
 													</div>
-													<div class="col-xs-4 col-md-4">
-														<p>*100=MB</p>
+													<div class="col-xs-6 col-md-6">
+														<p>8798</p>
 													</div>
 												</div>
 											</div>
-										</div>
+										</div><br>
 										<div class="row text-center">
 											<div class="col-xs-4 col-md-4">
 												<div class="row">
 													<div class="col-xs-8 col-md-8">
-														Total de respuestas de los alumnos muy satisfechos<hr>tt
+														Total de respuestas de los alumnos satisfechos<hr>Total de las respuestas de las preguntas de las preguntas aplicadas
 													</div>
 													<div class="col-xs-4 col-md-4">
-														<p>*100=MB</p>
+														<p>* 100 = B</p>
 													</div>
 												</div>
 											</div>
 											<div class="col-xs-4 col-md-4">
 												<div class="row">
-													<div class="col-xs-8 col-md-8">
-														Total de respuestas de los alumnos muy satisfechos<hr>tt
+													<div class="col-xs-6 col-md-6">
+														o sea, 
 													</div>
-													<div class="col-xs-4 col-md-4">
-														<p>*100=MB</p>
+													<div class="col-xs-6 col-md-6">
+														2,090<hr>9878
 													</div>
 												</div>
 											</div>
 											<div class="col-xs-4 col-md-4">
 												<div class="row">
-													<div class="col-xs-8 col-md-8">
-														Total de respuestas de los alumnos muy satisfechos<hr>tt
+													<div class="col-xs-6 col-md-6">
+														<p>* 100 =</p>
 													</div>
-													<div class="col-xs-4 col-md-4">
-														<p>*100=MB</p>
+													<div class="col-xs-6 col-md-6">
+														<p>8798</p>
 													</div>
 												</div>
 											</div>
-										</div>
+										</div><br>
 										<div class="row text-center">
 											<div class="col-xs-4 col-md-4">
 												<div class="row">
 													<div class="col-xs-8 col-md-8">
-														Total de respuestas de los alumnos muy satisfechos<hr>tt
+														Total de respuestas de los alumnos regularmente satisfechos<hr>Total de las respuestas de las preguntas de las preguntas aplicadas
 													</div>
 													<div class="col-xs-4 col-md-4">
-														<p>*100=MB</p>
+														<p>* 100 = R</p>
 													</div>
 												</div>
 											</div>
 											<div class="col-xs-4 col-md-4">
 												<div class="row">
-													<div class="col-xs-8 col-md-8">
-														Total de respuestas de los alumnos muy satisfechos<hr>tt
+													<div class="col-xs-6 col-md-6">
+														o sea, 
 													</div>
-													<div class="col-xs-4 col-md-4">
-														<p>*100=MB</p>
+													<div class="col-xs-6 col-md-6">
+														2,090<hr>9878
 													</div>
 												</div>
 											</div>
 											<div class="col-xs-4 col-md-4">
 												<div class="row">
-													<div class="col-xs-8 col-md-8">
-														Total de respuestas de los alumnos muy satisfechos<hr>tt
+													<div class="col-xs-6 col-md-6">
+														<p>* 100 =</p>
 													</div>
-													<div class="col-xs-4 col-md-4">
-														<p>*100=MB</p>
+													<div class="col-xs-6 col-md-6">
+														<p>8798</p>
 													</div>
 												</div>
 											</div>
-										</div>
+										</div><br>
 										<div class="row text-center">
 											<div class="col-xs-4 col-md-4">
 												<div class="row">
 													<div class="col-xs-8 col-md-8">
-														Total de respuestas de los alumnos muy satisfechos<hr>tt
+														Total de respuestas de los alumnos poco satisfechos<hr>Total de las respuestas de las preguntas de las preguntas aplicadas
 													</div>
 													<div class="col-xs-4 col-md-4">
-														<p>*100=MB</p>
+														<p>* 100 = P</p>
 													</div>
 												</div>
 											</div>
 											<div class="col-xs-4 col-md-4">
 												<div class="row">
-													<div class="col-xs-8 col-md-8">
-														Total de respuestas de los alumnos muy satisfechos<hr>tt
+													<div class="col-xs-6 col-md-6">
+														o sea, 
 													</div>
-													<div class="col-xs-4 col-md-4">
-														<p>*100=MB</p>
+													<div class="col-xs-6 col-md-6">
+														2,090<hr>9878
 													</div>
 												</div>
 											</div>
 											<div class="col-xs-4 col-md-4">
 												<div class="row">
-													<div class="col-xs-8 col-md-8">
-														Total de respuestas de los alumnos muy satisfechos<hr>tt
+													<div class="col-xs-6 col-md-6">
+														<p>* 100 =</p>
 													</div>
-													<div class="col-xs-4 col-md-4">
-														<p>*100=MB</p>
+													<div class="col-xs-6 col-md-6">
+														<p>8798</p>
 													</div>
 												</div>
 											</div>
-										</div>
+										</div><br>
 										<div class="row text-center">
 											<div class="col-xs-4 col-md-4">
 												<div class="row">
 													<div class="col-xs-8 col-md-8">
-														Total de respuestas de los alumnos muy satisfechos<hr>tt
+														Total de respuestas de los alumnos no aplica<hr>Total de las respuestas de las preguntas de las preguntas aplicadas
 													</div>
 													<div class="col-xs-4 col-md-4">
-														<p>*100=MB</p>
+														<p>* 100 = N/A</p>
 													</div>
 												</div>
 											</div>
 											<div class="col-xs-4 col-md-4">
 												<div class="row">
-													<div class="col-xs-8 col-md-8">
-														Total de respuestas de los alumnos muy satisfechos<hr>tt
+													<div class="col-xs-6 col-md-6">
+														o sea, 
 													</div>
-													<div class="col-xs-4 col-md-4">
-														<p>*100=MB</p>
+													<div class="col-xs-6 col-md-6">
+														2,090<hr>9878
 													</div>
 												</div>
 											</div>
 											<div class="col-xs-4 col-md-4">
 												<div class="row">
-													<div class="col-xs-8 col-md-8">
-														Total de respuestas de los alumnos muy satisfechos<hr>tt
+													<div class="col-xs-6 col-md-6">
+														<p>* 100 =</p>
 													</div>
-													<div class="col-xs-4 col-md-4">
-														<p>*100=MB</p>
+													<div class="col-xs-6 col-md-6">
+														<p>8798</p>
 													</div>
 												</div>
 											</div>
-										</div>
+										</div><br>
 										<div class="row text-center">
-											<div class="col-md-12"><h4>Nota: La suma de todos los resultados relativos siempre deberá ser el 100%</h4></div>
-										</div>
+											<div class="col-md-12">Nota: La suma de todos los resultados relativos siempre deberá ser el 100%</div>
+										</div><br>
+										<div class="row text-center">
+											<div class="col-xs-4 col-md-4">
+												<div class="row">
+													<div class="col-xs-12 col-md-12">
+														Aplicando prorrateo al número de encuestas aplicadas tenemos que:
+													</div>
+												</div>
+											</div>
+											<div class="col-xs-4 col-md-4">
+												<div class="row">
+													<div class="col-xs-12 col-md-12">
+														489
+													</div>
+												</div>
+											</div>
+											<div class="col-xs-4 col-md-4">
+												<div class="row">
+													<div class="col-xs-6 col-md-6">
+														<p>75.16</p>
+													</div>
+													<div class="col-xs-6 col-md-6">
+														<p>362</p>
+													</div>
+												</div>
+											</div>
+										</div><br>
+										<div class="row text-center">
+											<div class="col-xs-4 col-md-4">
+												<div class="row">
+													<div class="col-xs-8 col-md-8">
+													<p>Fórmula del indicador:</p>br
+														Total de egresados muy satisfechos y satisfechos<hr>Total de egresados de TSU
+													</div>
+													<div class="col-xs-4 col-md-4">
+														<p>* 100 = TES</p>
+													</div>
+												</div>
+											</div>
+											<div class="col-xs-4 col-md-4">
+												<div class="row">
+													<div class="col-xs-6 col-md-6">
+														o sea, 
+													</div>
+													<div class="col-xs-6 col-md-6">
+														372<hr>489
+													</div>
+												</div>
+											</div>
+											<div class="col-xs-4 col-md-4">
+												<div class="row">
+													<div class="col-xs-6 col-md-6">
+														<p>* 100 =</p>
+													</div>
+													<div class="col-xs-6 col-md-6">
+														<p>76.15</p>
+													</div>
+												</div>
+											</div>
+										</div><br><br>
+										<div class="row text-center">
+											<div class="col-xs-12 col-md-12">
+												<table class="table table-bordered" width='100%'>
+												<caption class="text-center">CUADRO NO. 4.2 <br>"TABLA DE EQUIVALENCIA EN DIFERENTES ESCALAS"</caption>
+													<thead>
+														<tr>
+															<th rowspan="2">NO.</th>
+															<th colspan="2">ESCALA ORDINAL</th>
+															<th>ESCALA DISCRETA O DISCONTINUA</th>
+															<th>ESCALA CONTINUA</th>
+														</tr>
+														<tr>
+															<th>CLAVE</th>
+															<th>DESCRIPCIÓN</th>
+															<th>VALOR</th>
+															<th>VALOR</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>1</td>
+															<td>MS</td>
+															<td>MUY SATISFECHO</td>
+															<td>5</td>
+															<td>9.0 - 10.0</td>
+														</tr>
+														<tr>
+															<td>2</td>
+															<td>S</td>
+															<td>SATISFECHO</td>
+															<td>4</td>
+															<td>7.5 - 8.9</td>
+														</tr>
+														<tr>
+															<td>3</td>
+															<td>RS</td>
+															<td>REGULARMENTE SATISFECHO</td>
+															<td>3</td>
+															<td>6.0 - 7.4</td>
+														</tr>
+														<tr>
+															<td>4</td>
+															<td>PS</td>
+															<td>POCO SATISFECHO</td>
+															<td>2</td>
+															<td>4.0 - 5.9</td>
+														</tr>
+														<tr>
+															<td>5</td>
+															<td>NS</td>
+															<td>NO SATISFECHO</td>
+															<td>1</td>
+															<td>0 - 3.9</td>
+														</tr>
+														<tr>
+															<td>6</td>
+															<td>NA</td>
+															<td>NO APLICA</td>
+															<td>0</td>
+															<td>0</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div><br><br>
+										<div class="row text-center">
+											<div class="col-xs-12 col-md-12">
+												<table class="table table-bordered" width='100%'>
+												<caption class="text-center">GRADO DE SATISFACCIÓN GENERAL</caption>
+													<thead>
+														<tr>
+															<th>MS</th>
+															<th>S</th>
+															<th>RS</th>
+															<th>PS</th>
+															<th>NS</th>
+															<th></th>
+															<th>TOTAL</th>
+															<th>SATISFACCIÓN</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>dsf</td>
+															<td class="borinf">dsf</td>
+															<td class="borinf">dsf</td>
+															<td class="borinf">dsf</td>
+															<td class="borinf">dsf</td>
+															<td rowspan="2">=</td>
+															<td class="borinf">dsf</td>
+															<td rowspan="2"></td>
+														</tr>
+														<tr>
+															<td colspan="5">987</td>
+															<td>98798</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div><br>
 										<div id="tabla2"></div>
 									</div>
 									<div class="col-md-12">
