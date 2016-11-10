@@ -102,7 +102,7 @@ class Admin extends CI_Controller{
 		if(!isset($_SESSION["id_u"])){
 			redirect("/");
 		}else{
-			$res = $this->admin_model->get_poll();
+			$res = $this->admin_model->get_poll_esp();
 			echo json_encode($res);
 		}
 	}

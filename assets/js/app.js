@@ -174,42 +174,56 @@ $(document).ready(function(){
 		}
     });
 	
-	$("#btnTabla").click(function(){
-		var datos = $("#frmTabla").serialize();
-		console.log(datos);
-		$.ajax({
-			method: "POST",
-			url: baseurl+"index.php/admin/get_table",
-			data: datos,
-			success: function(dat){
-				console.log(dat);
+	//$("#btnTabla").click(function(){
+		$.validate({
+			form : '#frmTabla',
+			lang: 'es',
+			modules : 'sanitize',
+			onSuccess: function(evt){
+				var datos = $("#frmTabla").serialize();
+				console.log(datos);
+				$.ajax({
+					method: "POST",
+					url: baseurl+"index.php/admin/get_table",
+					dataType: "JSON",
+					data: datos,
+					success: function(dat){
+						console.log(dat);
+					}
+				});
 			}
 		});
-	});
+	//});
 	
-	$("#btnGen").click(function(){
-		var datos = $("#frmGen").serialize();
-		console.log(datos);
-		$.ajax({
-			method: "POST",
-			url: baseurl+"index.php/admin/get_table_gen",
-			dataType: "JSON",
-			data: datos,
-			success: function(dat){
-				datostb = dat;
-				console.log(dat);
-				fill_table(dat);
-//				$.each(dat, function (i, fb) {
-//					console.log(fb);
-//					$.each(fb, function (i, fb1) {
-//						console.log(fb1);
-//					});
-//				});
-			},
-			error: function (jqXHR, textStatus, errorThrown){
-				console.log(jqXHR);
-			}
-		});
+	$.validate({
+		form : '#frmGen',
+		lang: 'es',
+		modules : 'sanitize',
+		onSuccess: function(evt){
+			var datos = $("#frmGen").serialize();
+			console.log(datos);
+			$.ajax({
+				method: "POST",
+				url: baseurl+"index.php/admin/get_table_gen",
+				dataType: "JSON",
+				data: datos,
+				success: function(dat){
+					datostb = dat;
+					console.log(dat);
+					fill_table(dat);
+	//				$.each(dat, function (i, fb) {
+	//					console.log(fb);
+	//					$.each(fb, function (i, fb1) {
+	//						console.log(fb1);
+	//					});
+	//				});
+				},
+				error: function (jqXHR, textStatus, errorThrown){
+					console.log(jqXHR);
+				}
+			});
+			return false;
+		}
 	});
 	
 	// Graficos
@@ -278,7 +292,7 @@ function reload_datatable(){
 }
 
 function fill_table(data){
-	var tna = 0, tr = 0, tp = 0, tb = 0, tmb = 0, ttot = 0, tots = [];
+	var tna = 0, tr = 0, tp = 0, tb = 0, tmb = 0, ttot = 0, tots = [], ptna = 0, ptp = 0, ptr = 0, ptb = 0, ptmb = 0, ptot = 0, summbb = 0, prorrateo = 0, tes = 0, ms = 0, s = 0, rs = 0, ps = 0, ns = 0, sumesc = 0, gradosa = 0;
 	for(var i = 0; i < data.length; i++){
 		var c = 0;
 		tna += parseInt(data[i]["N/A"]);
@@ -290,6 +304,25 @@ function fill_table(data){
 		tots.push(c);
 	}
 	ttot = tna+tr+tp+tb+tmb;
+	ptna = (tna/ttot)*100;
+	ptp = (tp/ttot)*100;
+	ptr = (tr/ttot)*100;
+	ptb = (tb/ttot)*100;
+	ptmb = (tmb/ttot)*100;
+	ptot = ptna+ptp+ptr+ptb+ptmb;
+	summbb = ptmb + ptb;
+	prorrateo = (summbb * tots[0])/100;
+	tes = (prorrateo/tots[0])*100
+
+	ms = tmb * 5;
+	s = tb * 4;
+	rs = tr * 3;
+	ps = tp * 2;
+	ns = tna * 1;
+
+	sumesc = ms+s+rs+ps+ns;
+	gradosa = sumesc/ttot;
+
 	var vtab = "<table class='table table-bordered' width='100%'><thead class='text-center'><tr><th>No.</th><th>Pregunta</th><th>N/A</th><th>P</th><th>R</th><th>B</th><th>MB</th><th>Total</th></tr></thead><tbody><tr><td></td><td></td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td></td></tr>"
 	+"<tr>"
 	+"<td>1</td>"
@@ -495,5 +528,94 @@ function fill_table(data){
 	+"<td colspan='6' class='text-center'><strong>"+tots[0]+"</strong></td>"
 	+"</tr>"
 	+"</tbody></table>";
+
+	var tab2 = "<h4>Ahora para obtener la distribución porcentual del comportamiento de las respuestas tenemos:</h4>"
+	+ "<div class='row text-center'><div class='col-xs-4 col-md-4'><div class='row'><div class='col-xs-8 col-md-8'>Total de respuestas de los alumnos muy satisfechos<hr>Total de las respuestas de las preguntas aplicadas</div><div class='col-xs-4 col-md-4'><p>* 100 = MB</p></div></div></div>"
+	+ "<div class='col-xs-4 col-md-4'><div class='row'>"
+	+ "<div class='col-xs-6 col-md-6'>o sea, </div>"
+	+ "<div class='col-xs-6 col-md-6'>"+tmb+"<hr>"+ttot+"</div>"
+	+ "</div></div>"
+	+ "<div class='col-xs-4 col-md-4'><div class='row'>"
+	+ "<div class='col-xs-6 col-md-6'><p>* 100 =</p></div>"
+	+ "<div class='col-xs-6 col-md-6'><p>"+ptmb+"</p></div>"
+	+ "</div></div></div><br>"
+	+ "<div class='row text-center'><div class='col-xs-4 col-md-4'><div class='row'><div class='col-xs-8 col-md-8'>Total de respuestas de los alumnos satisfechos<hr>Total de las respuestas de las preguntas aplicadas</div><div class='col-xs-4 col-md-4'><p>* 100 = B</p></div></div></div>"
+	+ "<div class='col-xs-4 col-md-4'><div class='row'>"
+	+ "<div class='col-xs-6 col-md-6'>o sea, </div>"
+	+ "<div class='col-xs-6 col-md-6'>"+tb+"<hr>"+ttot+"</div>"
+	+ "</div></div>"
+	+ "<div class='col-xs-4 col-md-4'><div class='row'>"
+	+ "<div class='col-xs-6 col-md-6'><p>* 100 =</p></div>"
+	+ "<div class='col-xs-6 col-md-6'><p>"+ptb+"</p></div>"
+	+ "</div></div></div><br>"
+	+ "<div class='row text-center'><div class='col-xs-4 col-md-4'><div class='row'><div class='col-xs-8 col-md-8'>Total de respuestas de los alumnos regularmente satisfechos<hr>Total de las respuestas de las preguntas aplicadas</div><div class='col-xs-4 col-md-4'><p>* 100 = R</p></div></div></div>"
+	+ "<div class='col-xs-4 col-md-4'><div class='row'>"
+	+ "<div class='col-xs-6 col-md-6'>o sea, </div>"
+	+ "<div class='col-xs-6 col-md-6'>"+tr+"<hr>"+ttot+"</div>"
+	+ "</div></div>"
+	+ "<div class='col-xs-4 col-md-4'><div class='row'>"
+	+ "<div class='col-xs-6 col-md-6'><p>* 100 =</p></div>"
+	+ "<div class='col-xs-6 col-md-6'><p>"+ptr+"</p></div>"
+	+ "</div></div></div><br>"
+	+ "<div class='row text-center'><div class='col-xs-4 col-md-4'><div class='row'><div class='col-xs-8 col-md-8'>Total de respuestas de los alumnos poco satisfechos<hr>Total de las respuestas de las preguntas aplicadas</div><div class='col-xs-4 col-md-4'><p>* 100 = P</p></div></div></div>"
+	+ "<div class='col-xs-4 col-md-4'><div class='row'>"
+	+ "<div class='col-xs-6 col-md-6'>o sea, </div>"
+	+ "<div class='col-xs-6 col-md-6'>"+tp+"<hr>"+ttot+"</div>"
+	+ "</div></div>"
+	+ "<div class='col-xs-4 col-md-4'><div class='row'>"
+	+ "<div class='col-xs-6 col-md-6'><p>* 100 =</p></div>"
+	+ "<div class='col-xs-6 col-md-6'><p>"+ptp+"</p></div>"
+	+ "</div></div></div><br>"
+	+ "<div class='row text-center'><div class='col-xs-4 col-md-4'><div class='row'><div class='col-xs-8 col-md-8'>Total de respuestas de los alumnos no aplica<hr>Total de las respuestas de las preguntas aplicadas</div><div class='col-xs-4 col-md-4'><p>* 100 = N/A</p></div></div></div>"
+	+ "<div class='col-xs-4 col-md-4'><div class='row'>"
+	+ "<div class='col-xs-6 col-md-6'>o sea, </div>"
+	+ "<div class='col-xs-6 col-md-6'>"+tna+"<hr>"+ttot+"</div>"
+	+ "</div></div>"
+	+ "<div class='col-xs-4 col-md-4'><div class='row'>"
+	+ "<div class='col-xs-6 col-md-6'><p>* 100 =</p></div>"
+	+ "<div class='col-xs-6 col-md-6'><p>"+ptna+"</p></div>"
+	+ "</div></div></div><br>"
+	+ "<div class='row text-center'><div class='col-xs-10 col-md-10'>Nota: La suma de todos los resultados relativos siempre deberá ser el 100%</div>"
+	+ "<div class='col-xs-2 col-md-2'>"+ptot+"%</div></div><br>"
+	+ "<div class='row text-center'><div class='col-xs-4 col-md-4'><div class='row'><div class='col-xs-12 col-md-12'>Aplicando prorrateo al número de encuestas aplicadas tenemos que:</div></div></div>"
+	+ "<div class='col-xs-4 col-md-4'><div class='row'>"
+	+ "<div class='col-xs-12 col-md-12'>"+tots[0]+"</div>"
+	+ "</div></div>"
+	+ "<div class='col-xs-4 col-md-4'><div class='row'>"
+	+ "<div class='col-xs-6 col-md-6'><p>"+summbb+"</p></div>"
+	+ "<div class='col-xs-6 col-md-6'><p>"+prorrateo+"</p></div>"
+	+ "</div></div></div><br>"
+	+ "<div class='row text-center'><div class='col-xs-4 col-md-4'><div class='row'><div class='col-xs-8 col-md-8'><p>Fórmula del indicador:</p><br>"
+	+ "Total de egresados muy satisfechos y satisfechos<hr>Total de egresados de TSU</div>"
+	+ "<div class='col-xs-4 col-md-4'><p>* 100 = TES</p></div>"
+	+ "</div></div>"
+	+ "<div class='col-xs-4 col-md-4'><div class='row'><div class='col-xs-6 col-md-6'>o sea, </div>"
+	+ "<div class='col-xs-6 col-md-6'>"+prorrateo+"<hr>"+tots[0]+"</div>"
+	+ "</div></div>"
+	+ "<div class='col-xs-4 col-md-4'><div class='row'>"
+	+ "<div class='col-xs-6 col-md-6'><p>* 100 =</p></div>"
+	+ "<div class='col-xs-6 col-md-6'><p>"+tes+"</p></div>"
+	+ "</div></div></div><br><br><br>"
+	+ "<div class='row text-center'><div class='col-xs-12 col-md-12'><table class='table table-bordered' width='100%'><caption class='text-center'>CUADRO NO. 4.2 <br>'TABLA DE EQUIVALENCIA EN DIFERENTES ESCALAS'</caption><thead><tr><th rowspan='2'>NO.</th><th colspan='2'>ESCALA ORDINAL</th><th>ESCALA DISCRETA O DISCONTINUA</th><th>ESCALA CONTINUA</th></tr><tr><th>CLAVE</th><th>DESCRIPCIÓN</th><th>VALOR</th><th>VALOR</th></tr></thead><tbody><tr><td>1</td><td>MS</td><td>MUY SATISFECHO</td><td>5</td><td>9.0 - 10.0</td></tr><tr><td>2</td><td>S</td><td>SATISFECHO</td><td>4</td><td>7.5 - 8.9</td></tr><tr><td>3</td><td>RS</td><td>REGULARMENTE SATISFECHO</td><td>3</td><td>6.0 - 7.4</td></tr><tr><td>4</td><td>PS</td><td>POCO SATISFECHO</td><td>2</td><td>4.0 - 5.9</td></tr><tr><td>5</td><td>NS</td><td>NO SATISFECHO</td><td>1</td><td>0 - 3.9</td></tr><tr><td>6</td><td>NA</td><td>NO APLICA</td><td>0</td><td>0</td></tr></tbody></table></div></div><br><br>"
+	+ "<div class='row text-center'>"
+	+ "<div class='col-xs-12 col-md-12'><br><br>"
+	+ "<table class='table table-bordered' width='100%'>"
+	+ "<caption class='text-center'>GRADO DE SATISFACCIÓN GENERAL</caption>"
+	+ "<thead><tr><th>MS</th><th>S</th><th>RS</th><th>PS</th><th>NS</th><th></th><th>TOTAL</th><th>GRADO DE SATISFACCIÓN</th></tr></thead>"
+	+ "<tbody><tr>"
+	+ "<td>"+ms+"</td>"
+	+ "<td>"+s+"</td>"
+	+ "<td>"+rs+"</td>"
+	+ "<td>"+ps+"</td>"
+	+ "<td>"+ns+"</td>"
+	+ "<td rowspan='2'>=</td>"
+	+ "<td>"+sumesc+"</td>"
+	+ "<td rowspan='2'>"+gradosa+"</td>"
+	+ "</tr><tr>"
+	+ "<td colspan='5'>"+ttot+"</td>"
+	+ "<td>"+ttot+"</td>"
+	+ "</tr></tbody></table></div></div><br>"
+	+ "<div class='row'><div class='col-md-12'><strong>En escala de 10 tenemos un grado de satisfacción de: "+(gradosa*2)+"</strong></div></div>";
 	$("#tabla").html(vtab);
+	$("#tabla2").html(tab2);
 }
