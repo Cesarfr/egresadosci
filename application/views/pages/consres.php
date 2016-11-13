@@ -55,7 +55,7 @@ if(!isset($_SESSION["id_u"])){
 												</div>&nbsp;
 												<div class="form-group">
 													<label for="carrera"></label>
-													<select name="carrera" id="carrera" class="form-control"></select>
+													<select name="carrera" id="carrera" class="form-control" data-validation="required" data-sanitize="trim escape"></select>
 												</div>&nbsp;
 												<input type="submit" id="btnTabla" value="Obtener tabla" class="btn btn-primary">
 											</form>

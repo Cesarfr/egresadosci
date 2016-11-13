@@ -174,26 +174,28 @@ $(document).ready(function(){
 		}
     });
 	
-	//$("#btnTabla").click(function(){
-		$.validate({
-			form : '#frmTabla',
-			lang: 'es',
-			modules : 'sanitize',
-			onSuccess: function(evt){
-				var datos = $("#frmTabla").serialize();
-				console.log(datos);
-				$.ajax({
-					method: "POST",
-					url: baseurl+"index.php/admin/get_table",
-					dataType: "JSON",
-					data: datos,
-					success: function(dat){
-						console.log(dat);
-					}
-				});
-			}
-		});
-	//});
+	$.validate({
+		form : '#frmTabla',
+		lang: 'es',
+		modules : 'sanitize',
+		onSuccess: function(evt){
+			var datos = $("#frmTabla").serialize();
+			$.ajax({
+				method: "POST",
+				url: baseurl+"index.php/admin/get_table",
+				dataType: "JSON",
+				data: datos,
+				success: function(dat){
+					datostb = dat;
+					fill_table(dat);
+				},
+				error: function (jqXHR, textStatus, errorThrown){
+					console.log(jqXHR);
+				}
+			});
+			return false;
+		}
+	});
 	
 	$.validate({
 		form : '#frmGen',
@@ -201,7 +203,6 @@ $(document).ready(function(){
 		modules : 'sanitize',
 		onSuccess: function(evt){
 			var datos = $("#frmGen").serialize();
-			console.log(datos);
 			$.ajax({
 				method: "POST",
 				url: baseurl+"index.php/admin/get_table_gen",
@@ -209,14 +210,7 @@ $(document).ready(function(){
 				data: datos,
 				success: function(dat){
 					datostb = dat;
-					console.log(dat);
 					fill_table(dat);
-	//				$.each(dat, function (i, fb) {
-	//					console.log(fb);
-	//					$.each(fb, function (i, fb1) {
-	//						console.log(fb1);
-	//					});
-	//				});
 				},
 				error: function (jqXHR, textStatus, errorThrown){
 					console.log(jqXHR);
@@ -304,15 +298,15 @@ function fill_table(data){
 		tots.push(c);
 	}
 	ttot = tna+tr+tp+tb+tmb;
-	ptna = (tna/ttot)*100;
-	ptp = (tp/ttot)*100;
-	ptr = (tr/ttot)*100;
-	ptb = (tb/ttot)*100;
-	ptmb = (tmb/ttot)*100;
-	ptot = ptna+ptp+ptr+ptb+ptmb;
+	ptna = Math.round(((tna/ttot)*100)*100)/100;
+	ptp = Math.round(((tp/ttot)*100)*100)/100;
+	ptr = Math.round(((tr/ttot)*100)*100)/100;
+	ptb = Math.round(((tb/ttot)*100)*100)/100;
+	ptmb = Math.round(((tmb/ttot)*100)*100)/100;
+	ptot = Math.round((ptna+ptp+ptr+ptb+ptmb)*100)/100;
 	summbb = ptmb + ptb;
-	prorrateo = (summbb * tots[0])/100;
-	tes = (prorrateo/tots[0])*100
+	prorrateo = Math.round(((summbb * tots[0])/100)*100)/100;
+	tes = (prorrateo/tots[0])*100;
 
 	ms = tmb * 5;
 	s = tb * 4;
@@ -321,7 +315,7 @@ function fill_table(data){
 	ns = tna * 1;
 
 	sumesc = ms+s+rs+ps+ns;
-	gradosa = sumesc/ttot;
+	gradosa = Math.round((sumesc/ttot)*100)/100;
 
 	var vtab = "<table class='table table-bordered' width='100%'><thead class='text-center'><tr><th>No.</th><th>Pregunta</th><th>N/A</th><th>P</th><th>R</th><th>B</th><th>MB</th><th>Total</th></tr></thead><tbody><tr><td></td><td></td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td></td></tr>"
 	+"<tr>"
