@@ -73,6 +73,9 @@ if(!isset($_SESSION["id_u"])){
 									<div class="col-md-12">
 										<div id="grafica"></div>
 									</div>
+								</div><br>
+								<div class="row">
+									<div class="col-md-12"><div class="text-center"><button class="btn btn-primary" onclick="window.print();">Imprimir</button></div></div>
 								</div>
 							</div>
 						</div>

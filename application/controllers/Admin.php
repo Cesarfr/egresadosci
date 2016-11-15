@@ -328,4 +328,14 @@ class Admin extends CI_Controller{
 			echo json_encode($res);	
 		}
 	}
+	public function graficas(){
+		if(!isset($_SESSION["id_u"])){
+			redirect("/");
+		}else{
+			$data['title'] = "Gráficas";
+			$this->load->view('templates/header', $data);
+			$this->load->view('pages/graficas');
+			$this->load->view('templates/footer');
+		}
+	}
 }
