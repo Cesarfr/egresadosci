@@ -45,8 +45,8 @@
 				  case "rep_comp": $ln1 = "class='active'"; break;
 				  case "login": $ln2 = "class='active'"; break;
 				  case "consultar": $ln3 = "class='active'"; break;
-				  case "panel": $ln4 = "class='active'"; break;
-				  case "graficas": $ln5 = "class='active'"; break;
+				  case "graficas": $ln4 = "class='active'"; break;
+				  case "panel": $ln5 = "class='active'"; break;
 				  default: $lnd = "class='active'"; break;
 			  }
 			  ?>
@@ -59,7 +59,7 @@
                     <?php }else{ ?>
                     <li <?php echo $ln3; ?>><a href="<?php echo site_url('admin/consultar'); ?>">Consultar</a></li>
                     <li <?php echo $ln4; ?>><a href="<?php echo site_url('admin/graficas'); ?>">Gráficas</a></li>
-                    <li <?php echo $ln4; ?>><a href="<?php echo site_url('admin/panel'); ?>">Panel</a></li>
+                    <li <?php echo $ln5; ?>><a href="<?php echo site_url('admin/panel'); ?>">Panel</a></li>
                     <?php } ?>
                 </ul>
                 <?php if(isset($_SESSION["id_u"])){ ?>

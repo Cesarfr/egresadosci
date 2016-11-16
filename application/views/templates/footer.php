@@ -1,6 +1,6 @@
 	</div>
        <!-- FOOTER -->
-        <footer>
+        <footer class="hidden-print">
            <p class="pull-right"><a href="#">Volver Arriba</a></p>
            <p>&middot; &copy; Realizado por <a href="https://github.com/Cesarfr">Cesarfr</a> para la <a href="http://uttecamac.edu.mx" target="_blank">Universidad Tecnológica de Tecámac</a> &middot; <a href="<?php echo site_url('home/aviso'); ?>">Aviso de privacidad</a></p>
         </footer>

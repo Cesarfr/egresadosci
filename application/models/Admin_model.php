@@ -100,6 +100,14 @@ class Admin_model extends CI_Model{
 		$query = $this->db->query("CALL get_polls_esp('".$this->db->escape_str($data["egresado"])."','".$this->db->escape_str($data["carrera"])."')");
 		return $query->nrs();
 	}
+	public function get_grf_tsu(){
+		$query1 = $this->db->query("CALL all_polls_tsu()");
+		return $query1->nrs();
+	}
+	public function get_grf_ing(){
+		$query1 = $this->db->query("CALL all_polls_ing()");
+		return $query1->nrs();
+	}
 	
 	public function get_egre_id($id){
 		$query = $this->db->query("SELECT * FROM EGRESADO WHERE id=".$this->db->escape($id));
@@ -172,6 +180,10 @@ class Admin_model extends CI_Model{
 	}
 	public function count_graph($carr){
 		$query = $this->db->query("SELECT count(id_s) AS value, carrera AS label FROM SATISFACCION INNER JOIN EGRESADO ON EGRESADO.id=SATISFACCION.id_e WHERE egresado='".$carr."' GROUP BY carrera");
-		return $query->result();
+		return $query->result_array();
+	}
+	public function count_graph_c($carr){
+		$query = $this->db->query("SELECT carrera, count(id_s) AS gg FROM SATISFACCION INNER JOIN EGRESADO ON EGRESADO.id=SATISFACCION.id_e WHERE egresado='".$carr."' GROUP BY carrera");
+		return $query->nrs();
 	}
 }

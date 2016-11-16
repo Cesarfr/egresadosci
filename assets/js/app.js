@@ -38,7 +38,7 @@ $(document).ready(function(){
 			$("input[name='etitTSU']").removeAttr("disabled");
 			$("input[name='etitING']").removeAttr("checked");
 			$("input[name='etitING']").attr('disabled', 'disabled');
-			$("#carrera").html("<option value='AEP'>ADMINISTRACIÓN, ÁREA ADMINISTRACIÓN Y EVALUACIÓN DE PROYECTOS</option><option value='ARH'>ADMINISTRACIÓN, ÁREA RECURSOS HUMANOS</option><option value='DNM'>DESARROLLO DE NEGOCIOS, ÁREA MERCADOTECNIA</option><option value='MIN'>MANTENIMIENTO, ÁREA INDUSTRIAL</option><option value='MAT'>MECATRÓNICA, ÁREA AUTOMATIZACIÓN</option><option value='NAT'>NANOTECNOLOGÍA, ÁREA MATERIALES</option><option value='PIM'>PROCESOS INDUSTRIALES, ÁREA MANUFACTURA</option><option value='QBT'>QUÍMICA, ÁREA BIOTECNOLOGÍA</option><option value='TIC'>TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIÓN, ÁREA SISTEMAS INFORMÁTICOS</option><option value='ERC'>ENERGÍAS RENOVABLES, ÁREA CALIDAD Y AHORRO DE ENERGÍA</option>");
+			$("#carrera").html("<option value='AEP'>ADMINISTRACIÓN, ÁREA ADMINISTRACIÓN Y EVALUACIÓN DE PROYECTOS</option><option value='ARH'>ADMINISTRACIÓN, ÁREA RECURSOS HUMANOS</option><option value='DNM'>DESARROLLO DE NEGOCIOS, ÁREA MERCADOTECNIA</option><option value='MIN'>MANTENIMIENTO, ÁREA INDUSTRIAL</option><option value='MTA'>MECATRÓNICA, ÁREA AUTOMATIZACIÓN</option><option value='NTA'>NANOTECNOLOGÍA, ÁREA MATERIALES</option><option value='PIM'>PROCESOS INDUSTRIALES, ÁREA MANUFACTURA</option><option value='QBT'>QUÍMICA, ÁREA BIOTECNOLOGÍA</option><option value='TIC'>TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIÓN, ÁREA SISTEMAS INFORMÁTICOS</option><option value='ERC'>ENERGÍAS RENOVABLES, ÁREA CALIDAD Y AHORRO DE ENERGÍA</option>");
 		}else {
 			$("input[name='etitING']").removeAttr("disabled");
 			$("input[name='etitTSU']").removeAttr("checked");
@@ -49,7 +49,7 @@ $(document).ready(function(){
 	
 	$("input[name='tipo']").click(function(){
         if($(this).val() == "TSU"){
-			$("#carrera").html("<option value='AEP'>ADMINISTRACIÓN, ÁREA ADMINISTRACIÓN Y EVALUACIÓN DE PROYECTOS</option><option value='ARH'>ADMINISTRACIÓN, ÁREA RECURSOS HUMANOS</option><option value='DNM'>DESARROLLO DE NEGOCIOS, ÁREA MERCADOTECNIA</option><option value='MIN'>MANTENIMIENTO, ÁREA INDUSTRIAL</option><option value='MAT'>MECATRÓNICA, ÁREA AUTOMATIZACIÓN</option><option value='NAT'>NANOTECNOLOGÍA, ÁREA MATERIALES</option><option value='PIM'>PROCESOS INDUSTRIALES, ÁREA MANUFACTURA</option><option value='QBT'>QUÍMICA, ÁREA BIOTECNOLOGÍA</option><option value='TIC'>TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIÓN, ÁREA SISTEMAS INFORMÁTICOS</option><option value='ERC'>ENERGÍAS RENOVABLES, ÁREA CALIDAD Y AHORRO DE ENERGÍA</option>");
+			$("#carrera").html("<option value='AEP'>ADMINISTRACIÓN, ÁREA ADMINISTRACIÓN Y EVALUACIÓN DE PROYECTOS</option><option value='ARH'>ADMINISTRACIÓN, ÁREA RECURSOS HUMANOS</option><option value='DNM'>DESARROLLO DE NEGOCIOS, ÁREA MERCADOTECNIA</option><option value='MIN'>MANTENIMIENTO, ÁREA INDUSTRIAL</option><option value='MTA'>MECATRÓNICA, ÁREA AUTOMATIZACIÓN</option><option value='NTA'>NANOTECNOLOGÍA, ÁREA MATERIALES</option><option value='PIM'>PROCESOS INDUSTRIALES, ÁREA MANUFACTURA</option><option value='QBT'>QUÍMICA, ÁREA BIOTECNOLOGÍA</option><option value='TIC'>TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIÓN, ÁREA SISTEMAS INFORMÁTICOS</option><option value='ERC'>ENERGÍAS RENOVABLES, ÁREA CALIDAD Y AHORRO DE ENERGÍA</option>");
 		}else {
 			$("#carrera").html("<option value='IBT'>BIOTECNOLOGÍA</option><option value='IER'>ENERGÍAS RENOVABLES</option><option value='IGP'>GESTIÓN DE PROYECTOS</option><option value='IMI'>MANTENIMIENTO INDUSTRIAL</option><option value='IMT'>MECATRÓNICA</option><option value='INT'>NANOTECNOLOGÍA</option><option value='IGE'>NEGOCIOS Y GESTIÓN EMPRESARIAL</option><option value='IPO'>PROCESOS Y OPERACIONES INDUSTRIALES</option><option value='ITI'>TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIÓN</option>");
 		}
@@ -257,6 +257,32 @@ $(document).ready(function(){
 			}
 		});
 	}
+    $.validate({
+		form : '#frmGraf',
+		lang: 'es',
+		modules : 'sanitize',
+		onSuccess: function(evt){
+			var datos = $("#frmGraf").serialize();
+			$.ajax({
+				method: "POST",
+				url: baseurl+"index.php/admin/get_tb_gra",
+				dataType: "JSON",
+				data: datos,
+				success: function(dat){
+                    console.log(dat);
+                    if(datos.endsWith("TSU")){
+                        tb_grf_tsu(dat);
+                    }else{
+                        tb_grf_ing(dat);
+                    }
+				},
+				error: function (jqXHR, textStatus, errorThrown){
+					console.log(jqXHR);
+				}
+			});
+			return false;
+		}
+	});
 });
 
 function delete_egre(id){
@@ -297,25 +323,28 @@ function fill_table(data){
 		c = parseInt(data[i]["N/A"]) + parseInt(data[i]["R"]) + parseInt(data[i]["P"]) + parseInt(data[i]["B"]) + parseInt(data[i]["MB"]);
 		tots.push(c);
 	}
-	ttot = tna+tr+tp+tb+tmb;
-	ptna = Math.round(((tna/ttot)*100)*100)/100;
-	ptp = Math.round(((tp/ttot)*100)*100)/100;
-	ptr = Math.round(((tr/ttot)*100)*100)/100;
-	ptb = Math.round(((tb/ttot)*100)*100)/100;
-	ptmb = Math.round(((tmb/ttot)*100)*100)/100;
-	ptot = Math.round((ptna+ptp+ptr+ptb+ptmb)*100)/100;
-	summbb = ptmb + ptb;
-	prorrateo = Math.round(((summbb * tots[0])/100)*100)/100;
-	tes = (prorrateo/tots[0])*100;
+    
+    if(tots[0] > 0){
+        ttot = tna+tr+tp+tb+tmb;
+        ptna = Math.round(((tna/ttot)*100)*100)/100;
+        ptp = Math.round(((tp/ttot)*100)*100)/100;
+        ptr = Math.round(((tr/ttot)*100)*100)/100;
+        ptb = Math.round(((tb/ttot)*100)*100)/100;
+        ptmb = Math.round(((tmb/ttot)*100)*100)/100;
+        ptot = Math.round((ptna+ptp+ptr+ptb+ptmb)*100)/100;
+        summbb = ptmb + ptb;
+        prorrateo = Math.round(((summbb * tots[0])/100)*100)/100;
+        tes = (prorrateo/tots[0])*100;
 
-	ms = tmb * 5;
-	s = tb * 4;
-	rs = tr * 3;
-	ps = tp * 2;
-	ns = tna * 1;
+        ms = tmb * 5;
+        s = tb * 4;
+        rs = tr * 3;
+        ps = tp * 2;
+        ns = tna * 1;
 
-	sumesc = ms+s+rs+ps+ns;
-	gradosa = Math.round((sumesc/ttot)*100)/100;
+        sumesc = ms+s+rs+ps+ns;
+        gradosa = Math.round((sumesc/ttot)*100)/100;
+    }
 
 	var vtab = "<table class='table table-bordered' width='100%'><thead class='text-center'><tr><th>No.</th><th>Pregunta</th><th>N/A</th><th>P</th><th>R</th><th>B</th><th>MB</th><th>Total</th></tr></thead><tbody><tr><td></td><td></td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td></td></tr>"
 	+"<tr>"
@@ -612,4 +641,98 @@ function fill_table(data){
 	+ "<div class='row'><div class='col-md-12'><strong>En escala de 10 tenemos un grado de satisfacción de: "+(gradosa*2)+"</strong></div></div>";
 	$("#tabla").html(vtab);
 	$("#tabla2").html(tab2);
+}
+
+function tb_grf_tsu(data){
+    var tbtsu = "<table class='table table-bordered'><caption class='text-center'>SATISFACCIÓN TSU</caption><thead><tr><th>CARRERA</th><th>ENCUESTAS APLICADAS</th><th>% SATISFACCIÓN DEL EGRESADO</th></tr></thead><tbody><tr>"
+    + "<td>Administración Área Evaluación de Proyectos</td>"
+    + "<td>"+data.AEP.tp+"</td><td>"+data.AEP.gs+"%</td></tr><tr>"
+    + "<td>Administración Área Recursos Humanos</td>"
+    + "<td>"+data.ARH.tp+"</td><td>"+data.ARH.gs+"%</td></tr><tr>"
+    + "<td>Desarrollo de Negocios Área Mercadotecnia</td>"
+    + "<td>"+data.DNM.tp+"</td><td>"+data.DNM.gs+"%</td></tr><tr>"
+    + "<td>Energías Renovables Área Calidad y Ahorro de Energía</td>"
+    + "<td>"+data.ERC.tp+"</td><td>"+data.ERC.gs+"%</td></tr><tr>"
+    + "<td>Mantenimiento Área Industrial</td>"
+    + "<td>"+data.MIN.tp+"</td><td>"+data.MIN.gs+"%</td></tr><tr>"
+    + "<td>Mecatrónica Área Automatización</td>"
+    + "<td>"+data.MTA.tp+"</td><td>"+data.MTA.gs+"%</td></tr><tr>"
+    + "<td>Nanotecnología</td>"
+    + "<td>"+data.NTA.tp+"</td><td>"+data.NTA.gs+"%</td></tr><tr>"
+    + "<td>Procesos Industriales Área Manufactura</td>"
+    + "<td>"+data.PIM.tp+"</td><td>"+data.PIM.gs+"%</td></tr><tr>"
+    + "<td>Química Área Biotecnología</td>"
+    + "<td>"+data.QBT.tp+"</td><td>"+data.QBT.gs+"%</td></tr><tr>"
+    + "<td>Tecnologías de la Información y la Comunicación Área Sistemas Informáticos</td>"
+    + "<td>"+data.TIC.tp+"</td><td>"+data.TIC.gs+"%</td></tr><tr>"
+    + "<td>GENERAL</td>"
+    + "<td>"+data.GENERAL.tp+"</td><td>"+data.GENERAL.gs+"%</td>"
+    + "</tr></tbody></table>";
+    $("#tb").html(tbtsu);
+    $("#grf").html("");
+    Morris.Bar({
+        element: 'grf',
+        data: [
+            { y: "AEP", a: data.AEP.tp, b: data.AEP.gs },
+            { y: "ARH", a: data.ARH.tp, b: data.ARH.gs },
+            { y: "DNM", a: data.DNM.tp, b: data.DNM.gs },
+            { y: "ERC", a: data.ERC.tp, b: data.ERC.gs },
+            { y: "MIN", a: data.MIN.tp, b: data.MIN.gs },
+            { y: "MTA", a: data.MTA.tp, b: data.MTA.gs },
+            { y: "NTA", a: data.NTA.tp, b: data.NTA.gs },
+            { y: "PIM", a: data.PIM.tp, b: data.PIM.gs },
+            { y: "QBT", a: data.QBT.tp, b: data.QBT.gs },
+            { y: "TIC", a: data.TIC.tp, b: data.TIC.gs },
+            { y: "GENERAL", a: data.GENERAL.tp, b: data.GENERAL.gs }
+        ],
+        xkey: 'y',
+        ykeys: ['a', 'b'],
+        labels: ['Encuestas aplicadas', '% de Satisfacción'],
+        resize: true
+    });
+}
+
+function tb_grf_ing(data){
+    var tbing = "<table class='table table-bordered'><caption class='text-center'>SATISFACCIÓN ING</caption><thead><tr><th>CARRERA</th><th>ENCUESTAS APLICADAS</th><th>% SATISFACCIÓN DEL EGRESADO</th></tr></thead><tbody><tr>"
+    + "<td>Biotecnología</td>"
+    + "<td>"+data.IBT.tp+"</td><td>"+data.IBT.gs+"%</td></tr><tr>"
+    + "<td>Energías Renovables</td>"
+    + "<td>"+data.IER.tp+"</td><td>"+data.IER.gs+"%</td></tr><tr>"
+    + "<td>Negocios y Gestión Empresarial</td>"
+    + "<td>"+data.IGE.tp+"</td><td>"+data.IGE.gs+"%</td></tr><tr>"
+    + "<td>Gestión de Proyectos</td>"
+    + "<td>"+data.IGP.tp+"</td><td>"+data.IGP.gs+"%</td></tr><tr>"
+    + "<td>Mantenimiento Industrial</td>"
+    + "<td>"+data.IMI.tp+"</td><td>"+data.IMI.gs+"%</td></tr><tr>"
+    + "<td>Mecatrónica</td>"
+    + "<td>"+data.IMT.tp+"</td><td>"+data.IMT.gs+"%</td></tr><tr>"
+    + "<td>Nanotecnología</td>"
+    + "<td>"+data.INT.tp+"</td><td>"+data.INT.gs+"%</td></tr><tr>"
+    + "<td>Procesos y Operaciones Industriales</td>"
+    + "<td>"+data.IPO.tp+"</td><td>"+data.IPO.gs+"%</td></tr><tr>"
+    + "<td>Tecnologías de la Información y la Comunicación</td>"
+    + "<td>"+data.ITI.tp+"</td><td>"+data.ITI.gs+"%</td></tr><tr>"
+    + "<td>GENERAL</td>"
+    + "<td>"+data.GENERAL.tp+"</td><td>"+data.GENERAL.gs+"%</td></tr></tbody></table>";
+    $("#tb").html(tbing);
+    $("#grf").html("");
+    Morris.Bar({
+        element: 'grf',
+        data: [
+            { y: "IBT", a: data.IBT.tp, b: data.IBT.gs },
+            { y: "IER", a: data.IER.tp, b: data.IER.gs },
+            { y: "IGE", a: data.IGE.tp, b: data.IGE.gs },
+            { y: "IGP", a: data.IGP.tp, b: data.IGP.gs },
+            { y: "IMI", a: data.IMI.tp, b: data.IMI.gs },
+            { y: "IMT", a: data.IMT.tp, b: data.IMT.gs },
+            { y: "INT", a: data.INT.tp, b: data.INT.gs },
+            { y: "IPO", a: data.IPO.tp, b: data.IPO.gs },
+            { y: "ITI", a: data.ITI.tp, b: data.ITI.gs },
+            { y: "GENERAL", a: data.GENERAL.tp, b: data.GENERAL.gs }
+        ],
+        xkey: 'y',
+        ykeys: ['a', 'b'],
+        labels: ['Encuestas aplicadas', '% de Satisfacción'],
+        resize: true
+    });
 }

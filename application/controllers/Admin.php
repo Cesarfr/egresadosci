@@ -268,8 +268,8 @@ class Admin extends CI_Controller{
 					case 'ARH': $datos_egre["descarr"]="ADMINISTRACIÓN, ÁREA RECURSOS HUMANOS"; break;
 					case 'DNM': $datos_egre["descarr"]="DESARROLLO DE NEGOCIOS, ÁREA MERCADOTECNIA"; break;
 					case 'MIN': $datos_egre["descarr"]="MANTENIMIENTO, ÁREA INDUSTRIAL"; break;
-					case 'MAT': $datos_egre["descarr"]="MECATRÓNICA, ÁREA AUTOMATIZACIÓN"; break;
-					case 'NAT': $datos_egre["descarr"]="NANOTECNOLOGÍA, ÁREA MATERIALES"; break;
+					case 'MTA': $datos_egre["descarr"]="MECATRÓNICA, ÁREA AUTOMATIZACIÓN"; break;
+					case 'NTA': $datos_egre["descarr"]="NANOTECNOLOGÍA, ÁREA MATERIALES"; break;
 					case 'PIM': $datos_egre["descarr"]="PROCESOS INDUSTRIALES, ÁREA MANUFACTURA"; break;
 					case 'QBT': $datos_egre["descarr"]="QUÍMICA, ÁREA BIOTECNOLOGÍA"; break;
 					case 'TIC': $datos_egre["descarr"]="TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIÓN, ÁREA SISTEMAS INFORMÁTICOS"; break;
@@ -332,10 +332,165 @@ class Admin extends CI_Controller{
 		if(!isset($_SESSION["id_u"])){
 			redirect("/");
 		}else{
-			$data['title'] = "Gráficas";
+			$data['title'] = "Gráficas de satisfacción";
 			$this->load->view('templates/header', $data);
 			$this->load->view('pages/graficas');
 			$this->load->view('templates/footer');
+		}
+	}
+    public function get_tb_gra(){
+		if(!isset($_SESSION["id_u"])){
+			redirect("/");
+		}else{
+            if($this->input->post("tg") == "TSU"){
+                $carr = array("AEP","ARH","DNM","ERC","MIN","MTA","NTA","PIM","QBT","TIC","GENERAL");
+                $res = $this->admin_model->get_grf_tsu();
+                $gen = $this->admin_model->count_polls_tsu()["polls_tsu"];
+            }else{
+                $carr = array("IBT","IER","IGP","IMI","IMT","INT","IGE","IPO","ITI","GENERAL");
+                $res = $this->admin_model->get_grf_ing();
+                $gen = $this->admin_model->count_polls_ing()["polls_ing"];
+            }
+            $cg = $this->admin_model->count_graph_c($this->db->escape_str($this->input->post("tg")));
+            
+            // Agregar valores por default
+            $arrv = array();
+            $arrsat = array();
+            $arrcp = array();
+            $iter = 0;
+            $na = 0;
+            $p = 0;
+            $r = 0;
+            $b = 0;
+            $mb = 0;
+            $total = 0;
+            $total2 = 0;
+            
+            for($i = 0; $i < count($res); $i++){
+                
+                if(array_key_exists('N/A', $res[$i]) == FALSE){
+                    $res[$i]["N/A"] = "0";
+                }
+                if(array_key_exists('P', $res[$i]) == FALSE){
+                    $res[$i]["P"] = "0";
+                }
+                if(array_key_exists('R', $res[$i]) == FALSE){
+                    $res[$i]["R"] = "0";
+                }
+                if(array_key_exists('B', $res[$i]) == FALSE){
+                    $res[$i]["B"] = "0";
+                }
+                if(array_key_exists('MB', $res[$i]) == FALSE){
+                    $res[$i]["MB"] = "0";
+                }
+                $mb += intval($res[$i]["MB"]);
+                $b += intval($res[$i]["B"]);
+                $r += intval($res[$i]["R"]);
+                $p += intval($res[$i]["P"]);
+                $na += intval($res[$i]["N/A"]);
+                if($i == 18 || $i == 37 || $i == 56 || $i == 75 || $i == 94 || $i == 113 || $i == 132 || $i == 151 || $i == 170|| $i == 189 || ($this->input->post("tg") == "TSU" && $i == 208)){
+                    $arrv[$carr[$iter]]["MB"] = $mb;
+                    $arrv[$carr[$iter]]["B"] = $b;
+                    $arrv[$carr[$iter]]["R"] = $r;
+                    $arrv[$carr[$iter]]["P"] = $p;
+                    $arrv[$carr[$iter]]["N/A"] = $na;
+                    $na = 0;
+                    $p = 0;
+                    $r = 0;
+                    $b = 0;
+                    $mb = 0;
+                    $iter++;
+                }
+            }
+            
+            if($this->input->post("tg") == "TSU"){
+                for($i = 0; $i < count($cg); $i++){
+                    if(array_key_exists('AEP', $cg[$i]) == FALSE){
+                        $cg[$i]["AEP"] = "0";
+                    }
+                    if(array_key_exists('ARH', $cg[$i]) == FALSE){
+                        $cg[$i]["ARH"] = "0";
+                    }
+                    if(array_key_exists('DNM', $cg[$i]) == FALSE){
+                        $cg[$i]["DNM"] = "0";
+                    }
+                    if(array_key_exists('ERC', $cg[$i]) == FALSE){
+                        $cg[$i]["ERC"] = "0";
+                    }
+                    if(array_key_exists('MIN', $cg[$i]) == FALSE){
+                        $cg[$i]["MIN"] = "0";
+                    }
+                    if(array_key_exists('MTA', $cg[$i]) == FALSE){
+                        $cg[$i]["MTA"] = "0";
+                    }
+                    if(array_key_exists('NTA', $cg[$i]) == FALSE){
+                        $cg[$i]["NTA"] = "0";
+                    }
+                    if(array_key_exists('PIM', $cg[$i]) == FALSE){
+                        $cg[$i]["PIM"] = "0";
+                    }
+                    if(array_key_exists('QBT', $cg[$i]) == FALSE){
+                        $cg[$i]["QBT"] = "0";
+                    }
+                    if(array_key_exists('TIC', $cg[$i]) == FALSE){
+                        $cg[$i]["TIC"] = "0";
+                    }
+                    if(array_key_exists('GENERAL', $cg[$i]) == FALSE){
+                        $cg[$i]["GENERAL"] = "0";
+                    }
+                }
+            }else{
+                for($i = 0; $i < count($cg); $i++){
+                    if(array_key_exists('IBT', $cg[$i]) == FALSE){
+                        $cg[$i]["IBT"] = "0";
+                    }
+                    if(array_key_exists('IER', $cg[$i]) == FALSE){
+                        $cg[$i]["IER"] = "0";
+                    }
+                    if(array_key_exists('IGE', $cg[$i]) == FALSE){
+                        $cg[$i]["IGE"] = "0";
+                    }
+                    if(array_key_exists('IGP', $cg[$i]) == FALSE){
+                        $cg[$i]["IGP"] = "0";
+                    }
+                    if(array_key_exists('IMI', $cg[$i]) == FALSE){
+                        $cg[$i]["IMI"] = "0";
+                    }
+                    if(array_key_exists('IMT', $cg[$i]) == FALSE){
+                        $cg[$i]["IMT"] = "0";
+                    }
+                    if(array_key_exists('INT', $cg[$i]) == FALSE){
+                        $cg[$i]["INT"] = "0";
+                    }
+                    if(array_key_exists('IPO', $cg[$i]) == FALSE){
+                        $cg[$i]["IPO"] = "0";
+                    }
+                    if(array_key_exists('ITI', $cg[$i]) == FALSE){
+                        $cg[$i]["ITI"] = "0";
+                    }
+                    if(array_key_exists('GENERAL', $cg[$i]) == FALSE){
+                        $cg[$i]["GENERAL"] = "0";
+                    }
+                }
+            }
+            $cg = $cg[0];
+            ksort($cg);
+            
+            foreach ($arrv as $j => $v) {
+                $total = intval($arrv[$j]["MB"])*5 + intval($arrv[$j]["B"])*4 + intval($arrv[$j]["R"])*3 + intval($arrv[$j]["P"])*2 + intval($arrv[$j]["N/A"])*1;
+                $total2 = intval($arrv[$j]["MB"]) + intval($arrv[$j]["B"]) + intval($arrv[$j]["R"]) + intval($arrv[$j]["P"]) + intval($arrv[$j]["N/A"]);
+                if($j == "GENERAL"){
+                   $arrsat[$j]["tp"] = intval($gen); 
+                }else{
+                    $arrsat[$j]["tp"] = intval($cg[$j]);
+                }
+                if($total == 0 || $total2 == 0){
+                    $arrsat[$j]["gs"] = 0;
+                }else{
+                    $arrsat[$j]["gs"] = round((($total/$total2)*2), 3)*10;
+                }
+            }
+            echo json_encode($arrsat);
 		}
 	}
 }

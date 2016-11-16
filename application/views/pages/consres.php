@@ -5,7 +5,7 @@ if(!isset($_SESSION["id_u"])){
 <br><div class="row">
 	<div class="col-md-12">
 		<div class="panel panel-default">
-			<div class="panel-heading text-center"><div class="pull-left"><a href="<?php echo site_url('admin/panel'); ?>" class="btn btn-primary">Regresar al panel</a></div><h4>Satisfacción de egresados</h4></div>
+			<div class="panel-heading text-center"><div class="hidden-print pull-left"><a href="<?php echo site_url('admin/panel'); ?>" class="btn btn-primary">Regresar al panel</a></div><h4>Satisfacción de egresados</h4></div>
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-md-offset-3 col-md-6">
@@ -41,7 +41,7 @@ if(!isset($_SESSION["id_u"])){
 													<input type="radio" name="tg" id="tgING" value="ING">
 													<label for="tgING">ING</label>
 												</div>
-												&nbsp;<input type="submit" id="btnGen" value="Obtener tabla" class="btn btn-primary">
+												&nbsp;<input type="submit" id="btnGen" value="Obtener tabla" class="hidden-print btn btn-primary">
 											</form>
 										</div>
 										<div id="fe" class="hidden">
@@ -55,9 +55,9 @@ if(!isset($_SESSION["id_u"])){
 												</div>&nbsp;
 												<div class="form-group">
 													<label for="carrera"></label>
-													<select name="carrera" id="carrera" class="form-control" data-validation="required" data-sanitize="trim escape"></select>
+													<select name="carrera" id="carrera" class="hidden-print form-control" data-validation="required" data-sanitize="trim escape"></select>
 												</div>&nbsp;
-												<input type="submit" id="btnTabla" value="Obtener tabla" class="btn btn-primary">
+												<input type="submit" id="btnTabla" value="Obtener tabla" class="hidden-print btn btn-primary">
 											</form>
 										</div>
 									</div>
@@ -70,11 +70,8 @@ if(!isset($_SESSION["id_u"])){
 									<div class="col-md-12">
 										<div id="tabla2"></div>
 									</div>
-									<div class="col-md-12">
-										<div id="grafica"></div>
-									</div>
 								</div><br>
-								<div class="row">
+								<div class="row hidden-print">
 									<div class="col-md-12"><div class="text-center"><button class="btn btn-primary" onclick="window.print();">Imprimir</button></div></div>
 								</div>
 							</div>
