@@ -269,8 +269,7 @@ $(document).ready(function(){
 				dataType: "JSON",
 				data: datos,
 				success: function(dat){
-                    console.log(dat);
-                    if(datos.endsWith("TSU")){
+                    if(datos.substring(3,6) == "TSU"){
                         tb_grf_tsu(dat);
                     }else{
                         tb_grf_ing(dat);

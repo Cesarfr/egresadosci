@@ -28,6 +28,22 @@ class Admin_model extends CI_Model{
 		$query = $this->db->query("SELECT COUNT(id_s) AS polls_ing FROM SATISFACCION INNER JOIN EGRESADO ON EGRESADO.id=SATISFACCION.id_e WHERE egresado='ING'");
 		return $query->row_array();
 	}
+	public function count_polls_tsu_bp(){
+        $data = array(
+			"periodo" => $this->input->post("periodo"),
+			"anio" => $this->input->post("anio")
+		);
+		$query = $this->db->query("SELECT COUNT(id_s) AS polls_tsu FROM SATISFACCION INNER JOIN EGRESADO ON EGRESADO.id=SATISFACCION.id_e WHERE egresado='TSU' AND periodo='".$this->db->escape_str($data["periodo"])."' AND CAST(fecha AS char) LIKE CONCAT(".$this->db->escape($data["anio"]).", '%')");
+		return $query->row_array();
+	}
+	public function count_polls_ing_bp(){
+        $data = array(
+			"periodo" => $this->input->post("periodo"),
+			"anio" => $this->input->post("anio")
+		);
+		$query = $this->db->query("SELECT COUNT(id_s) AS polls_ing FROM SATISFACCION INNER JOIN EGRESADO ON EGRESADO.id=SATISFACCION.id_e WHERE egresado='ING' AND periodo='".$this->db->escape_str($data["periodo"])."' AND CAST(fecha AS char) LIKE CONCAT(".$this->db->escape($data["anio"]).", '%')");
+		return $query->row_array();
+	}
 	
 	var $table = 'EGRESADO';
     var $column_order = array(null, 'egresado','carrera','matricula','nombre','apat','amat');
@@ -87,25 +103,37 @@ class Admin_model extends CI_Model{
 	
 	public function get_poll_gen(){
 		$data = array(
-			"egresado" => $this->input->post("tg")
+			"egresado" => $this->input->post("tg"),
+			"periodo" => $this->input->post("periodo"),
+			"anio" => $this->input->post("anio")
 		);
-		$query = $this->db->query("CALL get_polls_gen('".$this->db->escape_str($data["egresado"])."')");
+		$query = $this->db->query("CALL get_polls_gen('".$this->db->escape_str($data["egresado"])."','".$this->db->escape_str($data["periodo"])."',".$this->db->escape($data["anio"]).")");
 		return $query->nrs();
 	}
 	public function get_poll_esp(){
 		$data = array(
 			"egresado" => $this->input->post("tipo"),
-			"carrera" => $this->input->post("carrera")
+			"carrera" => $this->input->post("carrera"),
+			"periodo" => $this->input->post("periodo"),
+			"anio" => $this->input->post("anio")
 		);
-		$query = $this->db->query("CALL get_polls_esp('".$this->db->escape_str($data["egresado"])."','".$this->db->escape_str($data["carrera"])."')");
+		$query = $this->db->query("CALL get_polls_esp('".$this->db->escape_str($data["egresado"])."','".$this->db->escape_str($data["carrera"])."','".$this->db->escape_str($data["periodo"])."',".$this->db->escape($data["anio"]).")");
 		return $query->nrs();
 	}
 	public function get_grf_tsu(){
-		$query1 = $this->db->query("CALL all_polls_tsu()");
+        $data = array(
+			"periodo" => $this->input->post("periodo"),
+			"anio" => $this->input->post("anio")
+		);
+		$query1 = $this->db->query("CALL all_polls_tsu('".$this->db->escape_str($data["periodo"])."',".$this->db->escape($data["anio"]).")");
 		return $query1->nrs();
 	}
 	public function get_grf_ing(){
-		$query1 = $this->db->query("CALL all_polls_ing()");
+        $data = array(
+			"periodo" => $this->input->post("periodo"),
+			"anio" => $this->input->post("anio")
+		);
+		$query1 = $this->db->query("CALL all_polls_ing('".$this->db->escape_str($data["periodo"])."',".$this->db->escape($data["anio"]).")");
 		return $query1->nrs();
 	}
 	
@@ -183,7 +211,11 @@ class Admin_model extends CI_Model{
 		return $query->result_array();
 	}
 	public function count_graph_c($carr){
-		$query = $this->db->query("SELECT carrera, count(id_s) AS gg FROM SATISFACCION INNER JOIN EGRESADO ON EGRESADO.id=SATISFACCION.id_e WHERE egresado='".$carr."' GROUP BY carrera");
+        $data = array(
+			"periodo" => $this->input->post("periodo"),
+			"anio" => $this->input->post("anio")
+		);
+		$query = $this->db->query("SELECT carrera, count(id_s) AS gg FROM SATISFACCION INNER JOIN EGRESADO ON EGRESADO.id=SATISFACCION.id_e WHERE egresado='".$carr."' AND periodo='".$this->db->escape_str($data["periodo"])."' AND CAST(fecha AS char) LIKE CONCAT(".$this->db->escape($data["anio"]).", '%') GROUP BY carrera");
 		return $query->nrs();
 	}
 }

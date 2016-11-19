@@ -345,13 +345,19 @@ class Admin extends CI_Controller{
             if($this->input->post("tg") == "TSU"){
                 $carr = array("AEP","ARH","DNM","ERC","MIN","MTA","NTA","PIM","QBT","TIC","GENERAL");
                 $res = $this->admin_model->get_grf_tsu();
-                $gen = $this->admin_model->count_polls_tsu()["polls_tsu"];
+                $gen = $this->admin_model->count_polls_tsu_bp()["polls_tsu"];
+                $cg = $this->admin_model->count_graph_c($this->db->escape_str($this->input->post("tg")));
+                if(empty($cg)){
+                    $cg[0]["TIC"] = 0;
+                }
             }else{
                 $carr = array("IBT","IER","IGP","IMI","IMT","INT","IGE","IPO","ITI","GENERAL");
                 $res = $this->admin_model->get_grf_ing();
-                $gen = $this->admin_model->count_polls_ing()["polls_ing"];
+                $gen = $this->admin_model->count_polls_ing_bp()["polls_ing"];
+                $cg = $this->admin_model->count_graph_c($this->db->escape_str($this->input->post("tg")));
+                $cg[0]["ITI"] = 0;
             }
-            $cg = $this->admin_model->count_graph_c($this->db->escape_str($this->input->post("tg")));
+            
             
             // Agregar valores por default
             $arrv = array();

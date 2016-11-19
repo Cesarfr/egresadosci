@@ -16,7 +16,26 @@ if(!isset($_SESSION["id_u"])){
 								<label for="tgTSU">TSU</label>&nbsp;
 								<input type="radio" name="tg" id="tgING" value="ING">
 								<label for="tgING">ING</label>
-							</div>
+							</div>&nbsp;
+                            <div class="form-group">
+                                <label for="periodo">Periodo:</label>
+                                <select name="periodo" id="periodo" class="form-control" data-validation="required" data-sanitize="trim escape">
+                                    <option value="ENERO-ABRIL">ENERO-ABRIL</option>
+                                    <option value="MAYO-AGOSTO">MAYO-AGOSTO</option>
+                                    <option value="SEPTIEMBRE-DICIEMBRE">SEPTIEMBRE-DICIEMBRE</option>
+                                </select>
+                            </div>
+                            &nbsp;<div class="form-group">
+                                <label for="anio">AÑO:</label>
+                                <select name="anio" id="anio" class="form-control" data-validation="required" data-sanitize="trim escape">
+                                    <?php
+                                        $anio = intval(date("Y"));
+                                        for($i = $anio; $i>1990; $i--){
+                                            echo "<option value='".$i."'>".$i."</option>";
+                                        }
+                                    ?>
+                                </select>
+                            </div>
 							&nbsp;<input type="submit" id="btnGen" value="Obtener tabla" class="hidden-print btn btn-primary">
 						</form>
 					</div>
