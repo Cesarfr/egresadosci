@@ -58,6 +58,7 @@ $route['home'] = 'frmegr';
 $route['home'] = 'satisfaccion';
 $route['home'] = 'comprobante';
 $route['home'] = 'rep_comp';
+$route['home'] = 'actdatos';
 
 $route['admin'] = 'login';
 $route['admin'] = 'panel';

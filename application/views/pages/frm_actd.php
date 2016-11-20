@@ -1,10 +1,6 @@
-<?php
-if(!isset($_SESSION["id_u"])){
-	redirect("/admin/login/");
-}else{?>
 <?php echo validation_errors(); ?>
 
-<?php echo form_open('admin/edit_frm_egre', array('id' => 'frmEditEgre')); ?>
+<?php echo form_open('home/edit_frm_egre', array('id' => 'frmEditEgre')); ?>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
@@ -693,4 +689,3 @@ if(!isset($_SESSION["id_u"])){
 	</div>
 
 <?php echo form_close(); ?><br>
-<?php } ?>

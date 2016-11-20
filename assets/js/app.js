@@ -119,6 +119,31 @@ $(document).ready(function(){
 			return false;
 		}
 	});
+    
+    $.validate({
+		form : '#frmAcd',
+		lang: 'es',
+		modules : 'sanitize',
+		onSuccess: function(evt){
+			var datos = $("#frmAcd").serialize();
+			$.ajax({
+				method: "POST",
+				url: baseurl+"index.php/home/frm_comp",
+				data: datos,
+				dataType: "JSON",
+				success: function(dat){
+					if(dat == null){
+						$("#comp").html("");
+						$("#msg_comp").html("<div class='alert alert-danger alert-dismissible' role='alert'> <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button> ¡ No hay ningún registro con la matrícula proporcionada !</div>");
+					}else{
+						$("#msg_comp").html("");
+						$("#comp").html("<a href='"+baseurl+"index.php/home/act_datos/"+dat.id+"' class='btn btn-primary' id='comp'>Actualizar mis datos</a>");
+					}
+				}
+			});
+			return false;
+		}
+	});
 	
 	if($("#table").length){
 		table = $('#table').DataTable({

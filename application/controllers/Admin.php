@@ -168,27 +168,34 @@ class Admin extends CI_Controller{
 				$datos_egre = $this->admin_model->get_egre_id($id);
 				if(isset($datos_egre['id'])){
 					$data['title'] = "Modificar datos egresado";
+                    $d1="";$d2="";$d3="";$d4="";$d5="";$d6="";$d7="";$d8="";$d9="";
+                    $d10="";$d11="";$d12="";$d13="";$d14="";$d15="";$d16="";$d17="";$d18="";$d19="";
 					switch($datos_egre["carrera"]){
-						case 'AEP': $datos_egre["descarr"]="ADMINISTRACIÓN, ÁREA ADMINISTRACIÓN Y EVALUACIÓN DE PROYECTOS"; break;
-						case 'ARH': $datos_egre["descarr"]="ADMINISTRACIÓN, ÁREA RECURSOS HUMANOS"; break;
-						case 'DNM': $datos_egre["descarr"]="DESARROLLO DE NEGOCIOS, ÁREA MERCADOTECNIA"; break;
-						case 'MIN': $datos_egre["descarr"]="MANTENIMIENTO, ÁREA INDUSTRIAL"; break;
-						case 'MAT': $datos_egre["descarr"]="MECATRÓNICA, ÁREA AUTOMATIZACIÓN"; break;
-						case 'NAT': $datos_egre["descarr"]="NANOTECNOLOGÍA, ÁREA MATERIALES"; break;
-						case 'PIM': $datos_egre["descarr"]="PROCESOS INDUSTRIALES, ÁREA MANUFACTURA"; break;
-						case 'QBT': $datos_egre["descarr"]="QUÍMICA, ÁREA BIOTECNOLOGÍA"; break;
-						case 'TIC': $datos_egre["descarr"]="TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIÓN, ÁREA SISTEMAS INFORMÁTICOS"; break;
-						case 'ERC': $datos_egre["descarr"]="ENERGÍAS RENOVABLES, ÁREA CALIDAD Y AHORRO DE ENERGÍA"; break;
-						case 'IBT': $datos_egre["descarr"]="BIOTECNOLOGÍA"; break;
-						case 'IER': $datos_egre["descarr"]="ENERGÍAS RENOVABLES"; break;
-						case 'IGP': $datos_egre["descarr"]="GESTIÓN DE PROYECTOS"; break;
-						case 'IMI': $datos_egre["descarr"]="MANTENIMIENTO INDUSTRIAL"; break;
-						case 'IMT': $datos_egre["descarr"]="MECATRÓNICA"; break;
-						case 'INT': $datos_egre["descarr"]="NANOTECNOLOGÍA"; break;
-						case 'IGE': $datos_egre["descarr"]="NEGOCIOS Y GESTIÓN EMPRESARIAL"; break;
-						case 'IPO': $datos_egre["descarr"]="PROCESOS Y OPERACIONES INDUSTRIALES"; break;
-						case 'ITI': $datos_egre["descarr"]="TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIÓN"; break;
+						case 'AEP': $d1 = "selected"; break;
+						case 'ARH': $d2 = "selected"; break;
+						case 'DNM': $d3 = "selected"; break;
+						case 'MIN': $d4 = "selected"; break;
+						case 'MTA': $d5 = "selected"; break;
+						case 'NTA': $d6 = "selected"; break;
+						case 'PIM': $d7 = "selected"; break;
+						case 'QBT': $d8 = "selected"; break;
+						case 'TIC': $d9 = "selected"; break;
+						case 'ERC': $d10 = "selected"; break;
+						case 'IBT': $d11 = "selected"; break;
+						case 'IER': $d12 = "selected"; break;
+						case 'IGP': $d13 = "selected"; break;
+						case 'IMI': $d14 = "selected"; break;
+						case 'IMT': $d15 = "selected"; break;
+						case 'INT': $d16 = "selected"; break;
+						case 'IGE': $d17 = "selected"; break;
+						case 'IPO': $d18 = "selected"; break;
+						case 'ITI': $d19 = "selected"; break;
 					}
+                    if($datos_egre["egresado"] == "TSU"){
+                        $datos_egre["carr"] = "<option value='AEP' $d1>ADMINISTRACIÓN, ÁREA ADMINISTRACIÓN Y EVALUACIÓN DE PROYECTOS</option><option value='ARH' $d2>ADMINISTRACIÓN, ÁREA RECURSOS HUMANOS</option><option value='DNM' $d3>DESARROLLO DE NEGOCIOS, ÁREA MERCADOTECNIA</option><option value='MIN' $d4>MANTENIMIENTO, ÁREA INDUSTRIAL</option><option value='MTA' $d5>MECATRÓNICA, ÁREA AUTOMATIZACIÓN</option><option value='NTA' $d6>NANOTECNOLOGÍA, ÁREA MATERIALES</option><option value='PIM' $d7>PROCESOS INDUSTRIALES, ÁREA MANUFACTURA</option><option value='QBT' $d8>QUÍMICA, ÁREA BIOTECNOLOGÍA</option><option value='TIC' $d9>TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIÓN, ÁREA SISTEMAS INFORMÁTICOS</option><option value='ERC' $d10>ENERGÍAS RENOVABLES, ÁREA CALIDAD Y AHORRO DE ENERGÍA</option>";
+                    }else{
+                        $datos_egre["carr"] = "<option value='IBT' $d11>BIOTECNOLOGÍA</option><option value='IER' $d12>ENERGÍAS RENOVABLES</option><option value='IGP' $d13>GESTIÓN DE PROYECTOS</option><option value='IMI' $d14>MANTENIMIENTO INDUSTRIAL</option><option value='IMT' $d15>MECATRÓNICA</option><option value='INT' $d16>NANOTECNOLOGÍA</option><option value='IGE' $d17>NEGOCIOS Y GESTIÓN EMPRESARIAL</option><option value='IPO' $d18>PROCESOS Y OPERACIONES INDUSTRIALES</option><option value='ITI' $d19>TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIÓN</option>";
+                    }
 					$data['datos'] = $datos_egre;
 					$this->load->view('templates/header', $data);
 					$this->load->view('pages/edit_egre');
@@ -231,7 +238,7 @@ class Admin extends CI_Controller{
 			$this->form_validation->set_rules('maillaboral', 'Correo electrónico laboral', 'required|trim|valid_email');
 			$this->form_validation->set_rules('facebook', '', 'trim');
 			$this->form_validation->set_rules('twitter', '', 'trim');
-			$this->form_validation->set_rules('etitTSU', 'Estado titulación TSU', 'required|trim');
+			$this->form_validation->set_rules('etitTSU', 'Estado titulación TSU', 'trim');
 			$this->form_validation->set_rules('etitING', 'Estado titulación ING', 'trim');
 			$this->form_validation->set_rules('npersonal', 'Referencia nombre personal', 'trim');
 			$this->form_validation->set_rules('tpersonal', 'Referencia teléfono personal', 'trim');
@@ -263,27 +270,35 @@ class Admin extends CI_Controller{
 			if ($this->form_validation->run() === FALSE){
 				$datos_egre = $this->admin_model->get_egre_id($this->input->post("id"));
 				$data['title'] = "Modificar datos egresado";
-				switch($datos_egre["carrera"]){
-					case 'AEP': $datos_egre["descarr"]="ADMINISTRACIÓN, ÁREA ADMINISTRACIÓN Y EVALUACIÓN DE PROYECTOS"; break;
-					case 'ARH': $datos_egre["descarr"]="ADMINISTRACIÓN, ÁREA RECURSOS HUMANOS"; break;
-					case 'DNM': $datos_egre["descarr"]="DESARROLLO DE NEGOCIOS, ÁREA MERCADOTECNIA"; break;
-					case 'MIN': $datos_egre["descarr"]="MANTENIMIENTO, ÁREA INDUSTRIAL"; break;
-					case 'MTA': $datos_egre["descarr"]="MECATRÓNICA, ÁREA AUTOMATIZACIÓN"; break;
-					case 'NTA': $datos_egre["descarr"]="NANOTECNOLOGÍA, ÁREA MATERIALES"; break;
-					case 'PIM': $datos_egre["descarr"]="PROCESOS INDUSTRIALES, ÁREA MANUFACTURA"; break;
-					case 'QBT': $datos_egre["descarr"]="QUÍMICA, ÁREA BIOTECNOLOGÍA"; break;
-					case 'TIC': $datos_egre["descarr"]="TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIÓN, ÁREA SISTEMAS INFORMÁTICOS"; break;
-					case 'ERC': $datos_egre["descarr"]="ENERGÍAS RENOVABLES, ÁREA CALIDAD Y AHORRO DE ENERGÍA"; break;
-					case 'IBT': $datos_egre["descarr"]="BIOTECNOLOGÍA"; break;
-					case 'IER': $datos_egre["descarr"]="ENERGÍAS RENOVABLES"; break;
-					case 'IGP': $datos_egre["descarr"]="GESTIÓN DE PROYECTOS"; break;
-					case 'IMI': $datos_egre["descarr"]="MANTENIMIENTO INDUSTRIAL"; break;
-					case 'IMT': $datos_egre["descarr"]="MECATRÓNICA"; break;
-					case 'INT': $datos_egre["descarr"]="NANOTECNOLOGÍA"; break;
-					case 'IGE': $datos_egre["descarr"]="NEGOCIOS Y GESTIÓN EMPRESARIAL"; break;
-					case 'IPO': $datos_egre["descarr"]="PROCESOS Y OPERACIONES INDUSTRIALES"; break;
-					case 'ITI': $datos_egre["descarr"]="TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIÓN"; break;
-				}
+				$data['title'] = "Modificar datos egresado";
+                    $d1="";$d2="";$d3="";$d4="";$d5="";$d6="";$d7="";$d8="";$d9="";
+                    $d10="";$d11="";$d12="";$d13="";$d14="";$d15="";$d16="";$d17="";$d18="";$d19="";
+					switch($datos_egre["carrera"]){
+						case 'AEP': $d1 = "selected"; break;
+						case 'ARH': $d2 = "selected"; break;
+						case 'DNM': $d3 = "selected"; break;
+						case 'MIN': $d4 = "selected"; break;
+						case 'MTA': $d5 = "selected"; break;
+						case 'NTA': $d6 = "selected"; break;
+						case 'PIM': $d7 = "selected"; break;
+						case 'QBT': $d8 = "selected"; break;
+						case 'TIC': $d9 = "selected"; break;
+						case 'ERC': $d10 = "selected"; break;
+						case 'IBT': $d11 = "selected"; break;
+						case 'IER': $d12 = "selected"; break;
+						case 'IGP': $d13 = "selected"; break;
+						case 'IMI': $d14 = "selected"; break;
+						case 'IMT': $d15 = "selected"; break;
+						case 'INT': $d16 = "selected"; break;
+						case 'IGE': $d17 = "selected"; break;
+						case 'IPO': $d18 = "selected"; break;
+						case 'ITI': $d19 = "selected"; break;
+					}
+                    if($datos_egre["egresado"] == "TSU"){
+                        $datos_egre["carr"] = "<option value='AEP' $d1>ADMINISTRACIÓN, ÁREA ADMINISTRACIÓN Y EVALUACIÓN DE PROYECTOS</option><option value='ARH' $d2>ADMINISTRACIÓN, ÁREA RECURSOS HUMANOS</option><option value='DNM' $d3>DESARROLLO DE NEGOCIOS, ÁREA MERCADOTECNIA</option><option value='MIN' $d4>MANTENIMIENTO, ÁREA INDUSTRIAL</option><option value='MTA' $d5>MECATRÓNICA, ÁREA AUTOMATIZACIÓN</option><option value='NTA' $d6>NANOTECNOLOGÍA, ÁREA MATERIALES</option><option value='PIM' $d7>PROCESOS INDUSTRIALES, ÁREA MANUFACTURA</option><option value='QBT' $d8>QUÍMICA, ÁREA BIOTECNOLOGÍA</option><option value='TIC' $d9>TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIÓN, ÁREA SISTEMAS INFORMÁTICOS</option><option value='ERC' $d10>ENERGÍAS RENOVABLES, ÁREA CALIDAD Y AHORRO DE ENERGÍA</option>";
+                    }else{
+                        $datos_egre["carr"] = "<option value='IBT' $d11>BIOTECNOLOGÍA</option><option value='IER' $d12>ENERGÍAS RENOVABLES</option><option value='IGP' $d13>GESTIÓN DE PROYECTOS</option><option value='IMI' $d14>MANTENIMIENTO INDUSTRIAL</option><option value='IMT' $d15>MECATRÓNICA</option><option value='INT' $d16>NANOTECNOLOGÍA</option><option value='IGE' $d17>NEGOCIOS Y GESTIÓN EMPRESARIAL</option><option value='IPO' $d18>PROCESOS Y OPERACIONES INDUSTRIALES</option><option value='ITI' $d19>TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIÓN</option>";
+                    }
 				$data['datos'] = $datos_egre;
 				$this->load->view('templates/header', $data);
 				$this->load->view('pages/edit_egre');

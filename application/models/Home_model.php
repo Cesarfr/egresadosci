@@ -108,4 +108,70 @@ class Home_model extends CI_Model{
         $query = $this->db->query("SELECT id FROM EGRESADO WHERE matricula='".$this->db->escape_str($this->input->post("matricula"))."'");
 		return $query->row_array();
 	}
+    
+    public function get_egre_id($id){
+		$query = $this->db->query("SELECT * FROM EGRESADO WHERE id=".$this->db->escape($id));
+		return $query->row_array();
+	}
+	
+	public function update_egre(){
+		$data = array(
+			"egresado" => strtoupper($this->input->post("egresado")),
+			"obser" => strtoupper($this->input->post("obser")),
+			"carrera" => strtoupper($this->input->post("carrera")),
+			"matricula" => $this->input->post("matric"),
+			"fecha" => $this->input->post("fecha"),
+			"fechaupdate" => $this->input->post("fechaupdate"),
+			"apat" => strtoupper($this->input->post("apat")),
+			"amat" => strtoupper($this->input->post("amat")),
+			"nombre" => strtoupper($this->input->post("nombre")),
+			"sexo" => strtoupper($this->input->post("sexo")),
+			"curp" => strtoupper($this->input->post("curp")),
+			"ecivil" => strtoupper($this->input->post("ecivil")),
+			"status_e" => strtoupper($this->input->post("status")),
+			"calle" => strtoupper($this->input->post("calle")),
+			"colonia" => strtoupper($this->input->post("colonia")),
+			"municipio" => strtoupper($this->input->post("municipio")),
+			"estado" => strtoupper($this->input->post("estado")),
+			"cp" => $this->input->post("cp"),
+			"tcasa" => $this->input->post("tcasa"),
+			"trecados" => $this->input->post("trecados"),
+			"fechanac" => $this->input->post("fechanac"),
+			"mailperso" => strtolower($this->input->post("mailperso")),
+			"maillaboral" => strtolower($this->input->post("maillaboral")),
+			"facebook" => strtolower($this->input->post("facebook")),
+			"twitter" => strtolower($this->input->post("twitter")),
+			"etitTSU" => strtoupper($this->input->post("etitTSU")),
+			"etitING" => strtoupper($this->input->post("etitING")),
+			"npersonal" => strtoupper($this->input->post("npersonal")),
+			"tpersonal" => $this->input->post("tpersonal"),
+			"cpersonal" => strtolower($this->input->post("cpersonal")),
+			"nescolar" => strtoupper($this->input->post("nescolar")),
+			"tescolar" => $this->input->post("tescolar"),
+			"cescolar" => strtolower($this->input->post("cescolar")),
+			"nlaboral" => strtoupper($this->input->post("nlaboral")),
+			"tlaboral" => $this->input->post("tlaboral"),
+			"claboral" => strtolower($this->input->post("claboral")),
+			"empresa" => strtoupper($this->input->post("empresa")),
+			"dirempresa" => strtoupper($this->input->post("dirempresa")),
+			"puesto" => strtoupper($this->input->post("puesto")),
+			"nomjefe" => strtoupper($this->input->post("nomjefe")),
+			"telempresa" => $this->input->post("telempresa"),
+			"tlaborando" => strtoupper($this->input->post("tlaborando")),
+			"explaboral" => strtoupper($this->input->post("explaboral")),
+			"sueldo" => $this->input->post("sueldo"),
+			"nivocupacion" => strtoupper($this->input->post("nivocupacion")),
+			"otronc" => strtoupper($this->input->post("otronc")),
+			"tiempoempleo" => strtoupper($this->input->post("tiempoempleo")),
+			"loctrabajo" => strtoupper($this->input->post("loctrabajo")),
+			"torganizacion" => strtoupper($this->input->post("torganizacion")),
+			"tipoorga" => strtoupper($this->input->post("tipoorga")),
+			"trel" => $this->input->post("trel"),
+			"tcol" => $this->input->post("fcol"),
+			"cest" => $this->input->post("cest"),
+			"cestque" => strtoupper($this->input->post("cestque"))
+		);
+		$where = array("id" => $this->input->post("id"));
+		return $this->db->update('EGRESADO', $data, $where);
+	}
 }

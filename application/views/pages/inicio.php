@@ -11,7 +11,7 @@
 						<p>Para ello da click en el enlace acorde a tu estado dentro de este proceso.</p>
 					</div>
 					<div class="col-md-offset-3 col-md-6 text-center">
-						<a href="<?php echo site_url('home/frmegr')?>" class="btn btn-primary">Cédula de egreso</a>&nbsp;&nbsp;<a href="<?php echo site_url('#')?>" class="btn btn-warning">Actualización de datos</a>
+						<a href="<?php echo site_url('home/frmegr')?>" class="btn btn-primary">Cédula de egreso</a>&nbsp;&nbsp;<a href="<?php echo site_url('home/actdatos')?>" class="btn btn-warning">Actualización de datos</a>
 					</div>
 				</div>
 			</div>
