@@ -36,7 +36,7 @@ if(!isset($_SESSION["id_u"])){
                                     ?>
                                 </select>
                             </div>
-							&nbsp;<input type="submit" id="btnGen" value="Obtener tabla" class="hidden-print btn btn-primary">
+							&nbsp;<input type="submit" id="btnGen" value="Obtener gráfica" class="hidden-print btn btn-primary">
 						</form>
 					</div>
 				</div><br>

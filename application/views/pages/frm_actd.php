@@ -680,7 +680,7 @@
 
 					<div class="row">
 						<div class="col-md-12 text-center">
-							<input type="submit" class="btn btn-warning" value="Modificar egresado">
+							<input type="submit" class="btn btn-warning" value="Modificar mis datos">
 						</div>
 					</div>
 				</div>

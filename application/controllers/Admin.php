@@ -370,7 +370,9 @@ class Admin extends CI_Controller{
                 $res = $this->admin_model->get_grf_ing();
                 $gen = $this->admin_model->count_polls_ing_bp()["polls_ing"];
                 $cg = $this->admin_model->count_graph_c($this->db->escape_str($this->input->post("tg")));
-                $cg[0]["ITI"] = 0;
+                if(empty($cg)){
+                    $cg[0]["ITI"] = 0;
+                }
             }
             
             

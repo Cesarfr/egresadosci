@@ -146,6 +146,7 @@ class Admin_model extends CI_Model{
 		$data = array(
 			"egresado" => strtoupper($this->input->post("egresado")),
 			"obser" => strtoupper($this->input->post("obser")),
+			"periodo" => strtoupper($this->input->post("periodo")),
 			"carrera" => strtoupper($this->input->post("carrera")),
 			"matricula" => $this->input->post("matric"),
 			"fecha" => $this->input->post("fecha"),
