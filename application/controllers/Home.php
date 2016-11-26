@@ -411,7 +411,6 @@ class Home extends CI_Controller{
         if ($this->form_validation->run() === FALSE){
             $datos_egre = $this->home_model->get_egre_id($this->input->post("id"));
             $data['title'] = "Modificar datos egresado";
-            $data['title'] = "Modificar datos egresado";
                 $d1="";$d2="";$d3="";$d4="";$d5="";$d6="";$d7="";$d8="";$d9="";
                 $d10="";$d11="";$d12="";$d13="";$d14="";$d15="";$d16="";$d17="";$d18="";$d19="";
                 switch($datos_egre["carrera"]){

@@ -317,13 +317,13 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="empresa">Empresa:</label>
-								<input type="text" class="form-control" id="empresa" name="empresa" placeholder="Nombre de la empresa" data-validation="required" data-sanitize="trim escape">
+								<input type="text" class="form-control" id="empresa" name="empresa" placeholder="Nombre de la empresa" data-sanitize="trim escape">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="dirempresa">Domicilio: (completo)</label>
-								<input type="text" class="form-control" id="dirempresa" name="dirempresa" placeholder="Domicilio de la empresa" data-validation="required" data-sanitize="trim escape">
+								<input type="text" class="form-control" id="dirempresa" name="dirempresa" placeholder="Domicilio de la empresa" data-sanitize="trim escape">
 							</div>
 						</div>
 					</div>
@@ -332,19 +332,19 @@
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="puesto">Puesto:</label>
-								<input type="text" class="form-control" id="puesto" name="puesto" placeholder="Puesto" data-validation="required" data-sanitize="trim escape">
+								<input type="text" class="form-control" id="puesto" name="puesto" placeholder="Puesto" data-sanitize="trim escape">
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="nomjefe">Nombre de tu jefe:</label>
-								<input type="text" class="form-control" id="nomjefe" name="nomjefe" placeholder="Nombre de tu jefe" data-validation="required" data-sanitize="trim escape">
+								<input type="text" class="form-control" id="nomjefe" name="nomjefe" placeholder="Nombre de tu jefe" data-sanitize="trim escape">
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="telempresa">Teléfono:</label>
-								<input type="text" class="form-control" placeholder="Teléfono" id="telempresa" name="telempresa" data-validation="required" data-sanitize="trim escape">
+								<input type="text" class="form-control" placeholder="Teléfono" id="telempresa" name="telempresa" data-sanitize="trim escape">
 							</div>
 						</div>
 					</div>
@@ -353,13 +353,13 @@
 						<div class="col-sm-4 col-md-4">
 							<div class="form-group">
 								<label for="tlaborando">Tiempo laborando:</label>
-								<input type="text" class="form-control" id="tlaborando" name="tlaborando" placeholder="Tiempo laborando" data-validation="required" data-sanitize="trim escape">
+								<input type="text" class="form-control" id="tlaborando" name="tlaborando" placeholder="Tiempo laborando" data-sanitize="trim escape">
 							</div>
 						</div>
 						<div class="col-sm-4 col-md-4">
 							<div class="form-group">
 								<label for="explaboral">Experiencia laboral total:</label>
-								<input type="text" class="form-control" id="explaboral" name="explaboral" placeholder="Experiencia laboral total" data-toggle="tooltip" data-placement="top" title="Área de desarrollo y tiempo" data-validation="required" data-sanitize="trim escape">
+								<input type="text" class="form-control" id="explaboral" name="explaboral" placeholder="Experiencia laboral total" data-toggle="tooltip" data-placement="top" title="Área de desarrollo y tiempo" data-sanitize="trim escape">
 							</div>
 						</div>
 						<div class="col-sm-4 col-md-4">
@@ -367,7 +367,7 @@
 								<label for="sueldo">Sueldo mensual:</label>
 								<div class="input-group">
 									<span class="input-group-addon">$</span>
-									<input type="number" class="form-control" id="sueldo" name="sueldo" data-validation="required" data-validation="number" min="0" step="any">
+									<input type="number" class="form-control" id="sueldo" name="sueldo" data-validation="number" min="0" step="any">
 								</div>
 							</div>
 						</div>
@@ -377,7 +377,7 @@
 						<div class="col-xs-12 col-md-4">
 							<div class="form-group">
 								<label for="nivocupacion">Nivel de ocupación:</label>
-								<select name="nivocupacion" id="nivocupacion" class="form-control" data-validation="required" data-sanitize="trim escape">
+								<select name="nivocupacion" id="nivocupacion" class="form-control" data-sanitize="trim escape">
 									<option value="OPERARIO">OPERARIO</option>
 									<option value="TÉCNICO GENERAL">TÉCNICO GENERAL</option>
 									<option value="TÉCNICO ESPECIALIZADO">TÉCNICO ESPECIALIZADO</option>
@@ -397,7 +397,7 @@
 						<div class="col-sm-6 col-md-2">
 							<div class="form-group">
 								<label for="tiempoempleo">Tiempo en conseguir tu primer empleo</label>
-								<select name="tiempoempleo" id="tiempoempleo" class="form-control" data-validation="required" data-sanitize="trim escape">
+								<select name="tiempoempleo" id="tiempoempleo" class="form-control" data-sanitize="trim escape">
 									<option value="POR ESTADÍA">POR ESTADÍA</option>
 									<option value="3 MESES">3 MESES</option>
 									<option value="6 MESES">6 MESES</option>
@@ -409,7 +409,7 @@
 						<div class="col-sm-6 col-md-2">
 							<div class="form-group">
 								<label for="loctrabajo">Localidad de Trabajo</label>
-								<select name="loctrabajo" id="loctrabajo" class="form-control" data-validation="required" data-sanitize="trim escape">
+								<select name="loctrabajo" id="loctrabajo" class="form-control" data-sanitize="trim escape">
 									<option value="ZONA INFLUENCIA UT">ZONA INFLUENCIA UT</option>
 									<option value="INTERIOR DEL ESTADO">INTERIOR DEL ESTADO</option>
 									<option value="FUERA DEL ESTADO">FUERA DEL ESTADO</option>
@@ -420,7 +420,7 @@
 						<div class="col-sm-6 col-md-2">
 							<div class="form-group">
 								<label for="torganizacion">Tamaño de la Organización</label>
-								<select name="torganizacion" id="torganizacion" class="form-control" data-validation="required" data-sanitize="trim escape">
+								<select name="torganizacion" id="torganizacion" class="form-control" data-sanitize="trim escape">
 									<option value="MICRO">MICRO</option>
 									<option value="PEQUEÑA">PEQUEÑA</option>
 									<option value="MEDIANA">MEDIANA</option>
@@ -431,7 +431,7 @@
 						<div class="col-sm-6 col-md-2">
 							<div class="form-group">
 								<label for="tipoorga">Tipo de Organización</label>
-								<select name="tipoorga" id="tipoorga" class="form-control" data-validation="required" data-sanitize="trim escape">
+								<select name="tipoorga" id="tipoorga" class="form-control" data-sanitize="trim escape">
 									<option value="PÚBLICA">PÚBLICA</option>
 									<option value="PRIVADA">PRIVADA</option>
 									<option value="PROPIA">PROPIA</option>

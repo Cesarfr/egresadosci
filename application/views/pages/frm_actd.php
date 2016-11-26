@@ -422,13 +422,13 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="empresa">Empresa:</label>
-								<input type="text" class="form-control" id="empresa" name="empresa" placeholder="Nombre de la empresa" data-validation="required" data-sanitize="trim upper escape" value="<?php echo $datos["empresa"];?>">
+								<input type="text" class="form-control" id="empresa" name="empresa" placeholder="Nombre de la empresa" data-sanitize="trim upper escape" value="<?php echo $datos["empresa"];?>">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="dirempresa">Domicilio: (completo)</label>
-								<input type="text" class="form-control" id="dirempresa" name="dirempresa" placeholder="Domicilio de la empresa" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["dirempresa"];?>">
+								<input type="text" class="form-control" id="dirempresa" name="dirempresa" placeholder="Domicilio de la empresa" data-sanitize="trim escape" value="<?php echo $datos["dirempresa"];?>">
 							</div>
 						</div>
 					</div>
@@ -437,19 +437,19 @@
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="puesto">Puesto:</label>
-								<input type="text" class="form-control" id="puesto" name="puesto" placeholder="Puesto" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["puesto"];?>">
+								<input type="text" class="form-control" id="puesto" name="puesto" placeholder="Puesto" data-sanitize="trim escape" value="<?php echo $datos["puesto"];?>">
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="nomjefe">Nombre de tu jefe:</label>
-								<input type="text" class="form-control" id="nomjefe" name="nomjefe" placeholder="Nombre de tu jefe" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["nomjefe"];?>">
+								<input type="text" class="form-control" id="nomjefe" name="nomjefe" placeholder="Nombre de tu jefe" data-sanitize="trim escape" value="<?php echo $datos["nomjefe"];?>">
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="telempresa">Teléfono:</label>
-								<input type="text" class="form-control" placeholder="Teléfono" id="telempresa" name="telempresa" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["telempresa"];?>">
+								<input type="text" class="form-control" placeholder="Teléfono" id="telempresa" name="telempresa" data-sanitize="trim escape" value="<?php echo $datos["telempresa"];?>">
 							</div>
 						</div>
 					</div>
@@ -458,13 +458,13 @@
 						<div class="col-sm-4 col-md-4">
 							<div class="form-group">
 								<label for="tlaborando">Tiempo laborando:</label>
-								<input type="text" class="form-control" id="tlaborando" name="tlaborando" placeholder="Tiempo laborando" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["tlaborando"];?>">
+								<input type="text" class="form-control" id="tlaborando" name="tlaborando" placeholder="Tiempo laborando" data-sanitize="trim escape" value="<?php echo $datos["tlaborando"];?>">
 							</div>
 						</div>
 						<div class="col-sm-4 col-md-4">
 							<div class="form-group">
 								<label for="explaboral">Experiencia laboral: (área de desarrollo y tiempo)</label>
-								<input type="text" class="form-control" id="explaboral" name="explaboral" placeholder="Experiencia laboral" data-validation="required" data-sanitize="trim escape" value="<?php echo $datos["explaboral"];?>">
+								<input type="text" class="form-control" id="explaboral" name="explaboral" placeholder="Experiencia laboral" data-sanitize="trim escape" value="<?php echo $datos["explaboral"];?>">
 							</div>
 						</div>
 						<div class="col-sm-4 col-md-4">
@@ -472,7 +472,7 @@
 								<label for="sueldo">Sueldo mensual:</label>
 								<div class="input-group">
 									<span class="input-group-addon">$</span>
-									<input type="number" class="form-control" id="sueldo" name="sueldo" data-validation="required" data-validation="number" min="0" value="<?php echo $datos["sueldo"];?>" step="any">
+									<input type="number" class="form-control" id="sueldo" name="sueldo" data-validation="number" min="0" value="<?php echo $datos["sueldo"];?>" step="any">
 								</div>
 							</div>
 						</div>
@@ -505,7 +505,7 @@
 										case "OTRO": $noc1=""; $noc2=""; $noc3=""; $noc4=""; $noc5=""; $noc6=""; $noc7=""; $noc8=""; $noc9="selected"; $hid=""; break;
 									}
 								?>
-								<select name="nivocupacion" id="nivocupacion" class="form-control" data-validation="required" data-sanitize="trim escape">
+								<select name="nivocupacion" id="nivocupacion" class="form-control" data-sanitize="trim escape">
 									<option value="OPERARIO" <?php echo $noc1;?> >OPERARIO</option>
 									<option value="TÉCNICO GENERAL" <?php echo $noc2;?> >TÉCNICO GENERAL</option>
 									<option value="TÉCNICO ESPECIALIZADO" <?php echo $noc3;?> >TÉCNICO ESPECIALIZADO</option>
@@ -539,7 +539,7 @@
 										case "MÁS DE 1 AÑO": $te1=""; $te2=""; $te3=""; $te4=""; $te5="selected"; break;
 									}
 								?>
-								<select name="tiempoempleo" id="tiempoempleo" class="form-control" data-validation="required" data-sanitize="trim escape">
+								<select name="tiempoempleo" id="tiempoempleo" class="form-control" data-sanitize="trim escape">
 									<option value="POR ESTADÍA" <?php echo $te1; ?> >POR ESTADÍA</option>
 									<option value="3 MESES" <?php echo $te2; ?> >3 MESES</option>
 									<option value="6 MESES" <?php echo $te3; ?> >6 MESES</option>
@@ -563,7 +563,7 @@
 										case "EN EL EXTRANJERO": $lt1=""; $lt2=""; $lt3=""; $lt4="selected"; break;
 									}
 								?>
-								<select name="loctrabajo" id="loctrabajo" class="form-control" data-validation="required" data-sanitize="trim escape">
+								<select name="loctrabajo" id="loctrabajo" class="form-control" data-sanitize="trim escape">
 									<option value="ZONA INFLUENCIA UT" <?php echo $lt1; ?> >ZONA INFLUENCIA UT</option>
 									<option value="INTERIOR DEL ESTADO" <?php echo $lt2; ?> >INTERIOR DEL ESTADO</option>
 									<option value="FUERA DEL ESTADO" <?php echo $lt3; ?> >FUERA DEL ESTADO</option>
@@ -586,7 +586,7 @@
 										case "MACRO": $to1=""; $to2=""; $to3=""; $to4="selected"; break;
 									}
 								?>
-								<select name="torganizacion" id="torganizacion" class="form-control" data-validation="required" data-sanitize="trim escape">
+								<select name="torganizacion" id="torganizacion" class="form-control" data-sanitize="trim escape">
 									<option value="MICRO" <?php echo $to1; ?> >MICRO</option>
 									<option value="PEQUEÑA" <?php echo $to2; ?> >PEQUEÑA</option>
 									<option value="MEDIANA" <?php echo $to3; ?> >MEDIANA</option>
@@ -607,7 +607,7 @@
 										case "PROPIA": $tor1=""; $tor2=""; $tor3="selected"; break;
 									}
 								?>
-								<select name="tipoorga" id="tipoorga" class="form-control" data-validation="required" data-sanitize="trim escape">
+								<select name="tipoorga" id="tipoorga" class="form-control" data-sanitize="trim escape">
 									<option value="PÚBLICA" <?php echo $tor1; ?> >PÚBLICA</option>
 									<option value="PRIVADA" <?php echo $tor2; ?> >PRIVADA</option>
 									<option value="PROPIA" <?php echo $tor3; ?> >PROPIA</option>

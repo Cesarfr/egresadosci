@@ -13,6 +13,39 @@ $(document).ready(function(){
 			$("#otronc").removeAttr("data-validation");
 		}
     });
+
+    $("#status").click(function(){
+        if($("#status").val() == "TRABAJAS" || $("#status").val() == "TRABAJAS Y ESTUDIAS"){
+			$("#empresa").attr("data-validation", "required");
+			$("#dirempresa").attr("data-validation", "required");
+			$("#puesto").attr("data-validation", "required");
+			$("#nomjefe").attr("data-validation", "required");
+			$("#telempresa").attr("data-validation", "required");
+			$("#tlaborando").attr("data-validation", "required");
+			$("#explaboral").attr("data-validation", "required");
+			$("#sueldo").attr("data-validation", "required");
+			$("#nivocupacion").attr("data-validation", "required");
+			$("#tiempoempleo").attr("data-validation", "required");
+			$("#loctrabajo").attr("data-validation", "required");
+			$("#torganizacion").attr("data-validation", "required");
+			$("#tipoorga").attr("data-validation", "required");
+		}else {
+			$("#empresa").removeAttr("data-validation");
+			$("#dirempresa").removeAttr("data-validation");
+			$("#puesto").removeAttr("data-validation");
+			$("#nomjefe").removeAttr("data-validation");
+			$("#telempresa").removeAttr("data-validation");
+			$("#tlaborando").removeAttr("data-validation");
+			$("#explaboral").removeAttr("data-validation");
+			$("#sueldo").removeAttr("data-validation");
+			$("#nivocupacion").removeAttr("data-validation");
+			$("#tiempoempleo").removeAttr("data-validation");
+			$("#loctrabajo").removeAttr("data-validation");
+			$("#torganizacion").removeAttr("data-validation");
+			$("#tipoorga").removeAttr("data-validation");
+		}
+    });
+
 	$("input[name='cest']").click(function(){
         if($(this).val() == "SI"){
 			$("#contest").removeClass("hidden");
