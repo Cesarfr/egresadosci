@@ -235,7 +235,7 @@ class Admin extends CI_Controller{
 			$this->form_validation->set_rules('trecados', 'Teléfono para recados y Nombre de la persona', 'required|trim');
 			$this->form_validation->set_rules('fechanac', 'Fecha de nacimiento', 'required|trim');
 			$this->form_validation->set_rules('mailperso', 'Correo electrónico personal', 'required|trim|valid_email');
-			$this->form_validation->set_rules('maillaboral', 'Correo electrónico laboral', 'required|trim|valid_email');
+			$this->form_validation->set_rules('maillaboral', 'Correo electrónico laboral', 'trim|valid_email');
 			$this->form_validation->set_rules('facebook', '', 'trim');
 			$this->form_validation->set_rules('twitter', '', 'trim');
 			$this->form_validation->set_rules('etitTSU', 'Estado titulación TSU', 'trim');
@@ -263,8 +263,8 @@ class Admin extends CI_Controller{
 			$this->form_validation->set_rules('loctrabajo', 'Localidad de Trabajo', 'trim');
 			$this->form_validation->set_rules('torganizacion', 'Tamaño de la Organización', 'trim');
 			$this->form_validation->set_rules('tipoorga', 'Tipo de Organización', 'trim');
-			$this->form_validation->set_rules('trel', '¿Trabajas en algo relacionado a tu carrera?', 'required|trim');
-			$this->form_validation->set_rules('fcol', '¿Fuiste colocado por la UT?', 'required|trim');
+			$this->form_validation->set_rules('trel', '¿Trabajas en algo relacionado a tu carrera?', 'trim');
+			$this->form_validation->set_rules('fcol', '¿Fuiste colocado por la UT?', 'trim');
 			$this->form_validation->set_rules('cest', '¿Continuarás estudiando?', 'required|trim');
 			$this->form_validation->set_rules('cestque', 'Continuación de estudios', 'trim');
 			if ($this->form_validation->run() === FALSE){

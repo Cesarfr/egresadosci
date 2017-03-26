@@ -29,6 +29,8 @@ $(document).ready(function(){
 			$("#loctrabajo").attr("data-validation", "required");
 			$("#torganizacion").attr("data-validation", "required");
 			$("#tipoorga").attr("data-validation", "required");
+			$("#trSI").attr("data-validation", "required");
+			$("#fcSI").attr("data-validation", "required");
 		}else {
 			$("#empresa").removeAttr("data-validation");
 			$("#dirempresa").removeAttr("data-validation");
@@ -43,6 +45,8 @@ $(document).ready(function(){
 			$("#loctrabajo").removeAttr("data-validation");
 			$("#torganizacion").removeAttr("data-validation");
 			$("#tipoorga").removeAttr("data-validation");
+			$("#trSI").removeAttr("data-validation");
+			$("#fcSI").removeAttr("data-validation");
 		}
     });
 

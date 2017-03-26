@@ -196,7 +196,7 @@
 						<div class="col-sm-6 col-md-3">
 							<div class="form-group">
 								<label for="maillaboral">Correo electrónico laboral:</label>
-								<input type="text" class="form-control" id="maillaboral" name="maillaboral"  data-validation="email" placeholder="Correo electrónico laboral">
+								<input type="text" class="form-control" id="maillaboral" name="maillaboral" data-validation-optional="true" data-validation="email" placeholder="Correo electrónico laboral">
 							</div>
 						</div>
 						<div class="col-xs-6 col-md-3">
@@ -367,7 +367,7 @@
 								<label for="sueldo">Sueldo mensual:</label>
 								<div class="input-group">
 									<span class="input-group-addon">$</span>
-									<input type="number" class="form-control" id="sueldo" name="sueldo" data-validation="number" min="0" step="any">
+									<input type="number" class="form-control" id="sueldo" name="sueldo" data-validation="number" min="0" step="any" value="0">
 								</div>
 							</div>
 						</div>
@@ -444,18 +444,20 @@
 						<div class="col-sm-4 col-ms-4">
 							<div class="form-group">
 								<span class="negritas">¿Trabajas en algo relacionado a tu carrera?</span><br>
-								<input type="radio" value="SI" name="trel" id="trSI" data-validation="required">
+								<input type="radio" value="SI" name="trel" id="trSI">
 								<label for="trSI">Sí</label>
 								<input type="radio" value="NO" name="trel" id="trNO">
+								<input type="hidden" value="NO" name="trel">
 								<label for="trNO">No</label>
 							</div>
 						</div>
 						<div class="col-sm-4 col-ms-4">
 							<div class="form-group">
 								<span class="negritas">¿Fuiste colocado por la UT?</span><br>
-								<input type="radio" value="SI" name="fcol" id="fcSI" data-validation="required">
+								<input type="radio" value="SI" name="fcol" id="fcSI">
 								<label for="fcSI">Sí</label>
 								<input type="radio" value="NO" name="fcol" id="fcNO">
+								<input type="hidden" value="NO" name="fcol">
 								<label for="fcNO">No</label>
 							</div>
 						</div>

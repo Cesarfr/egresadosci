@@ -625,12 +625,12 @@ if(!isset($_SESSION["id_u"])){
 							<div class="form-group">
 								<span class="negritas">¿Trabajas en algo relacionado a tu carrera?</span><br>
 								<?php if($datos["trel"] == "SI"){ ?>
-								<input type="radio" value="SI" name="trel" id="trSI" data-validation="required" checked="checked">
+								<input type="radio" value="SI" name="trel" id="trSI" checked="checked">
 								<label for="trSI">Sí</label>
 								<input type="radio" value="NO" name="trel" id="trNO">
 								<label for="trNO">No</label>
 								<?php }else{ ?>
-								<input type="radio" value="SI" name="trel" id="trSI" data-validation="required">
+								<input type="radio" value="SI" name="trel" id="trSI">
 								<label for="trSI">Sí</label>
 								<input type="radio" value="NO" name="trel" id="trNO" checked="checked">
 								<label for="trNO">No</label>
@@ -641,12 +641,12 @@ if(!isset($_SESSION["id_u"])){
 							<div class="form-group">
 								<span class="negritas">¿Fuiste colocado por la UT?</span><br>
 								<?php if($datos["tcol"] == "SI"){ ?>
-								<input type="radio" value="SI" name="fcol" id="fcSI" data-validation="required" checked="checked">
+								<input type="radio" value="SI" name="fcol" id="fcSI" checked="checked">
 								<label for="fcSI">Sí</label>
 								<input type="radio" value="NO" name="fcol" id="fcNO">
 								<label for="fcNO">No</label>
 								<?php }else{ ?>
-								<input type="radio" value="SI" name="fcol" id="fcSI" data-validation="required">
+								<input type="radio" value="SI" name="fcol" id="fcSI">
 								<label for="fcSI">Sí</label>
 								<input type="radio" value="NO" name="fcol" id="fcNO" checked="checked">
 								<label for="fcNO">No</label>

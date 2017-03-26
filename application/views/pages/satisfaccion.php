@@ -4,7 +4,6 @@
 <div class="row">
 	<div class="col-md-12"><?php echo $res;?></div>
 </div>
-<?php echo $id;?>
 <div class="row">
 	<div class="col-md-12 text-justify">
 		<div class="panel panel-default">
